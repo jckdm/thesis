@@ -1,9 +1,10 @@
 $(function() {
 	var w = $('.content h2');
+	var n = $('#nav')[0];
 	for (var i = 0; i < w.length; i++) {
     var h = $(w[i]).html();
 		$(w[i]).attr('id', h);
-    $('#nav')[0].append('<a href="#' + h + '">' + h + '</a> <br>');
+    $(n).append('<a href="#' + h + '">' + h + '</a> <br>');
 	}
 
 	$(window).scroll(function() {
