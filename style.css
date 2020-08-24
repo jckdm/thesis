@@ -1,0 +1,76 @@
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+a:hover { text-decoration: underline; }
+p, #title { font-size: 18px; }
+h2 { font-size: 30px; line-height: 1; width: 150%; }
+#title { padding: 15px 0 0 5px; }
+.space { padding-bottom: calc(10px + 3.5vh); }
+.nav a { padding: 8px 8px 8px 32px; font-weight: bold; }
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  line-height: 1.5;
+}
+
+a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
+  color: #0000FF;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.content {
+  width: 35%;
+  padding-top: calc(5px + 2vh);
+  padding-left: 5px;
+}
+
+#pic {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  padding-top: calc(5px + 2vh);
+  width: auto;
+  height: auto;
+  max-width: 50%;
+  max-height: 90%;
+}
+
+#navbtn {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  font-size: 50px;
+  color: blue;
+  z-index: 1;
+}
+
+.nav {
+  display: none;
+  height: 100%;
+  width: calc(225px + 5vw);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-left: 4px solid black;
+  overflow-x: hidden;
+  font-size: 30px;
+  padding-top: calc(5px + 4vh);
+}
+
+.closebtn {
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  font-size: 50px;
+}
+
+@media only screen and (max-width: 415px) {
+  p { font-size: 12px; }
+  h2 { font-size: 25px; }
+  #title { font-size: 15px; }
+  .content { width: 45%; }
+  #pic { top: calc(5px + 7vh); }
+  .nav { font-size: 25px; }
+}
