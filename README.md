@@ -8,7 +8,7 @@ Further, what inferences—any—can be made from such data? Can we guess as to 
 
 ## Deliverables
 
-### Code
+### [Code](https://github.com/jckdm/thesis)
 * Python for data collection
 * SQL for data extraction and selection
 * JavaScript, D3.js for data visualization and interaction
@@ -20,5 +20,3 @@ Further, what inferences—any—can be made from such data? Can we guess as to 
 ### Images
 * Data visualizations!
 * Collected photos and screenshots, to be embedded in the journal alongside entries
-
-[GitHub Repo](https://github.com/jckdm/thesis)
