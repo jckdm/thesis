@@ -7,20 +7,21 @@ $(function() {
     $(n).append('<a target="_self" href="#' + h + '">' + h + '</a> <br>');
 	}
 
-	$(window).scroll(function() {
-		var s = $(document).scrollTop();
-    var win = $(window).width();
-    var w = 900 / win;
-    if (win < 415) { w = w / 1.65; }
+	var observer = new IntersectionObserver(callback);
 
-		if (s < (800 * w)) {
-			$('#pic').attr('src', 'img/1.jpg');
-		}
-		if (s > (800 * w) && s < (1500 * w)) {
-			$('#pic').attr('src', 'img/2.jpg');
-		}
-		if (s > (1500 * w)) {
-			$('#pic').attr('src', 'img/3.jpg');
-		}
-	})
+	var targets = ['isaias', 'atop', 'two'];
+	for (var i = 0; i < targets.length; i++) {
+		observer.observe(document.querySelector('#' + targets[i]));
+	}
 })
+
+function callback(entries) {
+	var p = $('#pic');
+	var e = entries[0];
+
+	if (e.isIntersecting) {
+		if (e.target.id == 'isaias') { $(p).attr('src', 'img/1.jpg'); }
+		if (e.target.id == 'atop') { $(p).attr('src', 'img/2.jpg'); }
+		if (e.target.id == 'two') { $(p).attr('src', 'img/3.jpg'); }
+	}
+}
