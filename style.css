@@ -1,26 +1,33 @@
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
-a:hover { text-decoration: underline; }
-#title { font-size: calc(14px + 0.25vw + 0.25vh); }
-p { font-size: calc(12px + 0.2vw + 0.2vh); }
-#title { padding: 15px 0 0 5px; }
-.space { padding-bottom: calc(10px + 3.5vh); }
-.nav a { padding: 8px 8px 8px 32px; font-weight: bold; }
+body { font-family: 'Helvetica', sans-serif; }
 
-body {
-  font-family: 'Helvetica', sans-serif;
+p {
+  font-weight: lighter;
+  font-size: calc(12px + 0.2vw + 0.2vh);
   line-height: 1.5;
 }
 
-h2 {
+text {
   font-size: calc(18px + 0.5vw + 0.5vh);
-  line-height: 1;
-  width: 150%; }
+  width: 150%;
+}
+
+a:hover { text-decoration: underline; }
 
 a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
   color: #0000FF;
   text-decoration: none;
   cursor: pointer;
+}
+
+.nav a { padding-left: 32px; }
+
+.space { padding-bottom: calc(10px + 3.5vh); }
+
+#title {
+  font-size: calc(22px + 0.25vw + 0.25vh);
+  padding-left: 5px;
 }
 
 .content {
@@ -40,19 +47,10 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
   max-height: 90%;
 }
 
-#navbtn {
-  position: fixed;
-  bottom: 0;
-  right: 10px;
-  font-size: calc(40px + 0.4vw + 0.4vh);
-  color: blue;
-  z-index: 1;
-}
-
 .nav {
   display: none;
   height: 100%;
-  width: calc(225px + 5vw);
+  width: calc(215px + 5vw);
   position: fixed;
   z-index: 1;
   top: 0;
@@ -64,18 +62,26 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
   padding-top: calc(5px + 4vh);
 }
 
+#navbtn {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  font-size: calc(40px + 0.4vw + 0.4vh);
+  z-index: 1;
+}
+
 .closebtn {
   position: absolute;
-  bottom: -10px;
-  right: 10px;
+  bottom: 10px;
+  right: 20px;
   font-size: calc(40px + 0.4vw + 0.4vh);
 }
 
 @media only screen and (max-width: 415px) {
   p { font-size: 12px; }
-  h2 { font-size: 25px; }
+  text { font-size: 25px; }
   #title { font-size: 15px; }
   .content { width: 45%; }
-  #pic { top: calc(5px + 7vh); }
+  #pic { top: calc(10px + 7vh); }
   .nav { font-size: 25px; }
 }
