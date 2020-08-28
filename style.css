@@ -1,9 +1,18 @@
+@font-face {
+  font-family: 'Barlow Semi Condensed Light';
+  src: URL('fonts/BarlowSemiCondensed-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Barlow Light';
+  src: URL('fonts/Barlow-Light.ttf') format('truetype');
+}
+
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
-body { font-family: 'Helvetica', sans-serif; }
+body { font-family: 'Barlow Semi Condensed Light', sans-serif; }
 
 p {
-  font-weight: lighter;
   font-size: calc(12px + 0.2vw + 0.2vh);
   line-height: 1.5;
 }
@@ -21,17 +30,16 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
   cursor: pointer;
 }
 
-.nav a { padding-left: 32px; }
-
 .space { padding-bottom: calc(10px + 3.5vh); }
 
 #title {
+  font-family: 'Barlow Light';
   font-size: calc(22px + 0.25vw + 0.25vh);
   padding-left: 5px;
 }
 
 .content {
-  width: 40%;
+  width: 35%;
   padding-top: calc(5px + 2vh);
   padding-left: 5px;
 }
@@ -50,7 +58,7 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
 .nav {
   display: none;
   height: 100%;
-  width: calc(215px + 5vw);
+  width: calc(225px + 5vw);
   position: fixed;
   z-index: 1;
   top: 0;
@@ -58,8 +66,14 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
   background-color: white;
   border-left: 4px solid black;
   overflow-x: hidden;
-  font-size: calc(18px + 0.5vw + 0.5vh);
   padding-top: calc(5px + 4vh);
+}
+
+#navlinks {
+  font-size: calc(18px + 0.5vw + 0.5vh);
+  margin: auto;
+  width: 100%;
+  text-align: center;
 }
 
 #navbtn {
@@ -72,16 +86,16 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
 
 .closebtn {
   position: absolute;
-  bottom: 10px;
+  bottom: -10px;
   right: 20px;
-  font-size: calc(40px + 0.4vw + 0.4vh);
+  font-size: calc(75px + 0.4vw + 0.4vh);
 }
 
 @media only screen and (max-width: 415px) {
   p { font-size: 12px; }
-  text { font-size: 25px; }
-  #title { font-size: 15px; }
-  .content { width: 45%; }
-  #pic { top: calc(10px + 7vh); }
-  .nav { font-size: 25px; }
+  text { font-size: 22.5px; }
+  #title { font-size: 25px; padding-left: 0px; }
+  .content { width: 45%; padding-left: 0px; }
+  #pic { top: calc(10px + 7vh); right: 5px; }
+  .nav { font-size: 22.5px; width: 50%; }
 }
