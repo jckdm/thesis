@@ -58,7 +58,7 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
 .nav {
   display: none;
   height: 100%;
-  width: calc(225px + 5vw);
+  width: calc(220px + 5vw);
   position: fixed;
   z-index: 1;
   top: 0;
