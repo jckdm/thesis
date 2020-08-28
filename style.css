@@ -94,8 +94,21 @@ a, a:visited, #navbtn, #navbtn:hover, .closebtn:hover {
 @media only screen and (max-width: 415px) {
   p { font-size: 12px; }
   text { font-size: 22.5px; }
-  #title { font-size: 25px; padding-left: 0px; }
-  .content { width: 45%; padding-left: 0px; }
-  #pic { top: calc(10px + 7vh); right: 5px; }
-  .nav { font-size: 22.5px; width: 50%; }
+  #title {
+    font-size: 22.5px;
+    padding-left: 0px;
+  }
+  .content {
+    width: 45%;
+    padding-left: 0px;
+  }
+  #pic {
+    top: calc(20px + 8vh);
+    right: 5px;
+  }
+  .nav {
+    font-size: 22.5px;
+    width: calc(50% + 5px);
+    border-left: 2px solid black;
+  }
 }
