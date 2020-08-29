@@ -21,18 +21,20 @@ p {
   line-height: 1.5;
 }
 
+.q { color: #0000FF; }
+
 text {
   font-size: var(--bigtext);
   width: 150%;
 }
-
-a:hover { text-decoration: underline; }
 
 a, a:visited, #navbtn, #navbtn:hover, #closebtn, #closebtn:hover {
   color: #0000FF;
   text-decoration: none;
   cursor: pointer;
 }
+
+a:hover { text-decoration: underline; }
 
 .space { padding-bottom: calc(10px + 3.5vh); }
 
