@@ -1,5 +1,5 @@
 $(function() {
-	var w = $('.content text');
+	var w = $('#content text');
 	var n = $('#navlinks')[0];
 	for (var i = 0; i < w.length; i++) {
     var h = $(w[i]).html();
