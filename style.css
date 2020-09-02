@@ -21,7 +21,7 @@ p {
   line-height: 1.5;
 }
 
-.q { color: #0000FF; }
+.q { color: #3CB371; }
 
 text {
   font-size: var(--bigtext);
@@ -66,7 +66,7 @@ a:hover { text-decoration: underline; }
   height: 100%;
   width: calc(220px + 5vw);
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   right: 0;
   background-color: white;
@@ -86,7 +86,7 @@ a:hover { text-decoration: underline; }
   bottom: 10px;
   right: 15px;
   font-size: calc(40px + 0.4vw + 0.4vh);
-
+  z-index: 1;
 }
 
 #closebtn {
