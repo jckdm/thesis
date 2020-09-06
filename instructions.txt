@@ -1,0 +1,1 @@
+To allow for data collection, navigate to System Preferences > Security & Privacy > Privacy > Accessibility > Terminal (check)
