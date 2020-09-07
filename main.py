@@ -1,35 +1,34 @@
 from getpass  import getuser
 from tkinter  import Tk
+from json     import dump, load
 from datetime import datetime
+from AppKit   import NSWorkspace
 from time     import sleep
-# from json     import dumps
-import csv
+
+def record():
+    dt = datetime.now()
+    a = NSWorkspace.sharedWorkspace().activeApplication()
+    entry = {
+      'date': dt.strftime('%m/%d/%Y'),
+      'time': dt.strftime('%H:%M:%S'),
+      'app': a['NSApplicationName'],
+      'pid': a['NSApplicationProcessIdentifier']
+    }
+    return entry
 
 def main():
-    user = getuser()
-    w, h = Tk().winfo_screenwidth(), Tk().winfo_screenheight()
-
-    with open('log.csv', 'w') as csvfile:
-        print(f"Hello {user}! Don't mind me; I'll be watching your {w} by {h} screen.\n{exit}")
-        writer = csv.writer(csvfile)
-        writer.writerow(['date', 'time'])
+    obj = {
+        'user': getuser(),
+        'width': Tk().winfo_screenwidth(),
+        'height': Tk().winfo_screenheight(),
+        'data': []
+    }
+    with open('log.json', 'w') as log:
         while True:
-            dt = datetime.now()
-            d = dt.strftime('%m/%d/%Y')
-            t = dt.strftime('%H:%M:%S')
-            writer.writerow([d, t])
+            obj['data'].append(record())
+            log.seek(0)
+            dump(obj, log, indent=2)
             sleep(1)
 
 if __name__ == '__main__':
     main()
-
-# with open('log.json', 'w') as outfile:
-#     outfile.write(dumps(specs))
-#     while True:
-#         dt = datetime.now()
-#         t = {
-#             'date': dt.strftime('%m/%d/%Y'),
-#             'time': dt.strftime('%H:%M:%S')
-#         }
-#         outfile.write(dumps(t))
-#         sleep(1)
