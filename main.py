@@ -1,8 +1,8 @@
-from getpass  import getuser
-from tkinter  import Tk
-from json     import dump, load
 from datetime import datetime
 from AppKit   import NSWorkspace
+from getpass  import getuser
+from tkinter  import Tk
+from json     import dump
 from time     import sleep
 
 def record():
