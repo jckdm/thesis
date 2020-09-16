@@ -1,9 +1,3 @@
 To allow for data collection, navigate to System Preferences > Security & Privacy > Privacy > Accessibility > Terminal (check)
 
-pip install pyobjc
-pip install pynput
-
-Questions for Benedict, 9/16:
-
-- How to handle above dependencies?
-- How to re-write lines 56 to 61?
+$ pip install -r requirements.txt

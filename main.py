@@ -6,7 +6,7 @@ from tkinter      import Tk
 from json         import dump
 from time         import sleep
 import sqlite3    as SQL
-connection = SQL.connect('data.db')
+connection = SQL.connect('data.db', isolation_level=None)
 
 def record():
     # record date & time
@@ -40,27 +40,32 @@ def main():
     # connect to DB and create table for user info
     db = connection.cursor()
     db.execute("CREATE TABLE IF NOT EXISTS info (user TEXT, width NUMERIC, height NUMERIC);")
-    db.execute("INSERT INTO info (user, width, height) VALUES (?, ?, ?);", [user, width, height])
+
+    if not (db.execute("SELECT * FROM info WHERE user = ?;", [user]).fetchall()):
+        db.execute("INSERT INTO info (user, width, height) VALUES (?, ?, ?);", [user, width, height])
 
     # create table for data
-    db.execute("CREATE TABLE IF NOT EXISTS data (date TEXT, time NUMERIC, app TEXT, pid NUMERIC, x REAL, y REAL);")
+    db.execute("CREATE TABLE IF NOT EXISTS data (date TEXT, time TEXT, app TEXT, pid NUMERIC, x REAL, y REAL);")
+
+    print('Please type Ctrl+C to quit.')
 
     # open JSON file for writing
     with open('log.json', 'w') as log:
-        while True:
-            # record data and insert into data table
-            entry = record()
-            db.execute("INSERT INTO data (date, time, app, pid, x, y) VALUES (?, ?, ?, ?, ?, ?);", entry[1])
-            connection.commit()
-            # write data to JSON file
-            # append new data (inside dictionary) to data array
-            obj['data'].append(entry[0])
-            # seek back to beginning of file
-            log.seek(0)
-            # overwrite entire JSON file
-            dump(obj, log, indent=2)
-            # pause for 1 second
-            sleep(1)
+        try:
+            while True:
+                # record data and insert into data table
+                entry = record()
+                db.execute("INSERT INTO data (date, time, app, pid, x, y) VALUES (?, ?, ?, ?, ?, ?);", entry[1])
+                # write data to JSON file
+                obj['data'].append(entry[0])
+                log.seek(0)
+                dump(obj, log, indent=2)
+                # pause for 1 second
+                sleep(1)
+        except KeyboardInterrupt:
+            print('\nThanks for letting me collect your data!')
+        else:
+            print('\nAn unexpected error occurred.')
 
 if __name__ == '__main__':
     main()
