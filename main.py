@@ -3,10 +3,10 @@ from AppKit       import NSWorkspace
 from pynput.mouse import Controller
 from getpass      import getuser
 from tkinter      import Tk
-from json         import dump
+from csv          import writer
+from os           import stat
 from time         import sleep
 import sqlite3    as SQL
-connection = SQL.connect('data.db', isolation_level=None)
 
 def record():
     # record date & time
@@ -21,11 +21,7 @@ def record():
     # record mouse coordinates
     m = Controller().position
 
-    # return array of dictionary & array with equivalent data
-    return [
-        { 'date': date, 'time': time, 'app': app, 'pid': pid, 'x': m[0], 'y': m[1] },
-        [date, time, app, pid, m[0], m[1]]
-    ]
+    return [date, time, app, pid, m[0], m[1]]
 
 def main():
     # get user's name
@@ -34,11 +30,14 @@ def main():
     width = Tk().winfo_screenwidth()
     height = Tk().winfo_screenheight()
 
-    # dictionary with user info & data array
-    obj = { 'user': user, 'width': width, 'height': height, 'data': [] }
+    # name of files is username + screen size
+    filename = user + str(width) + 'x' + str(height)
 
     # connect to DB and create table for user info
+    connection = SQL.connect(filename + '.db', isolation_level=None)
     db = connection.cursor()
+
+    # create table for user info
     db.execute("CREATE TABLE IF NOT EXISTS info (user TEXT, width NUMERIC, height NUMERIC);")
 
     if not (db.execute("SELECT * FROM info WHERE user = ?;", [user]).fetchall()):
@@ -49,17 +48,21 @@ def main():
 
     print('Please type Ctrl+C to quit.')
 
-    # open JSON file for writing
-    with open('log.json', 'w') as log:
+    # open CSV file for appending
+    with open(filename + '.csv', 'a') as log:
+        wr = writer(log)
+
+        # only write header if file is empty
+        if stat(filename + '.csv').st_size == 0:
+            wr.writerow(['date', 'time', 'app', 'pid', 'x', 'y'])
+
         try:
             while True:
-                # record data and insert into data table
+                # record data and insert into db
                 entry = record()
-                db.execute("INSERT INTO data (date, time, app, pid, x, y) VALUES (?, ?, ?, ?, ?, ?);", entry[1])
-                # write data to JSON file
-                obj['data'].append(entry[0])
-                log.seek(0)
-                dump(obj, log, indent=2)
+                db.execute("INSERT INTO data (date, time, app, pid, x, y) VALUES (?, ?, ?, ?, ?, ?);", entry)
+                # write data to CSV file
+                wr.writerow(entry)
                 # pause for 1 second
                 sleep(1)
         except KeyboardInterrupt:
