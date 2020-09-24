@@ -82,8 +82,8 @@ def main():
 
     fig = Figure(layout = Layout(plot_bgcolor = 'RGBA(1,1,1,0)'))
     # draw axes from min to max
-    fig.update_xaxes(range = [min(lats), max(lats)], color = 'white')
-    fig.update_yaxes(range = [min(lons), max(lons)], color = 'white')
+    fig.update_xaxes(range = [lats[0], lats[1]], color = 'white')
+    fig.update_yaxes(range = [lons[0], lons[1]], color = 'white')
 
     # draw shape
     fig.update_layout(
