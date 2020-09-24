@@ -1,6 +1,7 @@
 from datetime     import datetime
 from AppKit       import NSWorkspace
 from pynput.mouse import Controller
+from sys          import exit
 from getpass      import getuser
 from tkinter      import Tk
 from csv          import writer
@@ -13,15 +14,33 @@ def record():
     dt = datetime.now()
     date = dt.strftime('%m/%d/%Y')
     time = dt.strftime('%H:%M:%S')
-    # record active application
-    a = NSWorkspace.sharedWorkspace().activeApplication()
-    app = a['NSApplicationName']
-    # record process ID
-    pid = a['NSApplicationProcessIdentifier']
+
     # record mouse coordinates
     m = Controller().position
 
+    # record active application
+    a = NSWorkspace.sharedWorkspace().activeApplication()
+
+    if not a:
+        exit('\nYou no longer have any active applications! Goodnight.')
+
+    app = a['NSApplicationName']
+    # record process ID
+    pid = a['NSApplicationProcessIdentifier']
+
     return [date, time, app, pid, m[0], m[1]]
+
+    # try:
+    #     # record active application
+    #     a = NSWorkspace.sharedWorkspace().activeApplication()
+    #     app = a['NSApplicationName']
+    #     # record process ID
+    #     pid = a['NSApplicationProcessIdentifier']
+    # except TypeError:
+    #     print('\nYou no longer have any active applications! Goodnight.')
+
+    return [date, time, app, pid, m[0], m[1]]
+
 
 def main():
     # get user's name
@@ -31,10 +50,10 @@ def main():
     height = Tk().winfo_screenheight()
 
     # name of files is username + screen size
-    filename = user + str(width) + 'x' + str(height)
+    filename = user + '-' + str(width) + '-' + str(height)
 
-    # connect to DB and create table for user info
-    connection = SQL.connect(filename + '.db', isolation_level=None)
+    # connect to DB and create table for user info, with autocommitting
+    connection = SQL.connect(filename + '.db', isolation_level = None)
     db = connection.cursor()
 
     # create table for user info
@@ -48,8 +67,8 @@ def main():
 
     print('Please type Ctrl+C to quit.')
 
-    # open CSV file for appending
-    with open(filename + '.csv', 'a') as log:
+    # open CSV file for appending, buffer = 1 line
+    with open(filename + '.csv', 'a', 1) as log:
         wr = writer(log)
 
         # only write header if file is empty
