@@ -66,30 +66,51 @@ def main():
     if good <= 1:
         exit('Didn\'t find enough valid image files for a visualization.')
 
-    print(f'Extracted data from {good} files. Unable to extract from {bad}.')
+    print(f'Extracted data from {good} files. Unable to extract from {bad}.\n')
 
-    # ask user if they want their images sorted
-    q = input('Would you like your images sorted by date and time? (yes/no): ')
-    if q.lower() in ('yes', 'y'):
+    # prompt for viz choice
+    q = input('Please enter the number corresponding to your visualization of choice:\n1: Unsorted path\n2: Sorted path\n3: Both paths overlaid\n\n#: ')
+
+    # validate user input
+    while q not in ('1', '2', '3'):
+        q = input('#: ')
+    q = int(q)
+
+    coords, sortedCoords, unSortedData = 'M ', 'M ', None
+
+    # copy data, add first point
+    if q == 1 or q == 3:
+        unSortedData = data.copy()
+        coords += str(unSortedData[0]['truLat']) + ',' + str(unSortedData[0]['truLon']) + ' '
+    # sort data, add first point
+    if q == 2 or q == 3:
         data.sort(key = lambda x:x['datetime'])
+        sortedCoords += str(data[0]['truLat']) + ',' + str(data[0]['truLon']) + ' '
 
-    coords = 'M '
-    # build string of coordinates
-    for img in data:
-        coords += (str(img['truLat']) + ',' + str(img['truLon']) + ' ') if (coords == 'M ') else ('L' + str(img['truLat']) + ',' + str(img['truLon']) + ' ')
+    # append rest of points
+    for i in range(1, good):
+        if q == 1 or q == 3:
+             coords += ('L' + str(unSortedData[i]['truLat']) + ',' + str(unSortedData[i]['truLon']) + ' ')
+        if q == 2 or q == 3:
+             sortedCoords += ('L' + str(data[i]['truLat']) + ',' + str(data[i]['truLon']) + ' ')
 
-    coords += 'Z'
+    paths = []
+
+    # if using unsorted, append path
+    if coords != 'M ':
+        coords += 'Z'
+        paths.append({ 'type': 'path', 'path': coords, 'line_color': 'MediumSeaGreen' })
+    # if using sorted, append path
+    if sortedCoords != 'M ':
+        sortedCoords += 'Z'
+        paths.append({ 'type': 'path', 'path': sortedCoords, 'line_color': '#6666FF' })
 
     fig = Figure(layout = Layout(plot_bgcolor = 'RGBA(1,1,1,0)'))
     # draw axes from min to max
     fig.update_xaxes(range = [lats[0], lats[1]], color = 'white')
     fig.update_yaxes(range = [lons[0], lons[1]], color = 'white')
 
-    # draw shape
-    fig.update_layout(
-        shapes = [{ 'type': 'path', 'path': coords, 'line_color': 'MediumSeaGreen' }]
-    )
-
+    fig.update_layout(shapes = paths)
     fig.show()
 
 if __name__ == '__main__':
