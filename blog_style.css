@@ -81,6 +81,8 @@ a:hover { text-decoration: underline; }
   text-align: center;
 }
 
+#curr, #curr:hover { text-decoration: none; color: black; cursor: auto; }
+
 #navbtn {
   position: fixed;
   bottom: 10px;

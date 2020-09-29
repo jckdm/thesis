@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Barlow Semi Condensed Light';
+  src: URL('fonts/BarlowSemiCondensed-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Barlow Light';
+  src: URL('fonts/Barlow-Light.ttf') format('truetype');
+}
+
+body {
+  background-color: #F5F5F5;
+  font-family: 'Barlow Semi Condensed Light', sans-serif;
+  --topspace: calc(5px + 2vh);
+  --bigtext: calc(26px + 0.5vw + 0.5vh);
+  --mobbigtext: 30px;
+}
+
+a {
+  color: blue;
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  font-size: var(--bigtext);
+}
+
+a:hover { text-decoration: underline; }
+
+#title, #credit {
+  font-family: 'Barlow Light';
+  font-size: var(--bigtext);
+  position: fixed;
+  padding-left: 5px;
+}
+
+#credit { bottom: 0; }
+
+.overlay-content {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
