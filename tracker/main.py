@@ -50,7 +50,7 @@ def main():
     height = Tk().winfo_screenheight()
 
     # name of files is username + screen size
-    filename = user + '-' + str(width) + '-' + str(height)
+    filename = user + '-' + str(width) + '-' + str(height) + '-'
 
     # connect to DB and create table for user info, with autocommitting
     connection = SQL.connect(filename + '.db', isolation_level = None)
