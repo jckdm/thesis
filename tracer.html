@@ -1,0 +1,64 @@
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Senior Project in Computing & the Arts at Yale University"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/tracker.css">
+    <script src="js/nav.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+    <base target="_blank">
+    <title>Digital Distancing</title>
+</head>
+<body>
+    <span id="title">DD: the Tracer</span>
+    <div class="space"></div>
+
+    <span id="navbtn" onclick="$('#nav').css('display', 'block')">&#9776;</span>
+    <div id="nav">
+      <div id="navlinks">
+      </div>
+      <div class="space"></div>
+      <div id="sublinks">
+        <text>----<text> <br> <br>
+        <a href="story.html" target="_self">the Story</a> <br>
+        <a id="curr">the Tracer</a> <br>
+        <a href="tracker.html" target="_self">the Tracker</a> <br>
+        <a>the Viz</a> <br> <br>
+        <!-- <a href="https://github.com/jckdm/thesis" target="_blank">Code</a> <br> -->
+        <a>About</a> <br>
+        <!-- <a href="https://jackadam.cc" target="_blank">JACK ADAM</a> -->
+      </div>
+      <span id="closebtn" onclick="$('#nav').css('display', 'none')">&times;</span>
+    </div>
+
+    <div id="content">
+      <text>the Proposal</text>
+      <p>
+        I propose a tool which extracts Exif data from digital images, specifically their coordinates and timestamps.
+        Using this data, the tool will create visual representations of a user's paths through physical space, producing images which illustrate alternative geometries.
+        Rather than mapping this data to specific locations for the purpose of surveillance and tracking, the tool considers coordinates abstractly.
+        Devoid of context, the abstracted data serves no 'functional' purpose yet is stored in the forefront of our physical memory.
+        By interpreting our physical experiences in digital contexts, the tool seeks to defamiliarize us from our images, serving as a method of reinterpretation and reorganization of the data embedded in our visual artifacts.
+        These untraceable maps between points of interest reduce all physical locations to data, and beg the question of what it means for data to have a function.
+      </p>
+      <p>
+        Further, what inferences—if any—can be made from such data?
+        <span class="q">Can we guess as to the images' locations, their subject, or the time between their creation?
+        How are these assumptions informed by our technological biases?
+        Who defines digital behavior, and what differentiates it from our physical behavior?</span>
+        As we socially distance and learn to be hyper-aware of how we move through public, physical spaces, <span class="q">how are we (re-)learning to move through our private, digital spaces?</span>
+      </p>
+      <div class="space"></div>
+      <!-- <text>Process</text> -->
+      <div class="space"></div>
+  </div>
+
+</body>
+</html>
