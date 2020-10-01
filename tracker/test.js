@@ -14,14 +14,8 @@ var dates = [];
 var times = [];
 var color = {};
 
-function colorize() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+function getR(min, max) { return Math.floor(Math.random() * max + min); }
+function colorize() { return 'rgb(' + getR(25, 230) + ',' + getR(25, 230) + ',' + getR(25, 230) + ')'; }
 
 d3.select("input")
   .on("input", function() {
@@ -72,6 +66,12 @@ function query(id) {
 
 var c = 0;
 
+var scheme = ['rgb(141,211,199)', 'rgb(255,255,179)', 'rgb(190,186,218)',
+'rgb(251,128,114)', 'rgb(128,177,211)', 'rgb(253,180,98)', 'rgb(179,222,105)',
+'rgb(252,205,229)', 'rgb(217,217,217)', 'rgb(188,128,189)', 'rgb(204,235,197)',
+'rgb(255,237,111)', 'rgb(115, 125, 225)', 'rgb(105, 150, 140)', 'rgb(70, 180, 70)',
+'rgb(50,204,165)', 'rgb(215,85,85)'];
+
 Papa.parse(filename, {
     download: true,
     header: true,
@@ -80,13 +80,11 @@ Papa.parse(filename, {
       var app = row['data']['app'];
       if (!apps.includes(app.replace(/\W/g, ''))) {
         uniqueApps.push(app);
-        if (c < 12) {
-          color[app.replace(/\W/g, '')] = d3.schemeSet3[c];
+        if (c < 17) {
+          color[app.replace(/\W/g, '')] = scheme[c];
           c++;
         }
-        else if (c == 12) {
-          color[app.replace(/\W/g, '')] = colorize();
-        }
+        else { color[app.replace(/\W/g, '')] = colorize(); }
       }
       apps.push(app.replace(/\W/g, ''));
       coords.push([parseFloat(row['data']['x']), parseFloat(row['data']['y'])]);
@@ -98,6 +96,8 @@ Papa.parse(filename, {
       for (var i = 0; i < uniqueApps.length; i++) {
         $('#form').append('<button type="button" style="background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
       }
+
+      $('#title').append(' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
       var svg = d3.select('body')
           .append('svg')
@@ -146,7 +146,7 @@ Papa.parse(filename, {
           .attr('r', 5)
           .append('title')
           .text(function(d, i) {
-              return apps[i] + ' ' + times[i];
+              return apps[i] + ' ' + dates[i] + ' ' + times[i];
           });
   	}
 });
