@@ -28,57 +28,64 @@ d3.select("input")
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 var timeFlag = false;
-function time() { timeFlag = (timeFlag == false) ? true : false; }
+
+function time() {
+  var i = 'timesort';
+  swap(i, i, document.getElementById(i), false);
+  timeFlag = (timeFlag == false) ? true : false;
+}
 
 function swap(id, cId, e, flag) {
   var c = (flag) ? color[cId] : 'black';
 
   if (e.style.color == 'white') {
-    if (id == 'all') { c = 'white'; }
+    if (id == 'all' || id == 'timesort') { c = 'white'; }
     e.style.backgroundColor = c;
     e.style.color = 'black';
   }
   else {
-    if (id == 'all') { c = 'black'; }
+    if (id == 'all' || id == 'timesort') { c = 'black'; }
     e.style.backgroundColor = c;
     e.style.color = 'white';
   }
 }
 
 async function query(id) {
-  var cId = id.replace(/\W/g, '');
-  var e = document.getElementById(id);
+  if (id != 'timesort') {
+    var cId = id.replace(/\W/g, '');
+    var e = document.getElementById(id);
 
-  if (id == 'all') {
-    for (var i = 1; i < e.parentElement.length; i++) {
-      query(e.parentElement[i].id);
+    if (id == 'all') {
+      for (var i = 1; i < e.parentElement.length; i++) {
+        query(e.parentElement[i].id);
+      }
+      swap(id, cId, e, false);
     }
-    swap(id, cId, e, false);
-  }
 
-  else if (e.style.color == 'white') {
-    swap(id, cId, e, true);
+    else if (e.style.color == 'white') {
+      swap(id, cId, e, true);
 
-    if (timeFlag) {
-      var circles = $('circle.' + cId);
-      var num = circles.length;
+      if (timeFlag) {
+        var circles = $('circle.' + cId);
+        var num = circles.length;
 
-      for (var i = 0; i < num; i++) {
-        circles[i].style.fill = color[cId];
-        await sleep(num / 1000);
+        for (var i = 0; i < num; i++) {
+          circles[i].style.fill = color[cId];
+          await sleep(num / 1000);
+        }
+      }
+      else {
+        d3.selectAll('circle.' + cId)
+          .attr('fill', function(d, i) { return color[cId]; })
+          .attr('stroke', 'gray');
       }
     }
     else {
+      swap(id, cId, e, false);
       d3.selectAll('circle.' + cId)
-        .attr('fill', function(d, i) { return color[cId]; })
-        .attr('stroke', 'gray');
+        .attr('fill', 'none')
+        .attr('stroke', 'none');
     }
-  }
-  else {
-    swap(id, cId, e, false);
-    d3.selectAll('circle.' + cId)
-      .attr('fill', 'none')
-      .attr('stroke', 'none');
   }
 }
 
