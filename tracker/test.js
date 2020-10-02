@@ -21,46 +21,64 @@ d3.select("input")
   .on("input", function() {
       var radius = +d3.select(this).node().value;
       d3.selectAll("circle")
-          .attr("r", radius);
+        .attr("r", radius);
       $('#rad').text('r = ' + radius);
 });
 
-// d3.selectAll('circle')
-//     .attr('fill', 'none')
-//     .attr('stroke', 'none');
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-function query(id) {
+var timeFlag = false;
+function time() { timeFlag = (timeFlag == false) ? true : false; }
+
+function swap(id, cId, e, flag) {
+  var c = (flag) ? color[cId] : 'black';
+
+  if (e.style.color == 'white') {
+    if (id == 'all') { c = 'white'; }
+    e.style.backgroundColor = c;
+    e.style.color = 'black';
+  }
+  else {
+    if (id == 'all') { c = 'black'; }
+    e.style.backgroundColor = c;
+    e.style.color = 'white';
+  }
+}
+
+async function query(id) {
   var cId = id.replace(/\W/g, '');
   var e = document.getElementById(id);
 
   if (id == 'all') {
     for (var i = 1; i < e.parentElement.length; i++) {
-        query(e.parentElement[i].id);
+      query(e.parentElement[i].id);
     }
-
-    if (e.style.color == 'white') {
-      e.style.backgroundColor = 'white';
-      e.style.color = 'black';
-    }
-    else {
-      e.style.backgroundColor = 'black';
-      e.style.color = 'white';
-    }
+    swap(id, cId, e, false);
   }
 
   else if (e.style.color == 'white') {
-    e.style.backgroundColor = color[cId];
-    e.style.color = 'black';
-    d3.selectAll('circle.' + cId)
+    swap(id, cId, e, true);
+
+    if (timeFlag) {
+      var circles = $('circle.' + cId);
+      var num = circles.length;
+
+      for (var i = 0; i < num; i++) {
+        circles[i].style.fill = color[cId];
+        await sleep(num / 1000);
+      }
+    }
+    else {
+      d3.selectAll('circle.' + cId)
         .attr('fill', function(d, i) { return color[cId]; })
         .attr('stroke', 'gray');
+    }
   }
   else {
-    e.style.backgroundColor = 'black';
-    e.style.color = 'white';
+    swap(id, cId, e, false);
     d3.selectAll('circle.' + cId)
-        .attr('fill', 'none')
-        .attr('stroke', 'none');
+      .attr('fill', 'none')
+      .attr('stroke', 'none');
   }
 }
 
@@ -94,44 +112,48 @@ Papa.parse(filename, {
   	complete: function() {
 
       for (var i = 0; i < uniqueApps.length; i++) {
-        $('#form').append('<button type="button" style="background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
+        $('#form').append('<button type="button" style="color: black; background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
       }
 
       $('#title').append(' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
       var svg = d3.select('body')
-          .append('svg')
-          .attr('width', w)
-          .attr('height', h);
+                  .append('svg')
+                  .attr('width', w)
+                  .attr('height', h);
 
       var xScale = d3.scaleLinear()
-          .domain([0, w])
-          .range([padding, w - 5])
+                     .domain([0, w])
+                     .range([padding, w - 5])
 
       var yScale = d3.scaleLinear()
-          .domain([0, h])
-          .range([h - padding, padding]);
+                     .domain([0, h])
+                     .range([h - padding, padding]);
 
       var xAxis = d3.axisBottom()
-          .scale(xScale)
-          .ticks(25);
+                    .scale(xScale)
+                    .ticks(25);
 
       var yAxis = d3.axisLeft()
-          .scale(yScale)
-          .ticks(20);
+                    .scale(yScale)
+                    .ticks(20);
 
       svg.append('g')
-          .attr('class', 'x axis')
-          .attr('transform', 'translate(0,' + (h - padding) + ')')
-          .call(xAxis);
+         .attr('class', 'x axis')
+         .attr('transform', 'translate(0,' + (h - padding) + ')')
+         .call(xAxis);
 
       svg.append('g')
-          .attr('class', 'y axis')
-          .attr('transform', 'translate(' + padding + ',0)')
-          .call(yAxis);
+         .attr('class', 'y axis')
+         .attr('transform', 'translate(' + padding + ',0)')
+         .call(yAxis);
 
       // window coords? possible?
       // animate appending of circles
+
+      d3.select('body')
+        .append('div')
+        .attr('id', 'tooltip');
 
       svg.selectAll('circle')
           .data(coords)
@@ -144,9 +166,24 @@ Papa.parse(filename, {
           .attr('stroke-width', '1')
           .attr('fill', function(d, i) { return color[apps[i]]; })
           .attr('r', 5)
-          .append('title')
-          .text(function(d, i) {
-              return apps[i] + ' ' + dates[i] + ' ' + times[i];
+          .on('mouseover', function(d, i) {
+            var att = (this).attributes;
+            var c = att.class.value;
+            var x = parseFloat(att.cx.value);
+            var y = parseFloat(att.cy.value);
+              d3.select('#tooltip')
+                // .transition()
+                // .duration(100)
+                .style('opacity', 1)
+                .style('left', x + 'px')
+                .style('bottom', (h - y) + 'px')
+                .text(function() { return c; })
+          })
+          .on('mouseout', function() {
+              d3.select('#tooltip')
+                // .transition()
+                // .duration(100)
+                .style('opacity', 0)
           });
   	}
 });
