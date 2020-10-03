@@ -1,15 +1,17 @@
-html { font-family: "Helvetica"; background-color: #1a1a1a; color: white; }
+html {
+  font-family: "Helvetica";
+  background-color: #1a1a1a;
+  color: white;
+}
 
-#form { font-size: 12px; }
-
-#rad { position: absolute; top: 15px; }
+/* #rad { position: absolute; top: 15px; }
 
 #slide {
   position: absolute;
   top: 25px;
   left: 175px;
   background-color: white;
-}
+} */
 
 #tooltip {
   position: fixed;
