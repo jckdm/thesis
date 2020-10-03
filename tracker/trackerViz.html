@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tracker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="papaparse.min.js"></script>
+    <script type="text/javascript" src="trackerViz.js"></script>
+    <script type="text/javascript" src="trackerHelper.js"></script>
+    <link rel="stylesheet" type="text/css" href="trackerViz.css">
+</head>
+<body>
+    <h2 id="title"></h2>
+    <!-- <div id="slide">
+        <input id="slider" type="range" min="1.5" max="6.0" step="0.5" value="2.5" orient="horizontal">
+        <p id="rad"> &nbsp; r = 2.5</p>
+    </div> -->
+    <form id="form">
+        <button type="button" style="background-color: white;" onclick="query($(this).attr('id'))" class="filter" id="invert">INVERT SELECTION</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button><br><br>
+    </form>
+</body>
+</html>
