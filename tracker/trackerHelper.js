@@ -55,7 +55,7 @@ function circleSwap(cId, on) {
   var cc = (on) ? color[cId] : 'none';
   var stroke = (on) ? 'gray' : 'none';
 
-  if (lineFlag) { d3.selectAll('g.L').remove(); }
+  if (lineFlag) { d3.selectAll('g.' + 'L' + cId).remove(); }
   if (timeFlag) {
     var circles = $('circle.' + cId);
     var num = circles.length;
@@ -89,9 +89,10 @@ async function query(id) {
 
         for (var i = 0; i < num - 1; i++) {
           circles[i].style.fill = color[cId];
+          $('#counter').text(i + '/' + (num - 1));
 
           if (lineFlag) {
-            var gL = d3.select('svg').append('g').attr('class','L');
+            var gL = d3.select('svg').append('g').attr('class','L' + cId);
 
             var curr = circles[i].attributes;
             var next = circles[i+1].attributes;
@@ -105,10 +106,12 @@ async function query(id) {
               .attr('x2', parseFloat(next.cx.value))
               .attr('y2', parseFloat(next.cy.value));
           }
-          await sleep(num / 1000);
+          // special thanks to Harry Jain for designing this log function
+          await sleep(Math.pow(0.75, Math.log(num) - 0.5));
         }
         // append last circle
         circles[num - 1].style.fill = color[cId];
+        $('#counter').text((num - 1) + '/' + (num - 1));
       }
       else { circleSwap(cId, true); }
     }
