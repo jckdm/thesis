@@ -57,6 +57,7 @@ function circleSwap(cId, on) {
 
   if (lineFlag) { d3.selectAll('g.' + 'L' + cId).remove(); }
   if (timeFlag) {
+    $('#counter').text('');
     var circles = $('circle.' + cId);
     var num = circles.length;
     for (var i = 0; i < num; i++) {
