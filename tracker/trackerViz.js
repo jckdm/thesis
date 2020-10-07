@@ -1,43 +1,53 @@
-var filename = 'jackadam-1440-900-.csv';
-var fs = filename.split('-');
+// style the hell ouot of this, es lint for airbnb in atom
+// radius cleanly
+// tooltip
+// figure out how to run on moms laptop (What needs to be installed?)
+// cOMMENT UR CODe
 
-var w = parseInt(fs[1]);
-var h = parseInt(fs[2]);
+// local env vs global env, package for python (local is better, for self-contained distributable)
+let c = 0;
+const filename = 'jackadam-1440-900-.csv';
+const fs = filename.split('-');
+
+const w = parseInt(fs[1]);
+const h = parseInt(fs[2]);
 
 Papa.parse(filename, {
     download: true,
     header: true,
     skipEmptyLines: true,
-  	step: function(row) {
-      var app = row['data']['app'];
-      if (!apps.includes(app.replace(/\W/g, ''))) {
+  	step(row) {
+      const r = row.data;
+      const app = r.app;
+      const cleanApp = app.replace(/\W/g, '');
+      if (!apps.includes(cleanApp)) {
         uniqueApps.push(app);
         if (c < 17) {
-          color[app.replace(/\W/g, '')] = scheme[c];
+          color[cleanApp] = scheme[c];
           c++;
         }
-        else { color[app.replace(/\W/g, '')] = colorize(); }
+        else { color[cleanApp] = colorize(); }
       }
-      apps.push(app.replace(/\W/g, ''));
-      coords.push([parseFloat(row['data']['x']), parseFloat(row['data']['y'])]);
-      dates.push(row['data']['date']);
-      times.push(row['data']['time']);
+      apps.push(cleanApp);
+      coords.push([parseFloat(r.x), parseFloat(r.y)]);
+      dates.push(r.date);
+      times.push(r.time);
   	},
-  	complete: function() {
+  	complete: () => {
 
-      for (var i = 0; i < uniqueApps.length; i++) {
+      for (let i = 0; i < uniqueApps.length; i++) {
         $('form').append('<button type="button" style="color: black; background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
       }
 
       $('#title').text(fs[0] + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
-      var svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
+      const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 
-      var xScale = d3.scaleLinear().domain([0, w]).range([padding, w - 5])
-      var yScale = d3.scaleLinear().domain([0, h]).range([h - padding, padding]);
+      const xScale = d3.scaleLinear().domain([0, w]).range([padding, w - 5])
+      const yScale = d3.scaleLinear().domain([0, h]).range([h - padding, padding]);
 
-      var xAxis = d3.axisBottom().scale(xScale).ticks(25);
-      var yAxis = d3.axisLeft().scale(yScale).ticks(20);
+      const xAxis = d3.axisBottom().scale(xScale).ticks(25);
+      const yAxis = d3.axisLeft().scale(yScale).ticks(20);
 
       svg.append('g')
          .attr('class', 'x axis')
@@ -55,31 +65,34 @@ Papa.parse(filename, {
           .data(coords)
           .enter()
           .append('circle')
-          .attr('cx', function(d) { return xScale(d[0]); })
-          .attr('cy', function(d) { return yScale(h - d[1]); })
-          .attr('class', function(d, i) { return apps[i].replace(/\W/g, ''); })
+          .attr('cx', (d) => xScale(d[0]))
+          .attr('cy', (d) => yScale(h - d[1]))
+          .attr('class', (d, i) => apps[i].replace(/\W/g, ''))
           .attr('stroke', 'gray')
           .attr('stroke-width', '1')
-          .attr('fill', function(d, i) { return color[apps[i]]; })
-          .attr('r', 4.5);
-          // .on('mouseover', function(d, i) {
-          //   var att = (this).attributes;
-          //   var c = att.class.value;
-          //   var x = parseFloat(att.cx.value);
-          //   var y = parseFloat(att.cy.value);
-          //     d3.select('#tooltip')
-          //       // .transition()
-          //       // .duration(100)
-          //       .style('opacity', 1)
-          //       .style('left', x + 'px')
-          //       .style('bottom', (h - y - 300) + 'px')
-          //       .text(function() { return c; })
-          // })
-          // .on('mouseout', function() {
-          //     d3.select('#tooltip')
-          //       // .transition()
-          //       // .duration(100)
-          //       .style('opacity', 0)
-          // });
+          .attr('fill', (d, i) => color[apps[i]])
+          .attr('r', 4.5)
+          .on('mouseover', function (d, i) {
+            // relative to SVG
+            // query SVG to get its top, left coords etc, to know how to scale
+            // check out murray TB and get sample code for tooltip
+            const att = (this).attributes;
+            const c = att.class.value;
+            const x = parseFloat(att.cx.value);
+            const y = parseFloat(att.cy.value);
+              d3.select('#tooltip')
+                .transition()
+                .duration(100)
+                .style('opacity', 1)
+                .style('left', x + 'px')
+                .style('top', y + 'px')
+                .text(() => c)
+          })
+          .on('mouseout', () => {
+              d3.select('#tooltip')
+                .transition()
+                .duration(100)
+                .style('opacity', 0)
+          });
   	}
 });
