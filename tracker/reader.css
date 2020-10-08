@@ -1,0 +1,25 @@
+html {
+  font-family: "Helvetica";
+  background-color: #1a1a1a;
+  color: white;
+}
+
+#apps, #times {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#apps {
+  left: 0;
+  /* background-color: red; */
+  text-align: left;
+}
+
+#times {
+  right: 0;
+  /* background-color: blue; */
+  text-align: right;
+}

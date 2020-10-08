@@ -2,7 +2,7 @@ import sqlite3 as SQL
 from csv       import writer
 
 def main():
-    connection = SQL.connect('jackadam1440x900.db copy', isolation_level = None)
+    connection = SQL.connect('jackadam-1440-900-.db', isolation_level = None)
     db = connection.cursor()
 
     apps = db.execute("SELECT DISTINCT app FROM data;").fetchall()
