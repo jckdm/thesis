@@ -4,22 +4,4 @@ html {
   color: white;
 }
 
-/* #rad { position: absolute; top: 15px; }
-
-#slide {
-  position: absolute;
-  top: 25px;
-  left: 175px;
-  background-color: white;
-} */
-
-#tooltip {
-  position: fixed;
-  opacity: 0;
-  width: 125px;
-  height: 25px;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  text-align: center;
-}
+#radius { font-size: 12px; }
