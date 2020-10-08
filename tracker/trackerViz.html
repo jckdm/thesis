@@ -12,28 +12,18 @@
 </head>
 <body>
     <h2 id="title"></h2>
-
     <div id="options">
       <form>
         <label id="radius" for="radii">Radius: </label>
         <select id="radii">
-            <option onclick="rad($(this)[0].innerText)">1.5</option>
-            <option onclick="rad($(this)[0].innerText)">2.0</option>
-            <option onclick="rad($(this)[0].innerText)">2.5</option>
-            <option onclick="rad($(this)[0].innerText)">3.0</option>
-            <option onclick="rad($(this)[0].innerText)">3.5</option>
-            <option onclick="rad($(this)[0].innerText)">4.0</option>
-            <option onclick="rad($(this)[0].innerText)" selected>4.5</option>
-            <option onclick="rad($(this)[0].innerText)">5.0</option>
-            <option onclick="rad($(this)[0].innerText)">5.5</option>
-            <option onclick="rad($(this)[0].innerText)">6.0</option>
         </select>
         &nbsp; &nbsp;
         <button type="button" style="background-color: white;" onclick="query($(this).attr('id'))" class="filter" id="invert">INVERT SELECTION</button> &nbsp; &nbsp;
         <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
         <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
         <button type="button" style="background-color: white; color: black;" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
-        <span id="counter"></span><br><br>
+        <span id="counter"></span>
+        <br><br>
       </form>
     </div>
 </body>

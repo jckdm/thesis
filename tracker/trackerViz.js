@@ -37,6 +37,14 @@ Papa.parse(filename, {
         $('#options').append('<button type="button" style="color: black; background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
       }
 
+      // append options for radii
+      let s = '';
+      for (let i = 2.0; i < 6.5; i += 0.5) {
+        if (i == 4.5) { s = 'selected'; }
+        $('#radii').append('<option onclick="rad($(this)[0].innerText)"' + s + '>' + i.toFixed(1) + '</option>');
+        s = '';
+      }
+
       // append user tracked and span of time
       $('#title').text(fs[0] + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 

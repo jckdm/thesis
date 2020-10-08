@@ -63,7 +63,10 @@ swap = (id, cId, b, flag) => {
 // switches circles on/off
 circleSwap = async (cId, on) => {
   // remove lines
-  if (lineFlag) { d3.selectAll('g.' + 'L' + cId).remove(); }
+  if (lineFlag || (Object.values(d3.selectAll('g.L' + cId))[0])[0].length == 1) {
+    d3.selectAll('g.' + 'L' + cId).remove();
+    $('#counter').text('');
+  }
 
   const circles = $('circle.' + cId);
 
@@ -80,6 +83,7 @@ circleSwap = async (cId, on) => {
   }
   // turn off/on all at once
   else {
+    if (!on) { $('#counter').text(''); }
     const v = (on) ? 'visible' : 'hidden';
     d3.selectAll(circles).style('visibility', v);
   }
