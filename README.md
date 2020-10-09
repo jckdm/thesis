@@ -16,4 +16,4 @@ I propose two tools, both of which seek to redefine our relationship with data t
 
 What does this data tell us? Can we guess as to a user's age, their technological comfort, or their amount of focus? Can we guess as to the images' locations, their subject, or the time between their creation? How are these assumptions informed by our technological biases? Who defines digital behavior, and what differentiates it from our physical behavior? As we socially distance and learn to be hyper-aware of how we move through public, physical spaces, how are we (re-)learning to move through our private, digital spaces?
 
-Special thanks to Dr. Benedict Brown, Dr. Julie Dorsey, Harry Jain, Michaela Shelton, Felicia Chang, Rianna Turner, Laurence Lu, & Shayna Sragovicz.
+Special thanks to advisors Dr. Benedict Brown, Dr. Julie Dorsey, Justin Berry, and friends Felicia Chang, Rianna Turner, Shayna Sragovicz, Laurence Lu, Harry Jain, & Michaela Shelton.

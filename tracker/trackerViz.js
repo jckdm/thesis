@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-const filename = 'jackadam-1440-900-.csv';
+const filename = '../data/jackadam-1440-900-.csv';
 const fs = filename.split('-');
 
 const w = parseInt(fs[1]);
@@ -34,7 +34,8 @@ Papa.parse(filename, {
   	complete: () => {
       // append buttons for each app
       for (let i = 0; i < uniqueApps.length; i++) {
-        $('#options').append('<button type="button" style="color: black; background-color: ' + color[uniqueApps[i].replace(/\W/g, '')] + ';" onclick="query($(this)[0].id)" id="' + uniqueApps[i] + '">' + uniqueApps[i] + '</button>');
+        let cleaned = uniqueApps[i].replace(/\W/g, '');
+        $('#options').append('<button type="button" style="color: black; background-color: ' + color[cleaned] + ';" onclick="query($(this)[0].id)" class="app" id="' + cleaned + '">' + uniqueApps[i] + '</button>');
       }
 
       // append options for radii
@@ -46,7 +47,7 @@ Papa.parse(filename, {
       }
 
       // append user tracked and span of time
-      $('#title').text(fs[0] + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
+      $('#title').text(fs[0].slice(8) + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
       const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 
@@ -81,25 +82,11 @@ Papa.parse(filename, {
           .attr('stroke-width', '1')
           .attr('fill', (d, i) => color[apps[i]])
           .attr('r', 4.5)
-          // tooltip on hover
-          .on('mouseover', function (d, i) {
-            const att = (this).attributes;
-            const c = att.class.value;
-            const x = parseFloat(att.cx.value);
-            const y = parseFloat(att.cy.value);
-              d3.select('#tooltip')
-                .transition()
-                .duration(100)
-                .style('opacity', 1)
-                .style('left', x + 'px')
-                .style('top', y + 'px')
-                .text(() => c)
+          // highlight button of selected app on hover
+          .on('mouseover', function () {
+            d3.selectAll('.app').style('visibility', 'hidden');
+            d3.selectAll('#' + (this).attributes.class.value).style('visibility', 'visible');
           })
-          .on('mouseout', () => {
-              d3.select('#tooltip')
-                .transition()
-                .duration(100)
-                .style('opacity', 0)
-          });
+          .on('mouseout', () => d3.selectAll('.app').style('visibility', 'visible') );
   	}
 });
