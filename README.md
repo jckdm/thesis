@@ -5,17 +5,17 @@ In the post-[GDPR](https://www.wired.co.uk/article/what-is-gdpr-uk-eu-legislatio
 I propose a series of tools which seek to redefine our relationship with data through novel visual interpretation.
 
 
-## The Tracker
+### The Tracker
 
 records a user’s mouse and in-use application. In doing so, the Tracker tracks gesture, space, and time and creates two opposing visual representations of a user's computer usage. First, it produces images which illuminate paths and hotspots; these visualizations allow a user to query, sort, segment, and animate their data. Second, it produces lists which highlight texture; these visualizations are static to allow for readability.
 
 
-## The Tracer
+### The Tracer
 
 extracts Exif metadata from images, specifically their coordinates and timestamps. With it, the Tracer draws paths of a user's movement through physical space, producing images which illustrate alternative geometries. Rather than mapping this data to specific locations for the purpose of surveillance and tracking, the Tracer considers coordinates abstractly.
 
 
-### That is all to say,
+#### That is all to say,
 
 devoid of context, it is unclear if this data still serves a 'function'. Despite having always been in our peripheries, it has become somewhat unfamiliar, and when we ask the newly necessary question of purpose, we only further defamiliarize it. Defamiliarization is the Tracer's primary goal, and it does so by interpreting our physical experiences in digital contexts. By highlighting the data embedded in our visual artifacts, it serves as a method of reorganization.
 
@@ -26,5 +26,15 @@ Rather than tracking tasks and analyzing trends for the purpose of creating a se
 Why do we need a computer to perform these tasks for us, anyway? Could a human not pay attention to these pieces of data, themself? Maybe most crucially, have we ever thought to ask if any of this is fun or arousing? That is, do we like our data and what it allows us to see, feel, and believe?
 
 Who defines digital behavior, and what differentiates it from our physical behavior? How are we learning to develop technological biases? And as we socially distance and learn to be hyper-aware of how we move through public, physical spaces, how are we (re-)learning to move through our private, digital spaces?
+
+
+## Installation
+
+1. Install [Homebrew](https://brew.sh/)
+2. Clone or download this repository
+3. For both /tracer and /tracker, install the requirements.txt file
+
+
+## Credits
 
 Special thanks to advisors Dr. Benedict Brown, Dr. Julie Dorsey, Justin Berry, and friends Felicia Chang, Rianna Turner, Shayna Sragovicz, Laurence Lu, Harry Jain, & Michaela Shelton.
