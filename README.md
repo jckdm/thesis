@@ -15,7 +15,7 @@ records a user’s mouse and in-use application. In doing so, the Tracker tracks
 extracts Exif metadata from images, specifically their coordinates and timestamps. With it, the Tracer draws paths of a user's movement through physical space, producing images which illustrate alternative geometries. Rather than mapping this data to specific locations for the purpose of surveillance and tracking, the Tracer considers coordinates abstractly.
 
 
-#### That is all to say,
+### That is all to say,
 
 devoid of context, it is unclear if this data still serves a 'function'. Despite having always been in our peripheries, it has become somewhat unfamiliar, and when we ask the newly necessary question of purpose, we only further defamiliarize it. Defamiliarization is the Tracer's primary goal, and it does so by interpreting our physical experiences in digital contexts. By highlighting the data embedded in our visual artifacts, it serves as a method of reorganization.
 

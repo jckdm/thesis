@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
+    <script src="js/about.js"></script>
     <script src="js/nav.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
@@ -30,7 +32,7 @@
         <a id="curr">the Proposal</a> <br>
         <a href="story.html" target="_self">the Story</a> <br>
         <a href="viz.html" target="_self">the Viz</a> <br>
-        <a>About</a> <br>
+        <a onclick="$('.about-overlay').css('visibility', 'visible')">About</a> <br>
       </div>
       <span id="closebtn" onclick="$('#nav').css('display', 'none')">&times;</span>
     </div>
