@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-const filename = '../data/jackadam-reader.csv';
+const filename = '../data/' + window.location.href.split('=')[1];
 
 const data = [];
 const color = {};

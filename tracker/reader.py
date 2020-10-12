@@ -8,7 +8,7 @@ def main():
     apps = db.execute("SELECT app, time FROM data;").fetchall()
     last = None
 
-    with open('jackadam-' + 'reader.csv', 'w') as out:
+    with open('jackadam-1440-900-' + 'reader-.csv', 'w') as out:
         w = writer(out)
         w.writerow(['app', 'time'])
         for app in apps:

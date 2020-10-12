@@ -20,7 +20,7 @@ body {
 a {
   color: #262626;
   display: block;
-  padding: 10px 20px 5px 20px;
+  padding: 10px 20px 10px 20px;
   text-decoration: none;
   font-size: var(--bigtext);
 }

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="description" content="Senior Project in Computing & the Arts at Yale University"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/about.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/viz.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/about.css">
     <link rel="stylesheet" type="text/css" href="css/viz.css">
-    <script src="js/about.js"></script>
-    <script src="js/nav.js"></script>
-    <script src="js/viz.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -42,8 +42,8 @@
 
     <div id="content">
       <text>Tracker</text>
-        <p>jackadam-1440-900- &nbsp; &nbsp; <span class="choice">Mapper</span> &nbsp; &nbsp; <span class="choice">Reader</span></p>
-        <p>ruth-1440-900- &nbsp; &nbsp; <span class="choice">Mapper</span> &nbsp; &nbsp; <span class="choice">Reader</span></p>
+        <p>jackadam-1440-900- &nbsp; &nbsp; <span onclick="map($(this))" class="choice">Mapper</span> &nbsp; &nbsp; <span onclick="read($(this))" class="choice">Reader</span></p>
+        <p>ruth-1440-900- &nbsp; &nbsp; <span onclick="map($(this))" class="choice">Mapper</span> &nbsp; &nbsp; <span onclick="read($(this))" class="choice">Reader</span></p>
       <div class="space"></div>
       <text>Tracer</text>
       <p>A Stroll Through East Rock &nbsp; &nbsp; <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp; <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp; <span onclick="choice($(this))" class="choice">Overlaid</span></p>

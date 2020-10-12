@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-const filename = '../data/jackadam-1440-900-.csv';
+const filename = '../data/' + window.location.href.split('=')[1];
 const fs = filename.split('-');
 
 const w = parseInt(fs[1]);
