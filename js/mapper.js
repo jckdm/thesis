@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-const filename = '../data/' + window.location.href.split('=')[1];
+const filename = 'data/' + window.location.href.split('=')[1];
 
 console.log(filename);
 
@@ -52,7 +52,7 @@ Papa.parse(filename, {
       }
 
       // append user tracked and span of time
-      $('#title').text(fs[0].slice(8) + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
+      $('#title').text(fs[0].slice(5) + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
       const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 
