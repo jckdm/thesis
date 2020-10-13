@@ -18,26 +18,14 @@ def record():
     # record mouse coordinates
     m = Controller().position
 
-    # record active application
-    a = NSWorkspace.sharedWorkspace().activeApplication()
-
-    if not a:
-        exit('\nYou no longer have any active applications! Goodnight.')
-
-    app = a['NSApplicationName']
-    # record process ID
-    pid = a['NSApplicationProcessIdentifier']
-
-    return [date, time, app, pid, m[0], m[1]]
-
-    # try:
-    #     # record active application
-    #     a = NSWorkspace.sharedWorkspace().activeApplication()
-    #     app = a['NSApplicationName']
-    #     # record process ID
-    #     pid = a['NSApplicationProcessIdentifier']
-    # except TypeError:
-    #     print('\nYou no longer have any active applications! Goodnight.')
+    try:
+        # record active application
+        a = NSWorkspace.sharedWorkspace().activeApplication()
+        app = a['NSApplicationName']
+        # record process ID
+        pid = a['NSApplicationProcessIdentifier']
+    except TypeError:
+        print('\nYou no longer have any active applications! Goodnight.')
 
     return [date, time, app, pid, m[0], m[1]]
 
