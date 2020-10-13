@@ -28,11 +28,24 @@ Why do we need a computer to perform these tasks for us, anyway? Could a human n
 Who defines digital behavior, and what differentiates it from our physical behavior? How are we learning to develop technological biases? And as we socially distance and learn to be hyper-aware of how we move through public, physical spaces, how are we (re-)learning to move through our private, digital spaces?
 
 
-## Installation
+## Installation & Usage
 
 1. Install [Homebrew](https://brew.sh/)
-2. Clone or download this repository
-3. For both /tracer and /tracker, install the requirements.txt file
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+2. Clone Tracker
+```bash
+git clone https://github.com/jckdm/tracker
+```
+3. Install requirements
+```bash
+pip install --user -r requirements.txt
+```
+4. Run Tracker
+```bash
+python main.py
+```
 
 
 ## Credits
