@@ -12,24 +12,26 @@ Papa.parse(filename, {
     skipEmptyLines: true,
   	step(row) {
       const r = row.data;
-      const app = r.app;
-      const cleanApp = app.replace(/\W/g, '');
-      // if app not yet seen
-      if (!apps.includes(cleanApp)) {
-        uniqueApps.push(app);
-        // get next color in scheme
-        if (c < 17) {
-          color[cleanApp] = scheme[c];
-          c++;
+      if (r.app) {
+        const app = r.app;
+        const cleanApp = app.replace(/\W/g, '');
+        // if app not yet seen
+        if (!apps.includes(cleanApp)) {
+          uniqueApps.push(app);
+          // get next color in scheme
+          if (c < 17) {
+            color[cleanApp] = scheme[c];
+            c++;
+          }
+          // or generate a new one
+          else { color[cleanApp] = colorize(); }
         }
-        // or generate a new one
-        else { color[cleanApp] = colorize(); }
+        // push data to respective arrays
+        apps.push(cleanApp);
+        coords.push([parseFloat(r.x), parseFloat(r.y)]);
+        dates.push(r.date);
+        times.push(r.time);
       }
-      // push data to respective arrays
-      apps.push(cleanApp);
-      coords.push([parseFloat(r.x), parseFloat(r.y)]);
-      dates.push(r.date);
-      times.push(r.time);
   	},
   	complete: () => {
       // append buttons for each app
