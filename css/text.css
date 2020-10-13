@@ -1,0 +1,104 @@
+p {
+  font-size: calc(12px + 0.25vw + 0.25vh);
+  line-height: 1.5;
+}
+
+.q { color: #3CB371; }
+
+text {
+  font-size: var(--bigtext);
+  width: 150%;
+}
+
+a, a:visited, #navbtn, #navbtn:hover, #closebtn, #closebtn:hover {
+  color: #3CB371;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover { text-decoration: underline; }
+
+.space { padding-bottom: calc(10px + 3.5vh); }
+
+#title {
+  font-family: 'Barlow Light';
+  font-size: var(--bigtext);
+  padding-left: 5px;
+}
+
+#content {
+  width: 35%;
+  padding-top: var(--topspace);
+  padding-left: 5px;
+}
+
+#pic {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  padding-top: var(--topspace);
+  height: auto;
+  width: auto;
+  max-width: 50%;
+  max-height: 85%;
+}
+
+#nav {
+  display: none;
+  height: 100%;
+  width: calc(220px + 5vw);
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  background-color: #1a1a1a;
+  border-left: 4px solid white;
+  padding-top: calc(var(--topspace) + 1vh);
+}
+
+#navlinks, #sublinks {
+  font-size: var(--bigtext);
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+#curr, #curr:hover { text-decoration: none; color: white; cursor: auto; }
+
+#navbtn {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  font-size: calc(40px + 0.4vw + 0.4vh);
+  z-index: 1;
+}
+
+#closebtn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: calc(70px + 0.5vw + 0.5vh);
+}
+
+@media only screen and (max-width: 415px) {
+  p { font-size: 14px; }
+  text { font-size: var(--mobbigtext); }
+  #title {
+    font-size: var(--mobbigtext);
+    padding-left: 0px;
+  }
+  #content {
+    width: 46%;
+    padding-left: 0px;
+  }
+  #pic {
+    top: calc(20px + 8vh);
+    right: 5px;
+  }
+  #nav {
+    font-size: var(--mobbigtext);
+    width: calc(50% + 5px);
+    border-left: 2px solid black;
+  }
+  #closebtn { bottom: 20px; }
+}
