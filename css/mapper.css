@@ -1,18 +1,7 @@
 html {
   font-family: "Helvetica";
-  background-color: #1a1a1a;
+  background-color: #262626;
   color: white;
 }
 
 #radius { font-size: 12px; }
-
-#tooltip {
-  position: fixed;
-  opacity: 0;
-  width: 125px;
-  height: 25px;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  text-align: center;
-}
