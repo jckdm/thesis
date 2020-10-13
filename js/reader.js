@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-const filename = '../data/' + window.location.href.split('=')[1];
+const filename = 'data/' + window.location.href.split('=')[1];
 
 const data = [];
 const color = {};
