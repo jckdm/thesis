@@ -1,6 +1,9 @@
 // color counter
 let c = 0;
 const filename = '../data/' + window.location.href.split('=')[1];
+
+console.log(filename);
+
 const fs = filename.split('-');
 
 const w = parseInt(fs[1]);
