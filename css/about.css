@@ -26,9 +26,10 @@ body {
   border: 4px solid black;
 }
 
-.about-overlay a { text-decoration: underline; }
+.about-overlay-content a { text-decoration: underline; }
 
-.about-overlay a, .about-overlay p {
+.about-overlay-content a, .about-overlay-content p {
+  line-height: 1.25;
   color: #262626;
   padding: 0;
   display: inline;
@@ -41,6 +42,6 @@ body {
 }
 
 @media only screen and (max-width: 415px) {
-  .about-overlay a, .about-overlay p { font-size: var(--mobmedtext); }
+  .about-overlay-content a, .about-overlay-content p { font-size: var(--mobmedtext); }
   .about-overlay-content { width: 65%; }
 }
