@@ -37,7 +37,7 @@ Papa.parse(filename, {
       for (let i = 0; i < data.length; i++) {
         let curr = data[i];
         let app = curr[0];
-        $('body').append('<p style="font-size: calc(18px + 1.25vw + 0.75vh); color:' + color[app.replace(/\W/g, '')] + ';">' + app + ' <span style="color: white;">' + curr[1] + '</span></p>');
+        $('body').append('<p style="color:' + color[app.replace(/\W/g, '')] + ';">' + app + ' <span>' + curr[1] + '</span></p>');
       }
     }
 });

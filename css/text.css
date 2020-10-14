@@ -51,7 +51,7 @@ a:hover { text-decoration: underline; }
   z-index: 2;
   top: 0;
   right: 0;
-  background-color: #1a1a1a;
+  background-color: #333333;
   border-left: 4px solid white;
   padding-top: calc(var(--topspace) + 1vh);
 }
@@ -63,7 +63,11 @@ a:hover { text-decoration: underline; }
   text-align: center;
 }
 
-#curr, #curr:hover { text-decoration: none; color: white; cursor: auto; }
+#curr, #curr:hover {
+  text-decoration: none;
+  color: white;
+  cursor: auto;
+}
 
 #navbtn {
   position: fixed;
@@ -98,7 +102,7 @@ a:hover { text-decoration: underline; }
   #nav {
     font-size: var(--mobbigtext);
     width: calc(50% + 5px);
-    border-left: 2px solid black;
+    border-left: 2px solid white;
   }
   #closebtn { bottom: 20px; }
 }
