@@ -50,4 +50,4 @@ python main.py
 
 ## Credits
 
-Special thanks to advisors Dr. Benedict Brown, Dr. Julie Dorsey, Justin Berry, and friends Felicia Chang, Rianna Turner, Shayna Sragovicz, Laurence Lu, Harry Jain, & Michaela Shelton.
+Special thanks to advisors Dr. Benedict Brown, Justin Berry, and Dr. Julie Dorsey, housemates Felicia Chang and Rianna Turner, and friends Shayna Sragovicz, Laurence Lu, Gia Grier, Harry Jain, & Michaela Shelton.
