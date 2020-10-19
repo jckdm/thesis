@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Grapher</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/meta.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="text/javascript" src="js/papaparse.min.js"></script>
+    <script type="text/javascript" src="js/grapher.js"></script>
+    <script type="text/javascript" src="js/grapher-helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/site.css">
+</head>
+<body>
+    <h2 id="title"></h2>
+    <div id="options">
+      <form>
+        <label style="font-size: 12px;" id="radius" for="radii">Radius: </label>
+        <select style="text-align: center;" id="radii">
+        </select>
+        &nbsp; &nbsp;
+        <button type="button" style="background-color: white;" onclick="query($(this).attr('id'))" class="filter" id="invert">INVERT SELECTION</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: white; color: black;" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
+        <span id="counter"></span>
+        <br><br>
+      </form>
+    </div>
+</body>
+</html>

@@ -13,19 +13,15 @@
 </head>
 <body>
     <h2 id="title"></h2>
-    <div id="options">
-      <form>
-        <label style="font-size: 12px;" id="radius" for="radii">Radius: </label>
-        <select id="radii">
-        </select>
-        &nbsp; &nbsp;
-        <button type="button" style="background-color: white;" onclick="query($(this).attr('id'))" class="filter" id="invert">INVERT SELECTION</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: white; color: black;" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
-        <span id="counter"></span>
-        <br><br>
-      </form>
-    </div>
+    <form>
+      <label style="font-size: 12px;" for="size">Grid: </label>
+      <select style="text-align: center;" id="size">
+        <!-- <option onclick="grid($(this)[0].innerText)">1 x 1</option> -->
+        <option onclick="grid($(this)[0].innerText)">5 x 5</option>
+        <option onclick="grid($(this)[0].innerText)" selected>10 x 10</option>
+      </select>
+    </form>
+    <br>
+    <div id="grid"></div>
 </body>
 </html>
