@@ -1,43 +1,61 @@
-const padding = 30;
-const apps = [];
+const padding = 20;
 const coords = [];
 const dates = [];
 const times = [];
 
 let g = false;
-
+let box = 1;
 let sq = 10;
+let max = -1;
+
+// calculate color as percentage of max
+scaleColor = (c) => {
+  let p = 255.0 * (c / box);
+  return 'rgb(' + p + ',' + p + ',' + p + ')';
+}
 
 // pause for ms millseconds
 sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 grid = (x) => {
-
+  // if grid already exists
   if (g) {
     d3.select('#grid').remove();
     $('body').append('<div id="grid"></div>');
     g = false;
   }
 
+  // default size = 10
   if (x !== undefined) { sq = parseInt(x.split(' ')[0]); }
 
   const data = [];
-  let xpos = 1;
-  let ypos = 1;
+  let xPos = 1;
+  let yPos = 1;
 
+  // construct empty matrix
   for (let row = 0; row < h / sq; row++) {
     data.push([]);
-
     for (let column = 0; column < w / sq; column++) {
       data[row].push({
-        x: xpos,
-        y: ypos
+        x: xPos,
+        y: yPos,
+        c: 0
       })
-      xpos += sq;
+      xPos += sq;
     }
-    xpos = 1;
-    ypos += sq;
+    xPos = 1;
+    yPos += sq;
   }
+
+  // map coords to grid, calculate maximum
+  for (let i = 0; i < coords.length; i++) {
+    let bucket = data[Math.floor(coords[i][1] / sq)][Math.floor(coords[i][0] / sq)];
+    bucket.c += 1;
+    max = (bucket.c > max) ? bucket.c : max;
+  }
+
+  // if scaling, divide by max. if not, divide by 1
+  box = ($('#scaled')[0].checked) ? max : 1;
 
   const gg = d3.select('#grid')
     .append('svg')
@@ -47,20 +65,28 @@ grid = (x) => {
   const row = gg.selectAll('.row')
     .data(data)
     .enter()
-    .append('g')
-    .attr('class', 'row');
+    .append('g');
 
   row.selectAll('.square')
-    .data(function(d) { return d; })
+    .data((d) => d)
     .enter()
     .append('rect')
-    .attr('class', 'square')
-    .attr('x', function(d) { return d.x; })
-    .attr('y', function(d) { return d.y; })
+    .attr('x', (d) => d.x)
+    .attr('y', (d) => d.y)
     .attr('width', sq)
     .attr('height', sq)
-    .style('fill', 'gray')
-    .style('stroke', '#262626');
+    .style('fill', (d) => scaleColor(d.c))
+    .style('stroke', '#262626')
+    // on hover, fill green and display seconds
+    .on('mouseover', function(d) {
+      $('#sec').text(Object.values($(this)[0])[0].c + ' seconds')
+      $(this)[0].style.fill = '#3CB371';
+    })
+    .on('mouseout', function(d) {
+      $('#sec').text('');
+      $(this)[0].style.fill = scaleColor(Object.values($(this)[0])[0].c);
+    });
 
+    // enjoy your map
     g = true;
 }
