@@ -98,17 +98,15 @@ def main():
 
     # if using unsorted, append path
     if coords != 'M ':
-        coords += 'Z'
-        paths.append({ 'type': 'path', 'path': coords, 'line_color': 'MediumSeaGreen' })
+        paths.append({ 'type': 'path', 'path': coords, 'line_color': '#3CB371' })
     # if using sorted, append path
     if sortedCoords != 'M ':
-        sortedCoords += 'Z'
         paths.append({ 'type': 'path', 'path': sortedCoords, 'line_color': '#6666FF' })
 
     fig = Figure(layout = Layout(plot_bgcolor = 'RGBA(1,1,1,0)'))
     # draw axes from min to max
-    fig.update_xaxes(range = [lats[0], lats[1]], color = 'white')
-    fig.update_yaxes(range = [lons[0], lons[1]], color = 'white')
+    fig.update_xaxes(range = [lats[0], lats[1]], color = '#FFFFFF')
+    fig.update_yaxes(range = [lons[0], lons[1]], color = '#FFFFFF')
 
     fig.update_layout(shapes = paths)
     fig.show()
