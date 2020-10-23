@@ -15,9 +15,6 @@ scaleColor = (c) => {
   return (p == 0.0) ? zero : 'rgb(' + p + ',' + p + ',' + p + ')';
 }
 
-// pause for ms millseconds
-sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-
 grid = (x) => {
   // if grid already exists
   if (g) {

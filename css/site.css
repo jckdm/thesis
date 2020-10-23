@@ -10,7 +10,7 @@
 
 body {
   background-color: #262626;
-  color: white;
+  color: #FFFFFF;
   font-family: 'Barlow Semi Condensed Light', sans-serif;
   --topspace: calc(5px + 2vh);
   --bigtext: calc(18px + 0.5vw + 0.5vh);

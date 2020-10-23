@@ -1,11 +1,5 @@
 // color counter
 let c = 0;
-const filename = 'data/' + window.location.href.split('=')[1];
-
-const fs = filename.split('-');
-
-const w = parseInt(fs[1]);
-const h = parseInt(fs[2]);
 
 Papa.parse(filename, {
     download: true,
