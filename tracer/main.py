@@ -20,7 +20,7 @@ def main():
     for file in glob(filepath + '*'):
         file = file.lower()
         # skip non-image files
-        if not file.endswith('.jpg') and not file.endswith('.jpeg') and not file.endswith('.png') and not file.endswith('.heic'):
+        if not file.endswith('.jpg') and not file.endswith('.jpeg') and not file.endswith('.png'):
             continue
 
         # extract EXIF data from image
