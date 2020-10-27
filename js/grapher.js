@@ -44,7 +44,7 @@ Papa.parse(filename, {
       }
 
       // add event listener
-      $(() => { $('option').on('click', function(e) { e.preventDefault(); rad($(this)[0].innerText); }); });
+      $(() => { $('option').on('click', function() { rad($(this)[0].innerText); }); });
 
       // append user tracked and span of time
       $('#title').text(fs[0].slice(5) + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
