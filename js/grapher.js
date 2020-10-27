@@ -39,9 +39,12 @@ Papa.parse(filename, {
       let s = '';
       for (let i = 2.0; i < 6.5; i += 0.5) {
         if (i == 4.5) { s = 'selected'; }
-        $('#radii').append('<option onclick="rad($(this)[0].innerText)"' + s + '>' + i.toFixed(1) + '</option>');
+        $('#radii').append('<option ' + s + '>' + i.toFixed(1) + '</option>');
         s = '';
       }
+
+      // add event listener
+      $(() => { $('option').on('click', function() { rad($(this)[0].innerText); }); });
 
       // append user tracked and span of time
       $('#title').text(fs[0].slice(5) + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);

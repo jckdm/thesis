@@ -88,4 +88,6 @@ grid = (x) => {
     });
     // enjoy your map
     g = true;
+    // event listener
+    $(() => { $('option').on('click', function() { grid($(this)[0].innerText); }); });
 }
