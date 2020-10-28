@@ -8,13 +8,12 @@
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/viz.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
-    <link rel="stylesheet" type="text/css" href="css/viz.css">
     <link rel="stylesheet" type="text/css" href="css/text.css">
     <link rel="stylesheet" type="text/css" href="css/about.css">
     <title>Digital Distancing</title>
     <style>
-        .choice { color: #3CB371; }
-        .choice:hover { text-decoration: underline; }
+        .viz, .img { color: #3CB371; }
+        .viz:hover, .img:hover { text-decoration: underline; }
         #content { width: 100%; }
     </style>
 </head>
@@ -38,52 +37,17 @@
     </div>
 
     <div id="content">
-      <text>Tracker</text>
-        <p>jackadam-1440-900- &nbsp; &nbsp;
-          <span onclick="graph($(this))" class="choice">Grapher</span> &nbsp; &nbsp;
-          <span onclick="read($(this))" class="choice">Reader</span> &nbsp; &nbsp;
-          <span onclick="space($(this))" class="choice">Spacer</span> &nbsp; &nbsp;
-          <span onclick="map($(this))" class="choice">Mapper</span>
-        </p>
-        <p>ruth-1440-900- &nbsp; &nbsp;
-          <span onclick="graph($(this))" class="choice">Grapher</span> &nbsp; &nbsp;
-          <span onclick="read($(this))" class="choice">Reader</span> &nbsp; &nbsp;
-          <span onclick="space($(this))" class="choice">Spacer</span> &nbsp; &nbsp;
-          <span onclick="map($(this))" class="choice">Mapper</span>
-        </p>
-        <p>GiaG-1280-800- &nbsp; &nbsp;
-          <span onclick="graph($(this))" class="choice">Grapher</span> &nbsp; &nbsp;
-          <span onclick="read($(this))" class="choice">Reader</span> &nbsp; &nbsp;
-          <span onclick="space($(this))" class="choice">Spacer</span> &nbsp; &nbsp;
-          <span onclick="map($(this))" class="choice">Mapper</span>
-        </p>
+      <text id="tracker">Tracker</text>
+        <p>jackadam-1440-900-</p>
+        <p>ruth-1440-900-</p>
+        <p>GiaG-1280-800-</p>
       <div class="space"></div>
       <text>Tracer</text>
-      <p>A Stroll Through the Neighborhood &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Overlaid</span>
-      </p>
-      <p>A Pre-pandemic Spring Break in Chicago &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Overlaid</span>
-      </p>
-      <p>Parking Lot at Route 1 and Peck Lane &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Overlaid</span>
-      </p>
-      <p>Friday Night Grocery Run in Two Acts &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Overlaid</span>
-      </p>
-      <p>A Socially Distanced Hike Up and Down East Rock &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Unsorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Sorted</span> &nbsp; &nbsp;
-        <span onclick="choice($(this))" class="choice">Overlaid</span>
-      </p>
+        <p>A Stroll Through the Neighborhood</p>
+        <p>A Pre-pandemic Spring Break in Chicago</p>
+        <p>Parking Lot at Route 1 and Peck Lane</p>
+        <p>Friday Night Grocery Run in Two Acts</p>
+        <p>A Socially Distanced Hike Up and Down East Rock</p>
       <div class="space"></div>
   </div>
 </body>
