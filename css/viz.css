@@ -1,0 +1,3 @@
+.viz, .img { color: #3CB371; }
+.viz:hover, .img:hover { text-decoration: underline; }
+#content { width: 100%; }
