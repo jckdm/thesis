@@ -14,7 +14,7 @@ rad = (r) => { d3.selectAll('circle').attr('r', +r); }
 
 // manage Time and Lines buttons
 filters = (id) => {
-  swap(id, id, document.getElementById(id), false);
+  swap(id, id, $('#' + id)[0], false);
   // always flip value of Time
   if (id == 'timesort') { timeFlag = !timeFlag; }
   // Lines turns on Time, if both off
@@ -64,8 +64,8 @@ circleSwap = async (cId, on) => {
     $('#counter').text('');
     const num = circles.length;
 
-    for (let i = 0; i < num; i++) {
-      circles[i].style.visibility = 'visible';
+    for (c of circles) {
+      c.style.visibility = 'visible';
       await sleep(Math.pow(0.75, Math.log(num) - 0.5));
     }
   }
@@ -78,7 +78,7 @@ circleSwap = async (cId, on) => {
 }
 
 query = async (id) => {
-  const e = document.getElementById(id);
+  const e = $('#' + id)[0];
 
   // invert or an app
   if (e.className != 'filter' || id == 'invert') {
@@ -87,8 +87,7 @@ query = async (id) => {
     // recurse on all apps
     if (id == 'invert') {
       const children = e.parentElement.parentElement.children;
-      const len = children.length;
-      for (let i = 1; i < len; i++) { query(children[i].id); }
+      for (c of children) { query(c.id); }
       swap(id, cId, e, false);
     }
 

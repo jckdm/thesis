@@ -5,14 +5,13 @@ const times = [];
 
 let g = false;
 let zero = 'black';
-let box = 1;
 let sq = 10;
 let max = -1;
 
 // calculate color as percentage of max
 scaleColor = (c) => {
-  let p = 255.0 * (c / box);
-  return (p == 0.0) ? zero : 'rgb(' + p + ',' + p + ',' + p + ')';
+  let p = 255.0 * (Math.log(c) / Math.log(max));
+  return (p == 0.0 || !isFinite(p)) ? zero : 'rgb(' + p + ',' + p + ',' + p + ')';
 }
 
 grid = (x) => {
@@ -42,14 +41,11 @@ grid = (x) => {
   }
 
   // map coords to grid, calculate maximum
-  for (let i = 0; i < coords.length; i++) {
-    let bucket = data[Math.floor(coords[i][1] / sq)][Math.floor(coords[i][0] / sq)];
+  for (c of coords) {
+    let bucket = data[Math.floor(c[1] / sq)][Math.floor(c[0] / sq)];
     bucket.c += 1;
     max = (bucket.c > max) ? bucket.c : max;
   }
-
-  // if scaling, divide by max. if not, divide by 1
-  box = ($('#scaled')[0].checked) ? max : 1;
 
   // switch btw filled and unfilled 0 value squares
   zero = ($('#hide')[0].checked) ? 'none' : 'black';

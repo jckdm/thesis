@@ -3,9 +3,7 @@ $(() => {
 	const observer = new IntersectionObserver(callback, options);
 
 	const targets = ['isaias', 'atop', 'tweed', 'boundaries', 'visibility', 'hallway', 'monitor', 'beach'];
-	for (let i = 0; i < targets.length; i++) {
-		observer.observe(document.querySelector('#' + targets[i]));
-	}
+	for (t of targets) { observer.observe(document.querySelector('#' + t)); }
 })
 
 callback = (entries) => {

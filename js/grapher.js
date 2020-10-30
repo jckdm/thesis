@@ -30,9 +30,9 @@ Papa.parse(filename, {
   	},
   	complete: () => {
       // append buttons for each app
-      for (let i = 0; i < uniqueApps.length; i++) {
-        let cleaned = uniqueApps[i].replace(/\W/g, '');
-        $('#options').append('<button type="button" style="color: black; background-color: ' + color[cleaned] + ';" onclick="query($(this)[0].id)" class="app" id="' + cleaned + '">' + uniqueApps[i] + '</button>');
+      for (u of uniqueApps) {
+        let cleaned = u.replace(/\W/g, '');
+        $('#options').append('<button type="button" style="color: black; background-color: ' + color[cleaned] + ';" onclick="query($(this)[0].id)" class="app" id="' + cleaned + '">' + u + '</button>');
       }
 
       // append options for radii

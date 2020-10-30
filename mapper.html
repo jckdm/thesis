@@ -11,22 +11,25 @@
     <script type="text/javascript" src="js/mapper.js"></script>
     <script type="text/javascript" src="js/mapper-helper.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
+
+    <style>
+      .lab { font-size: 14px; }
+      #size { text-align: center; }
+    </style>
+
 </head>
 <body>
     <h2 id="title"></h2>
     <form>
-      <label style="font-size: 14px;" for="size">Grid: </label>
-      <select style="text-align: center;" id="size">
+      <label class="lab" for="size">Grid: </label>
+      <select id="size">
         <option>5 x 5</option>
         <option selected>10 x 10</option>
         <option>20 x 20</option>
       </select>
       &nbsp; &nbsp;
-      <label style="font-size: 14px;" for"hide">Hide 0?</label>
+      <label class="lab" for"hide">Hide 0?</label>
       <input id="hide" onclick="grid()" type="checkbox">
-      &nbsp; &nbsp;
-      <label style="font-size: 14px;" for"scaled">Scaled?</label>
-      <input id="scaled" onclick="grid()" type="checkbox">
       &nbsp; &nbsp;
       <span id="sec"></span>
     </form>

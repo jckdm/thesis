@@ -11,19 +11,24 @@
     <script type="text/javascript" src="js/grapher.js"></script>
     <script type="text/javascript" src="js/grapher-helper.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
+
+    <style>
+      #radius { font-size: 14px; }
+      #radii { text-align: center; }
+    </style>
+
 </head>
 <body>
     <h2 id="title"></h2>
     <div id="options">
       <form>
-        <label style="font-size: 12px;" id="radius" for="radii">Radius: </label>
-        <select style="text-align: center;" id="radii">
-        </select>
+        <label id="radius" for="radii">Radius: &nbsp;</label>
+        <select id="radii"></select>
         &nbsp; &nbsp;
-        <button type="button" style="background-color: white;" onclick="query($(this).attr('id'))" class="filter" id="invert">INVERT SELECTION</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: white" id="invert" class="filter" onclick="query($(this).attr('id'))">INVERT SELECTION</button> &nbsp; &nbsp;
         <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
         <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: white; color: black;" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
+        <button type="button" style="background-color: white" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
         <span id="counter"></span>
         <br><br>
       </form>
