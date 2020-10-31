@@ -15,6 +15,6 @@ const scheme = ['rgb(141,200,199)', 'rgb(255,255,179)', 'rgb(190,186,218)',
 // get random int within range
 getR = (min, max) => Math.floor(Math.random() * max + min)
 // create RGB string
-colorize => 'rgb(' + getR(25, 230) + ',' + getR(25, 230) + ',' + getR(25, 230) + ')'
+colorize = () => 'rgb(' + getR(25, 230) + ',' + getR(25, 230) + ',' + getR(25, 230) + ')'
 // pause for ms millseconds
 sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
