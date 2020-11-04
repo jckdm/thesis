@@ -8,7 +8,7 @@ let sq = 10;
 let max = -1;
 
 ($(() => {
-  $('#size').change(() => { alert("submitted"); })
+  $('#size').change(function() { grid($(this)[0].value) })
 }))
 
 // calculate color as percentage of max
