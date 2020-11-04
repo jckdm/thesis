@@ -18,9 +18,9 @@
     <form>
       <label class="lab" for="size">Grid: </label>
       <select id="size">
-        <option>5 x 5</option>
-        <option selected>10 x 10</option>
-        <option>20 x 20</option>
+        <option onclick="grid($(this)[0].innerText);">5 x 5</option>
+        <option onclick="grid($(this)[0].innerText);" selected>10 x 10</option>
+        <option onclick="grid($(this)[0].innerText);">20 x 20</option>
       </select>
       &nbsp; &nbsp;
       <label class="lab" for"hide">Hide 0?</label>
@@ -32,6 +32,5 @@
       <span id="sec"></span>
     </form>
     <br>
-    <div id="grid"></div>
 </body>
 </html>

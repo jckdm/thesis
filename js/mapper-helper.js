@@ -3,7 +3,6 @@ const coords = [];
 const apps = [];
 const color = {};
 
-let g = false;
 let zero = 'black';
 let sq = 10;
 let max = -1;
@@ -15,12 +14,11 @@ scaleColor = (c) => {
 }
 
 grid = (x) => {
-  // if grid already exists
-  if (g) {
+
+  if (d3.select('#grid')['_groups'][0][0]) {
     d3.select('#grid').remove();
-    $('body').append('<div id="grid"></div>');
-    g = false;
   }
+  $('body').append('<div id="grid"></div>');
 
   // default size = 10
   if (x !== undefined) { sq = parseInt(x.split(' ')[0]); }
@@ -95,12 +93,5 @@ grid = (x) => {
         $('#sec').text('');
         $(this)[0].style.stroke = '#262626';
       }
-    });
-    // enjoy your map
-    g = true;
-    // event listener
-    $(() => {
-      $('option').on('click', function() { grid($(this)[0].innerText); alert("CLICK"); });
-      $('option').on('touchend', function() { grid($(this)[0].innerText); alert("TOUCH"); });
     });
 }
