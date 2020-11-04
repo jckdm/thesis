@@ -18,7 +18,7 @@
     <div id="options">
       <form>
         <label id="radius" for="radii">Radius: &nbsp;</label>
-        <select id="radii"></select>
+        <select onchange="rad($(this)[0].value)" id="radii"></select>
         &nbsp; &nbsp;
         <button type="button" style="background-color: white" id="invert" class="filter" onclick="query($(this).attr('id'))">INVERT SELECTION</button> &nbsp; &nbsp;
         <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;

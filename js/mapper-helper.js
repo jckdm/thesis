@@ -7,10 +7,6 @@ let zero = 'black';
 let sq = 10;
 let max = -1;
 
-($(() => {
-  $('#size').change(function() { grid($(this)[0].value) })
-}))
-
 // calculate color as percentage of max
 scaleColor = (c) => {
   let p = 255.0 * (Math.log(c) / Math.log(max));
