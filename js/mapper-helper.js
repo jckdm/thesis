@@ -8,7 +8,7 @@ let sq = 10;
 let max = -1;
 
 ($(() => {
-  $('#size').click(() => { alert("submitted"); })
+  $('#size').change(() => { alert("submitted"); })
 }))
 
 // calculate color as percentage of max
