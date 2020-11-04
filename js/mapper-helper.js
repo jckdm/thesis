@@ -86,7 +86,7 @@ grid = (x) => {
       // only show values on non-zero / visible squares
       if (zero == 'black' || val != 0) {
         $('#sec').text(val + ' seconds');
-        $(this)[0].style.stroke = 'white';
+        $(this)[0].style.stroke = '#FFFFFF';
       }
     })
     .on('mouseout', function(d) {
@@ -99,5 +99,8 @@ grid = (x) => {
     // enjoy your map
     g = true;
     // event listener
-    $(() => { $('option').on('click', function() { grid($(this)[0].innerText); }); });
+    $(() => {
+      $('option').on('click', function() { grid($(this)[0].innerText); alert("CLICK"); });
+      $('option').on('touchend', function() { grid($(this)[0].innerText); alert("TOUCH"); });
+    });
 }
