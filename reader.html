@@ -5,6 +5,7 @@
     <title>Reader</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/meta.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
     <script type="text/javascript" src="js/papaparse.min.js"></script>
     <script type="text/javascript" src="js/helpers.js"></script>
     <script type="text/javascript" src="js/reader.js"></script>
@@ -17,7 +18,6 @@
   <form id="left">
     <label class="lab" for="size">Height: </label>
     <select onchange="resize(parseInt($(this)[0].value))" id="size">
-      <option>1</option>
       <option>2</option>
       <option>5</option>
       <option>10</option>
