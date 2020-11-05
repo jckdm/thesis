@@ -18,7 +18,7 @@ Papa.parse(filename, {
           // or generate a new one
           else { colors[cleanApp] = colorize(); }
         }
-        apps.push(cleanApp);
+        apps.push(app);
       }
   	},
     complete: () => {

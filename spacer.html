@@ -18,6 +18,16 @@
     <label class="lab" for"show">Show all</label>
     <input id="show" type="checkbox">
     <br> <br>
+    <label class="lab" for="size">Height: </label>
+    <select onchange="resize(parseInt($(this)[0].value))" id="size">
+      <option>1</option>
+      <option>2</option>
+      <option>5</option>
+      <option>10</option>
+      <option selected>15</option>
+    </select>
+    <br><br>
+    <span id="app"></span>
   </form>
 
   <div id="box">
