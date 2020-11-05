@@ -13,5 +13,35 @@
     <link rel="stylesheet" type="text/css" href="css/reader.css">
 </head>
 <body>
+
+  <form id="left">
+    <label class="lab" for="size">Height: </label>
+    <select onchange="resize(parseInt($(this)[0].value))" id="size">
+      <option>1</option>
+      <option>2</option>
+      <option>5</option>
+      <option>10</option>
+      <option selected>15</option>
+    </select>
+    &nbsp; &nbsp;
+    <label class="lab" for"showcolor">Show all color</label>
+    <input id="showcolor" type="checkbox">
+    &nbsp; &nbsp;
+    <span id="app">&nbsp;</span>
+  </form>
+
+  <form id="right">
+    <label class="lab" for"showtext">Show all text</label>
+    <input id="showtext" type="checkbox">
+  </form>
+
+  <br><br><br><br>
+
+  <div id="box">
+    <svg id="path"></svg>
+  </div>
+
+  <div id="reader"></div>
+
 </body>
 </html>

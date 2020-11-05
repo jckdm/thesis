@@ -1,5 +1,5 @@
-const uniqueApps = [];
 const apps = [];
+const times = [];
 const colors = {};
 
 let y = 0;
@@ -7,9 +7,10 @@ let c = 0;
 let curr, last;
 let height = 15;
 
-const attrs = {x: 0, height: 15, width: 200, stroke: '#262626', 'stroke-width': 0.125};
+const attrs = {x: 20, height: 15, width: 200, stroke: '#262626', 'stroke-width': 0.125};
 
-let all = false;
+let allcolor = false;
+let alltext = false;
 
 resize = (h) => {
   let rects = $('#path')[0].children;
@@ -25,18 +26,37 @@ resize = (h) => {
   height = h;
 }
 
-show = (x) => {
+showtext = (x) => {
+  if (x) {
+    $('#reader').html('');
+    alltext = !alltext;
+  }
+
+  last = '';
+
+  for (let i = 0; i < apps.length; i++) {
+    curr = apps[i];
+    // if app switched
+    if (curr != last) {
+      $('#reader').append('<text style="color:' + colors[curr.replace(/\W/g, '')] + ';">' + curr + ' <span>' + times[i] + '</span></text><br>');
+      last = (alltext) ? '' : curr;
+    }
+  }
+}
+
+showcolor = (x) => {
   if (x) {
     // remove svg, append fresh onoe
     $('#path').remove();
     $('#box').append('<svg id="path"></svg>');
-    all = !all;
+    allcolor = !allcolor;
   }
 
   // reset y coord
   y = 0;
   // update height
   attrs['height'] = height;
+  attrs['width'] = $(window).width() / 3.5;
   // reset last
   last = '';
 
@@ -57,7 +77,7 @@ show = (x) => {
         // extend SVG height
         $('#path').attr('height', y);
         // to show some, set last to curr
-        last = (all) ? '' : curr;
+        last = (allcolor) ? '' : curr;
       }
     }
 
@@ -66,7 +86,6 @@ show = (x) => {
     $('#app').text($(this)[0].attributes['class'].value);
   }).mouseout(function(){
     $(this).css({'stroke': '#262626', 'stroke-width': 0.125});
-    $('#app').text('');
+    $('#app').html('&nbsp;');
   })
-
 }

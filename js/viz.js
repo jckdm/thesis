@@ -15,7 +15,7 @@ $(() => {
 
     // if TRACKER
     else if (name == 'P' && !vizFlag) {
-      c[i].innerHTML += ' &nbsp; &nbsp; <span class="viz">Grapher</span> &nbsp; &nbsp;<span class="viz">Mapper</span> &nbsp; &nbsp;<span class="viz">Reader</span> &nbsp; &nbsp;<span class="viz">Spacer</span>';
+      c[i].innerHTML += ' &nbsp; &nbsp; <span class="viz">Grapher</span> &nbsp; &nbsp;<span class="viz">Mapper</span> &nbsp; &nbsp;<span class="viz">Reader</span>';
     }
     // if TRACER
     else if (name == 'P') {

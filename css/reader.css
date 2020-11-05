@@ -1,2 +1,24 @@
-body { text-align: center; font-size: calc(18px + 1.25vw + 0.75vh); }
+#reader {
+  right: 30px;
+  position: absolute;
+  text-align: right;
+  font-size: calc(12px + 1vw);
+}
+
+#box {
+  z-index: 2;
+  position: absolute;
+  margin: auto;
+}
+
+#left, #right {
+  position: absolute;
+  top: 10px;
+}
+
+#left { left: 30px; }
+#right { right: 30px; }
+
 span { color: white; }
+.lab { font-size: 14px; }
+#size { text-align: center; }

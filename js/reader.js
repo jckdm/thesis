@@ -1,34 +1,30 @@
-// color counter
-let c = 0;
-const color = {};
-let curr, last;
-
 Papa.parse(filename, {
     download: true,
     header: true,
     skipEmptyLines: true,
   	step(row) {
       const r = row.data;
-      const app = r.app;
-      // if app recorded
-      if (app) {
+      if (r.app) {
+        const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if not in dictionary
-        if (!color[cleanApp]) {
+        if (!colors[cleanApp]) {
           // get next color in scheme
           if (c < 17) {
-            color[cleanApp] = scheme[c];
+            colors[cleanApp] = scheme[c];
             c++;
           }
           // or generate a new one
-          else { color[cleanApp] = colorize(); }
+          else { colors[cleanApp] = colorize(); }
         }
-        curr = cleanApp;
-        // if app switched
-        if (curr != last) {
-          $('body').append('<p style="color:' + color[cleanApp] + ';">' + app + ' <span>' + r.time + '</span></p>');
-          last = curr;
-        }
+        apps.push(app);
+        times.push(r.time);
       }
-  	}
+  	},
+    complete: () => {
+      showcolor(false);
+      showtext(false);
+      $('#showcolor').on('click', () => showcolor(true));
+      $('#showtext').on('click', () => showtext(true));
+    }
 });
