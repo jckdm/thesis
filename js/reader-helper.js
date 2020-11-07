@@ -17,9 +17,9 @@ $(window).resize(() => showcolor(0) );
 
 resize = (h) => {
   // get all rectangles
-  let rects = $('#path')[0].children;
+  const rects = $('#path')[0].children;
   // calc change in height
-  let change = height - h;
+  const change = height - h;
   // reset y to top
   y = 0;
 
@@ -52,8 +52,9 @@ showtext = (x) => {
     curr = apps[i];
     // if app switched
     if (curr != last) {
+      const clean = curr.replace(/\W/g, '');
       // append next app
-      $('#reader').append('<text style="color:' + colors[curr.replace(/\W/g, '')] + ';">' + curr + ' <span>' + times[i] + '</span></text><br>');
+      $('#reader').append('<text class="' + clean + '" style="color:' + colors[clean] + ';">' + curr + ' <span>' + times[i] + '</span></text><br>');
       last = (alltext) ? '' : curr;
     }
   }
@@ -79,7 +80,7 @@ showcolor = (x) => {
   attrs['height'] = height;
   // scalable width
   const newW = $(window).width() / 2.5;
-  attrs['width'] = newW;
+  // attrs['width'] = newW;
   $('#path').attr('width', newW);
   // reset last
   last = '';
@@ -88,13 +89,14 @@ showcolor = (x) => {
     curr = app;
       if (curr != last) {
         // create new SVG rect
-        let rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         // set attributes from dict
         for (const attr in attrs) { rect.setAttribute(attr, attrs[attr]) }
+        const cleaned = curr.replace(/\W/g, '');
         // manually set Y, Fill, class
         rect.setAttribute('y', y);
-        rect.setAttribute('fill', colors[curr.replace(/\W/g, '')]);
-        rect.setAttribute('class', curr);
+        rect.setAttribute('fill', colors[cleaned]);
+        rect.setAttribute('class', cleaned);
         // append to SVG
         $('#path').append(rect);
         y += height;
@@ -104,31 +106,51 @@ showcolor = (x) => {
         last = (allcolor) ? '' : curr;
       }
     }
-
     // select all rects
     d3.selectAll('rect')
       .on('mouseover', function() {
         // border on hover
         $(this).css({'stroke': 'white', 'stroke-width': 2.5});
-        // show and add class as text
-        d3.select('#tooltip')
-          .text($(this)[0].attributes['class'].value)
-          .transition()
-          .duration(100)
-          .style('visibility', 'visible')
+        // hide all text
+        $('text').css('visibility', 'hidden');
+
+        // show text for that app
+        const cl = $(this)[0].attributes['class'].value;
+        $('text.' + cl).css('visibility', 'visible');
+
+        // get positions
+        const att = $(this)[0].attributes;
+        const xPos = +att.x.value + (+att.width.value / 2.0);
+        const yPos = +att.y.value + (+att.height.value / 2.0);
+        const eles = $('text.' + cl);
+        const rOff = $('#reader').offset().top;
+        // make svg for lines
+        const gL = d3.select('body')
+                     .append('svg')
+                     .attr('id', 'lines')
+                     .attr('width', '100%')
+                     .attr('height', $(document).height())
+
+        // for each text element
+        for (ele of eles) {
+          // get position
+          const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
+          const left = $(ele).offset().left + window.screenX;
+
+          // draw line
+          gL.append('line')
+            .style('stroke', 'gray')
+            .style('stroke-width', 1.5)
+            .attr('x1', xPos)
+            .attr('y1', yPos)
+            .attr('x2', left)
+            .attr('y2', top);
+        }
       })
       .on('mouseout', function() {
+        // reset styles
         $(this).css({'stroke': '#262626', 'stroke-width': 0.125});
-        // hide tooltip
-        d3.select('#tooltip')
-          .transition()
-          .duration(100)
-          .style('visibility', 'hidden')
-      })
-      // update position on move
-      .on('mousemove', () => {
-        d3.select('#tooltip')
-          .style('left', event.pageX + 30 + 'px')
-          .style('top', event.pageY + 'px')
+        $('text').css('visibility', 'visible');
+        $('#lines').remove();
       })
 }

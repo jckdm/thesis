@@ -22,12 +22,3 @@
 span { color: white; }
 .lab { font-size: 14px; }
 #size { text-align: center; }
-
-#tooltip {
-  position: absolute;
-  visibility: hidden;
-  z-index: 2;
-  background-color: #262626;
-  padding: 5px 10px 5px 10px;
-  border: 1px dotted white;
-}
