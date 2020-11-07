@@ -115,17 +115,50 @@ grid = (x) => {
         // tooltip text
         for (app in aa) { content += '<span style="color:' + color[app.replace(/\W/g, '')] + ';">' + app + ' : ' + aa[app] + ' sec </span><br>'; }
 
-        d3.select('#tooltip')
-          .html(content)
+        // add app counts
+        $('#tt').html(content);
+
+        // show tooltip
+        const tool = d3.select('#tooltip')
           .transition()
           .duration(100)
           .style('visibility', 'visible')
+
+        // pie the values, save the keys
+        const pie = d3.pie();
+        const vals = pie(Object.values(aa));
+        const keys = Object.keys(aa);
+
+        // add key to each dict, for coloring
+        for (i in vals) { vals[i]['key'] = keys[i].replace(/\W/g, ''); }
+
+        // append piechart to pie div
+        const svg = d3.select('#pie')
+                      .append('svg')
+                      .attr('id', 'piechart')
+                      .attr('width', 100)
+                      .attr('height', 100)
+                      .append('g')
+                      .attr('transform', 'translate(' + 50 + ',' + 50 + ')');
+
+        // draw paths
+        svg.selectAll('x')
+          .data(vals)
+          .enter()
+          .append('path')
+          .attr('d', d3.arc().innerRadius(0).outerRadius(45) )
+          .attr('stroke', '#1a1a1a')
+          .style('stroke-width', 1.5)
+          .style('fill', (d) => color[d.key] )
       }
     })
     .on('mouseout', function() {
-      let a = Object.values($(this)[0])[0];
-      // if non-zero
       $(this)[0].style.stroke = '#262626';
+      // remove pie chart and clear text
+      d3.select('#piechart').remove();
+      $('#tt').html('');
+
+      // hide tooltip
       d3.select('#tooltip')
         .transition()
         .duration(100)
