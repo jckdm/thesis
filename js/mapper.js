@@ -14,7 +14,7 @@ Papa.parse(filename, {
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if app not yet seen
-        if (!apps.includes(cleanApp)) {
+        if (!apps.includes(app)) {
           // get next color in scheme
           if (c < 17) {
             color[cleanApp] = scheme[c];
@@ -25,7 +25,7 @@ Papa.parse(filename, {
         }
         // push data to respective arrays
         coords.push([parseFloat(r.x), parseFloat(r.y)]);
-        apps.push(cleanApp);
+        apps.push(app);
         endDate = r.date;
         endTime = r.time;
       }

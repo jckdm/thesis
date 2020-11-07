@@ -41,6 +41,11 @@ showtext = (x) => {
     alltext = !alltext;
   }
 
+  // style button
+  const b = $('#showtext')[0].style;
+  b.color = (alltext) ? 'black' : 'white';
+  b.backgroundColor = (alltext) ? 'white' : 'black';
+
   last = '';
 
   for (let i = 0; i < apps.length; i++) {
@@ -62,6 +67,11 @@ showcolor = (x) => {
   }
   // only switch on click, not on resize
   if (x) { allcolor = !allcolor; }
+
+  // style button
+  const b = $('#showcolor')[0].style;
+  b.color = (allcolor) ? 'black' : 'white';
+  b.backgroundColor = (allcolor) ? 'white' : 'black';
 
   // reset y coord
   y = 0;
@@ -94,11 +104,6 @@ showcolor = (x) => {
         last = (allcolor) ? '' : curr;
       }
     }
-
-    // append tooltip
-    d3.select('body')
-      .append('div')
-      .attr('id', 'tooltip');
 
     // select all rects
     d3.selectAll('rect')

@@ -23,14 +23,11 @@
         <option>20 x 20</option>
       </select>
       &nbsp; &nbsp;
-      <label class="lab" for"hide">Hide 0?</label>
-      <input id="hide" onclick="grid()" type="checkbox">
+      <button type="button" id="hide" onclick="grid('z')" style="background-color: black; color: white;">Hide 0</button>
       &nbsp; &nbsp;
-      <label class="lab" for"col">Color by most used app</label>
-      <input id="col" onclick="grid()" type="checkbox">
-      &nbsp; &nbsp;
-      <span id="sec"></span>
+      <button type="button" id="col" onclick="grid('c')" style="background-color: black; color: white;">Color by most used app</button>
     </form>
     <br>
+    <div id="tooltip"></div>
 </body>
 </html>
