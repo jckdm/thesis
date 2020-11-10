@@ -16,6 +16,15 @@ def main():
 
     data, lats, lons, flag, good, bad = [], [None, None], [None, None], False, 0, 0
 
+    meta = input('\nShow metadata? (y/n): ')
+
+    if meta.lower() in ('yes', 'y'):
+        metaflag = True
+    elif meta.lower() in ('no', 'n'):
+        metaflag = False
+    else:
+        exit('Invalid response')
+
     # read all files in dir
     for file in glob(filepath + '*'):
         file = file.lower()
@@ -44,6 +53,12 @@ def main():
         lat = { 'dir': loc[1], 'deg': loc[2][0], 'min': loc[2][1], 'sec': loc[2][2] }
         lon = { 'dir': loc[3], 'deg': loc[4][0], 'min': loc[4][1], 'sec': loc[4][2] }
 
+        if metaflag:
+            cleanLat = str(lat['deg']) + '° ' + str(lat['min']) + '\' ' + str(lat['sec']) + '\" ' + str(lat['dir'])
+            cleanLon = str(lon['deg']) + '° ' + str(lon['min']) + '\' ' + str(lon['sec']) + '\" ' + str(lon['dir'])
+
+            print(f'File: {file}   Latitude: {cleanLat}   Longitude: {cleanLon}   Time: {dt}')
+
         # calculate full coordinate with degree, minute, second
         truLat = float(lat['deg'] + (lat['min'] / 60.0) + (lat['sec'] / 3600.0))
         truLon = float(lon['deg'] + (lon['min'] / 60.0) + (lon['sec'] / 3600.0))
@@ -66,7 +81,7 @@ def main():
     if good <= 1:
         exit('Didn\'t find enough valid image files for a visualization.')
 
-    print(f'Extracted data from {good} files. Unable to extract from {bad}.\n')
+    print(f'\nExtracted metadata from {good} files. Unable to extract from {bad}.\n')
 
     # prompt for viz choice
     q = input('Please enter the number corresponding to your visualization of choice:\n1: Unsorted path\n2: Sorted path\n3: Both paths overlaid\n\n#: ')
