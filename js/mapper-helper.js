@@ -105,6 +105,7 @@ grid = (x) => {
     })
     .on('mouseover', function() {
       const a = Object.values($(this)[0])[0];
+
       // if non zero at that sq
       if (a.apps) {
         // highlight
@@ -153,21 +154,24 @@ grid = (x) => {
       }
     })
     .on('mouseout', function() {
-      $(this)[0].style.stroke = '#262626';
-      // remove pie chart and clear text
-      d3.select('#piechart').remove();
-      $('#tt').html('');
+      // if tooltip visible, hide it
+      if ($('#tooltip').css('visibility') == 'visible') {
+        $(this)[0].style.stroke = '#262626';
+        // remove pie chart and clear text
+        d3.select('#piechart').remove();
+        $('#tt').html('');
 
-      // hide tooltip
-      d3.select('#tooltip')
-        .transition()
-        .duration(100)
-        .style('visibility', 'hidden')
+        // hide tooltip
+        d3.select('#tooltip')
+          .transition()
+          .duration(100)
+          .style('visibility', 'hidden')
+      }
     })
     .on('mousemove', () => {
       // if near bottom/right edge, move tooltip up/left
       d3.select('#tooltip')
-        .style('left', () => ($(document).width() - event.pageX < 150) ? event.pageX - 150 + 'px' : event.pageX + 25 + 'px')
-        .style('top', () => ($(document).height() - event.pageY < 150) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
+        .style('left', () => ($(document).width() - event.pageX < 200) ? event.pageX - 150 + 'px' : event.pageX + 25 + 'px')
+        .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
     });
 }
