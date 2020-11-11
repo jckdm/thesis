@@ -120,7 +120,7 @@ showcolor = (x) => {
 
         // get positions
         const att = $(this)[0].attributes;
-        const xPos = +att.x.value + (+att.width.value / 2.0);
+        const xPos = +att.x.value + +att.width.value + 2.5;
         const yPos = +att.y.value + (+att.height.value / 2.0);
         const eles = $('text.' + cl);
         const rOff = $('#reader').offset().top;
@@ -135,12 +135,12 @@ showcolor = (x) => {
         for (ele of eles) {
           // get position
           const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
-          const left = $(ele).offset().left + window.screenX;
+          const left = $(ele).offset().left - 7.5;
 
           // draw line
           gL.append('line')
             .style('stroke', 'gray')
-            .style('stroke-width', 1.5)
+            .style('stroke-width', 1)
             .attr('x1', xPos)
             .attr('y1', yPos)
             .attr('x2', left)

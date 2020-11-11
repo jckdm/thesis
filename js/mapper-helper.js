@@ -165,8 +165,9 @@ grid = (x) => {
         .style('visibility', 'hidden')
     })
     .on('mousemove', () => {
+      // if near bottom/right edge, move tooltip up/left
       d3.select('#tooltip')
-        .style('left', event.pageX + 25 + 'px')
-        .style('top', event.pageY + 'px')
+        .style('left', () => ($(document).width() - event.pageX < 150) ? event.pageX - 150 + 'px' : event.pageX + 25 + 'px')
+        .style('top', () => ($(document).height() - event.pageY < 150) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
     });
 }
