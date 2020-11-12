@@ -12,6 +12,8 @@ const attrs = {x: 20, height: 15, width: 200, stroke: '#262626', 'stroke-width':
 let allcolor = false;
 let alltext = false;
 
+let linelock = false;
+
 // on resize, redraw rectangles but don't flip flag
 $(window).resize(() => showcolor(0) );
 
@@ -35,9 +37,9 @@ resize = (h) => {
 }
 
 showtext = (x) => {
+  $('#reader').html('');
   if (x) {
     // clear text
-    $('#reader').html('');
     alltext = !alltext;
   }
 
@@ -108,49 +110,59 @@ showcolor = (x) => {
     }
     // select all rects
     d3.selectAll('rect')
+      .on('click', () => {
+        linelock = !linelock;
+      })
       .on('mouseover', function() {
-        // border on hover
-        $(this).css({'stroke': 'white', 'stroke-width': 2.5});
-        // hide all text
-        $('text').css('visibility', 'hidden');
+        if (!linelock) {
+          // border on hover
+          $(this).css({'stroke': 'white', 'stroke-width': 2.5});
 
-        // show text for that app
-        const cl = $(this)[0].attributes['class'].value;
-        $('text.' + cl).css('visibility', 'visible');
+          // show text for that app
+          const cl = $(this)[0].attributes['class'].value;
 
-        // get positions
-        const att = $(this)[0].attributes;
-        const xPos = +att.x.value + +att.width.value + 2.5;
-        const yPos = +att.y.value + (+att.height.value / 2.0);
-        const eles = $('text.' + cl);
-        const rOff = $('#reader').offset().top;
-        // make svg for lines
-        const gL = d3.select('body')
-                     .append('svg')
-                     .attr('id', 'lines')
-                     .attr('width', '100%')
-                     .attr('height', $(document).height())
+          // get positions
+          const att = $(this)[0].attributes;
+          const xPos = +att.x.value + +att.width.value + 2.5;
+          const yPos = +att.y.value + (+att.height.value / 2.0);
+          const eles = $('text.' + cl);
+          const rOff = $('#reader').offset().top;
+          // make svg for lines
+          const gL = d3.select('body')
+                       .append('svg')
+                       .attr('id', 'lines')
+                       .attr('width', '100%')
+                       .attr('height', $(document).height())
 
-        // for each text element
-        for (ele of eles) {
-          // get position
-          const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
-          const left = $(ele).offset().left - 7.5;
+          $('#reader').text('');
 
-          // draw line
-          gL.append('line')
-            .style('stroke', 'gray')
-            .style('stroke-width', 1)
-            .attr('x1', xPos)
-            .attr('y1', yPos)
-            .attr('x2', left)
-            .attr('y2', top);
+          // for each text element
+          for (ele of eles) {
+
+            $('#reader').append(ele);
+            $('#reader').append('<br>');
+
+            // get position
+            const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
+            const left = $(ele).offset().left - 7.5;
+
+            // draw line
+            gL.append('line')
+              .style('stroke', 'gray')
+              .style('stroke-width', 1)
+              .attr('x1', xPos)
+              .attr('y1', yPos)
+              .attr('x2', left)
+              .attr('y2', top);
+          }
         }
       })
       .on('mouseout', function() {
-        // reset styles
-        $(this).css({'stroke': '#262626', 'stroke-width': 0.125});
-        $('text').css('visibility', 'visible');
-        $('#lines').remove();
+        if (!linelock) {
+          showtext(false);
+          // reset styles
+          $(this).css({'stroke': '#262626', 'stroke-width': 0.125});
+          $('#lines').remove();
+        }
       })
 }
