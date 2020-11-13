@@ -154,19 +154,16 @@ grid = (x) => {
       }
     })
     .on('mouseout', function() {
-      // if tooltip visible, hide it
-      if ($('#tooltip').css('visibility') == 'visible') {
-        $(this)[0].style.stroke = '#262626';
-        // remove pie chart and clear text
-        d3.select('#piechart').remove();
-        $('#tt').html('');
+      $(this)[0].style.stroke = '#262626';
+      // remove pie chart and clear text
+      d3.select('#piechart').remove();
+      $('#tt').html('');
 
-        // hide tooltip
-        d3.select('#tooltip')
-          .transition()
-          .duration(100)
-          .style('visibility', 'hidden')
-      }
+      // hide tooltip
+      d3.select('#tooltip')
+        .transition()
+        .duration(100)
+        .style('visibility', 'hidden')
     })
     .on('mousemove', () => {
       // if near bottom/right edge, move tooltip up/left

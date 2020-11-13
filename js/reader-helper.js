@@ -6,13 +6,21 @@ let y = 0;
 let c = 0;
 let curr, last;
 let height = 15;
+let selected;
 
 const attrs = {x: 20, height: 15, width: 200, stroke: '#262626', 'stroke-width': 0.125};
 
 let allcolor = false;
 let alltext = false;
-
 let linelock = false;
+
+clean = (t) => {
+  // reset styles for selected / this rect
+  $(t).css({'stroke': '#262626', 'stroke-width': 0.125});
+  $('#lines').remove();
+  linelock = false;
+  showtext(false);
+}
 
 // on resize, redraw rectangles but don't flip flag
 $(window).resize(() => showcolor(0) );
@@ -43,6 +51,8 @@ showtext = (x) => {
     alltext = !alltext;
   }
 
+  if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
+
   // style button
   const b = $('#showtext')[0].style;
   b.color = (alltext) ? 'black' : 'white';
@@ -70,6 +80,9 @@ showcolor = (x) => {
   }
   // only switch on click, not on resize
   if (x) { allcolor = !allcolor; }
+
+
+  if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
 
   // style button
   const b = $('#showcolor')[0].style;
@@ -110,10 +123,13 @@ showcolor = (x) => {
     }
     // select all rects
     d3.selectAll('rect')
-      .on('click', () => {
+      .on('click', function() {
         linelock = !linelock;
+        if (linelock) { selected = this; }
+        else { clean(selected); }
       })
       .on('mouseover', function() {
+        console.log(linelock);
         if (!linelock) {
           // border on hover
           $(this).css({'stroke': 'white', 'stroke-width': 2.5});
@@ -157,12 +173,5 @@ showcolor = (x) => {
           }
         }
       })
-      .on('mouseout', function() {
-        if (!linelock) {
-          showtext(false);
-          // reset styles
-          $(this).css({'stroke': '#262626', 'stroke-width': 0.125});
-          $('#lines').remove();
-        }
-      })
+      .on('mouseout', function() { if (!linelock) { clean(this); } })
 }
