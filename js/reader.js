@@ -26,5 +26,6 @@ Papa.parse(filename, {
       showtext(false);
       $('#showcolor').on('click', () => showcolor(true));
       $('#showtext').on('click', () => showtext(true));
+      $('#analyze').on('click', () => analyze());
     }
 });

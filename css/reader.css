@@ -19,6 +19,12 @@
 #left { left: 30px; }
 #right { right: 30px; }
 
+#mid {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
 span { color: white; }
 .lab { font-size: 14px; }
 #size { text-align: center; }
