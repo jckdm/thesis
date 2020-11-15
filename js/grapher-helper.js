@@ -23,9 +23,8 @@ filters = (id) => {
     lineFlag = !lineFlag;
   }
   else {
-    const color = (axisFlag) ? '#262626' : 'white';
-    $('.xaxis').css('color', color);
-    $('.yaxis').css('color', color);
+    $('.xaxis').css('color', (axisFlag) ? '#262626' : 'white');
+    $('.yaxis').css('color', (axisFlag) ? '#262626' : 'white');
     axisFlag = !axisFlag;
   }
 }

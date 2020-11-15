@@ -28,19 +28,16 @@ grid = (x) => {
 
   // switch btw filled and unfilled 0 value squares
   else if (x == 'z') {
-    const b = $('#hide')[0].style;
     // change sq color
-    zero = (b.color == 'black') ? 'black' : 'none';
+    zero = ($('#hide')[0].style.color == 'black') ? 'black' : 'none';
     // style button
-    b.color = (zeroflag) ? 'white' : 'black';
-    b.backgroundColor = (zeroflag) ? 'black' : 'white';
+    $('#hide').css({'color': (zeroflag) ? 'white' : 'black', 'background-color': (zeroflag) ? 'black' : 'white'})
+
     zeroflag = !zeroflag;
   }
   else if (x == 'c') {
-    const b = $('#col')[0].style;
     // style button
-    b.color = (colflag) ? 'white' : 'black';
-    b.backgroundColor = (colflag) ? 'black' : 'white';
+    $('#col').css({'color': (colflag) ? 'white' : 'black', 'background-color': (colflag) ? 'black' : 'white'})
     colflag = !colflag;
   }
 

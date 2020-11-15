@@ -1,3 +1,8 @@
+body {
+  --medtext: calc(20px + 0.35vw + 0.35vh);
+  --mobmedtext: calc(16px + 0.25vw + 0.25vh);
+}
+
 #reader {
   right: 30px;
   position: absolute;
@@ -28,3 +33,50 @@
 span { color: white; }
 .lab { font-size: 14px; }
 #size { text-align: center; }
+
+.data-overlay {
+  background-color: #262626D9;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}
+
+.data-overlay-content {
+  font-size: var(--medtext);
+  padding: 20px;
+  background-color: #3CB371;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid black;
+  width: 50%;
+}
+
+.data-overlay-content p {
+  line-height: 1.25;
+  color: #262626;
+  padding: 0;
+  display: inline;
+  font-size: var(--medtext);
+}
+
+#close {
+  color: white;
+  font-size: calc(50px + 0.5vw + 0.5vh);
+}
+
+.data {
+  text-decoration: underline;
+  color: black;
+}
+
+@media only screen and (max-width: 415px) {
+  .data-overlay-content a, .data-overlay-content p { font-size: var(--mobmedtext); }
+  .data-overlay-content { width: 65%; }
+}

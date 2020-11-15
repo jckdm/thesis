@@ -53,9 +53,7 @@ showtext = (x) => {
   if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
 
   // style button
-  const b = $('#showtext')[0].style;
-  b.color = (alltext) ? 'black' : 'white';
-  b.backgroundColor = (alltext) ? 'white' : 'black';
+  $('#showtext').css({'color': (alltext) ? 'black' : 'white', 'background-color': (alltext) ? 'white' : 'black'});
 
   last = '';
 
@@ -78,9 +76,7 @@ showtext = (x) => {
 
 analyze = () => {
   // style button
-  const b = $('#analyze')[0].style;
-  b.color = (b.color == 'white') ? 'black' : 'white';
-  b.backgroundColor = (b.color == 'black') ? 'white' : 'black';
+  $('#analyze').css({'color': 'black', 'background-color': 'white'});
 
   const text = $('text');
   const pCounts = {};
@@ -167,18 +163,48 @@ analyze = () => {
       }
     }
   }
+  // get largest value from path dict, and start & end times
   const key = Object.keys(pCounts).reduce((a, b) => (pCounts[a] > pCounts[b]) ? a : b);
+  const ss = pTimes[key + '-start'].slice(0, -1);
+  const ee = pTimes[key + '-end'].slice(0, -1);
 
-  start = pTimes[key + '-start'].slice(0, -1).split(':');
-  end = pTimes[key + '-end'].slice(0, -1).split(':');
+  // split pattern & times, calculate span
+  pattern = key.split('-');
+  start = ss.split(':');
+  end = ee.split(':');
+  const patSpan = (end[0] * 60 - start[0] * 60) + (end[1] - start[1]) + ((end[2] - start[2]) / 60);
 
-  const hrs = end[0] * 60 - start[0] * 60;
-  const mns = end[1] - start[1];
-  const sec = (end[2] - start[2]) / 60;
+  // calculate overall span times
+  const startTime = times[0].split(':');
+  const endTime = times[times.length - 1].split(':');
+  const span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
 
-  console.log(hrs, mns, sec);
-  console.log(hrs + mns + sec);
-  console.log(key, pCounts[key], start, end);
+  // get user from filename
+  const user = filename.split('-')[0].split('/')[1];
+
+  // show modal
+  $('.data-overlay').css('visibility', 'visible');
+
+  // add content
+  $('.data-overlay-content').html('<span id="close">&times;</span><br><p>'
+  + user + ' used <span class="data">' + c + '</span> unique apps over the span of <span class="data">'
+  + span.toFixed(2) + '</span> minutes from <span class="data">' + times[0]
+  + '</span> – <span class="data">' + times[times.length - 1]
+  + '</span>.</p> <br> <br> <p>During that time, ' + user
+  + ' switched between apps <span class="data">' + (len + 1)
+  + '</span> times, spending an average of <span class="data">' + (span / (len + 1)).toFixed(2)
+  + '</span> minutes between each app.</p> <br> <br> <p>' + user
+  + '\'s longest uninterrupted pattern was <span class="data">' + pattern[0]
+  + '</span> to <span class="data">' + pattern[1] + '</span>, for a total of <span class="data">'
+  + pCounts[key] + '</span> continuous switches over the span of <span class="data">'
+  + patSpan.toFixed(2) + '</span> minutes from <span class="data">' + ss
+  + '</span> – <span class="data">' + ee + '</span>.</p>');
+
+  // close on click
+  $('#close').on('click', () => {
+    $('.data-overlay').css('visibility', 'hidden');
+    $('#analyze').css({'color': 'white', 'background-color': 'black'});
+  })
 }
 
 showcolor = (x) => {
@@ -193,9 +219,7 @@ showcolor = (x) => {
   if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
 
   // style button
-  const b = $('#showcolor')[0].style;
-  b.color = (allcolor) ? 'black' : 'white';
-  b.backgroundColor = (allcolor) ? 'white' : 'black';
+  $('#showcolor').css({'color': (allcolor) ? 'black' : 'white', 'background-color': (allcolor) ? 'white' : 'black'});
 
   // reset y coord
   y = 0;
