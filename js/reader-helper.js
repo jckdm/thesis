@@ -190,7 +190,7 @@ analyze = () => {
   + user + ' used <span class="data">' + c + '</span> apps over <span class="data">'
   + span.toFixed(2) + '</span> minutes from <span class="data">' + times[0]
   + '</span> – <span class="data">' + times[times.length - 1]
-  + '</span>.</p> <br> <br> <p>During that time, ' + user
+  + '</span>.</p> <br> <br> <p>During that interval, ' + user
   + ' switched between apps <span class="data">' + (len + 1)
   + '</span> times, spending an average of <span class="data">' + (span / (len + 1)).toFixed(2)
   + '</span> minutes in each app.</p> <br> <br> <p>'
