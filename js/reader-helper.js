@@ -187,16 +187,16 @@ analyze = () => {
 
   // add content
   $('.data-overlay-content').html('<span id="close">&times;</span><br><p>'
-  + user + ' used <span class="data">' + c + '</span> unique apps over the span of <span class="data">'
+  + user + ' used <span class="data">' + c + '</span> apps over <span class="data">'
   + span.toFixed(2) + '</span> minutes from <span class="data">' + times[0]
   + '</span> – <span class="data">' + times[times.length - 1]
   + '</span>.</p> <br> <br> <p>During that time, ' + user
   + ' switched between apps <span class="data">' + (len + 1)
   + '</span> times, spending an average of <span class="data">' + (span / (len + 1)).toFixed(2)
-  + '</span> minutes between each app.</p> <br> <br> <p>' + user
-  + '\'s longest uninterrupted pattern was <span class="data">' + pattern[0]
-  + '</span> to <span class="data">' + pattern[1] + '</span>, for a total of <span class="data">'
-  + pCounts[key] + '</span> continuous switches over the span of <span class="data">'
+  + '</span> minutes in each app.</p> <br> <br> <p>'
+  + user + '\'s longest period of continuous switching was between <span class="data">' + pattern[0]
+  + '</span> and <span class="data">' + pattern[1] + '</span>, comprising <span class="data">'
+  + pCounts[key] + '</span> switches over <span class="data">'
   + patSpan.toFixed(2) + '</span> minutes from <span class="data">' + ss
   + '</span> – <span class="data">' + ee + '</span>.</p>');
 
