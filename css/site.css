@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'Barlow Semi Condensed Light';
-  src: URL('fonts/BarlowSemiCondensed-Light.ttf') format('truetype');
+  font-family: 'Suisse Intl';
+  src: URL('fonts/Suisse-Intl.otf') format('opentype');
 }
 
 @font-face {
-  font-family: 'Barlow Light';
-  src: URL('fonts/Barlow-Light.ttf') format('truetype');
+  font-family: 'Suisse Intl Mono';
+  src: URL('fonts/Suisse-Intl-Mono.otf') format('opentype');
 }
 
 body {
   background-color: #262626;
   color: #FFFFFF;
-  font-family: 'Barlow Semi Condensed Light', sans-serif;
+  font-family: 'Suisse Intl', sans-serif;
   --topspace: calc(5px + 2vh);
-  --bigtext: calc(18px + 0.5vw + 0.5vh);
-  --mobbigtext: 22px;
+  --bigtext: calc(15px + 0.5vw + 0.5vh);
+  --mobbigtext: 20px;
 }

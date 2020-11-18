@@ -1,3 +1,5 @@
+// when READER column appears, get its position and then use that when showing only of one app
+
 const apps = [];
 const times = [];
 const colors = {};
@@ -9,7 +11,7 @@ let curr, last;
 let height = 15;
 let selected;
 
-const attrs = {x: 20, height: 15, width: 200, stroke: '#262626', 'stroke-width': 0.125};
+const attrs = {x: 20, height: 15, stroke: '#262626', 'stroke-width': 0.125};
 
 let allcolor = false;
 let alltext = false;
@@ -46,11 +48,12 @@ resize = (h) => {
 }
 
 showtext = (x) => {
-  $('#reader').html('');
+  $('#apps').html('');
+  $('#times').html('');
   // clear text
   if (x) { alltext = !alltext; }
 
-  if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
+  if (d3.selectAll('line')['_groups'][0].length > 1) { clean(selected); }
 
   // style button
   $('#showtext').css({'color': (alltext) ? 'black' : 'white', 'background-color': (alltext) ? 'white' : 'black'});
@@ -68,7 +71,8 @@ showtext = (x) => {
       }
       const clean = curr.replace(/\W/g, '');
       // append next app
-      $('#reader').append('<text id="' + i + '" class="' + clean + '" style="color:' + colors[clean] + ';">' + curr + '<span> ' + times[i] + '</span><br></text>');
+      $('#apps').append('<text class="' + clean + '" style="color:' + colors[clean] + ';">' + curr + ' </text><br>');
+      $('#times').append('<text class="' + clean + '"> ' + times[i] + '</text><br>')
       last = (alltext) ? '' : curr;
     }
   }
@@ -78,7 +82,10 @@ analyze = () => {
   // style button
   $('#analyze').css({'color': 'black', 'background-color': 'white'});
 
-  const text = $('text');
+  // get all apps and times in respective divs
+  const aps = $('#apps')[0].childNodes;
+  const tms = $('#times')[0].childNodes;
+
   const pCounts = {};
   const pTimes = {};
   let one = false;
@@ -87,8 +94,10 @@ analyze = () => {
   let longest = 0;
   let longest_yet = 0;
   let i = 0;
-  const len = text.length - 1;
+  // account for <br>s
+  const len = (aps.length / 2) - 1;
   let end, start;
+  let selStart, selEnd;
 
   // sort DESC patterns by total occurrences of each app.
   const items = (Object.keys(patterns).map((key) => [key, patterns[key]])).sort((f, s) => s[1] - f[1]);
@@ -105,12 +114,10 @@ analyze = () => {
       i = 0;
       one = false;
       two = false;
-      // for each text element on the page
-      for (te of text) {
-        const t = te.innerText.split(' ');
-        // divide by time / app
-        const time = t.pop();
-        const ap = t.join(' ');
+      // for each text element on the page, skip over <br>
+      for (let j = 0; j < aps.length; j+=2) {
+        const time = tms[j];
+        const ap = aps[j].innerText;
         // if app not in pattern (pattern has ended?)
         if (ap != pattern[0] && ap != pattern[1]) {
           // if this pattern is longer than prev
@@ -118,8 +125,8 @@ analyze = () => {
             // record length, start and end times
             pCounts[ele] = longest;
             longest_yet = Math.max(longest, longest_yet);
-            pTimes[ele + '-start'] = start;
-            pTimes[ele + '-end'] = end.innerText.split(' ').pop();
+            pTimes[ele + '-start'] = [start.innerText, selStart];
+            pTimes[ele + '-end'] = [end.innerText, $(time)];
             first = true;
           }
           // otherwise, start over on the next iteration
@@ -135,12 +142,13 @@ analyze = () => {
           longest += 1;
           one = false;
           two = false;
-          end = te;
+          end = time;
           // gia's case: longest path goes up until end of dataset. i love you gia and i hate your data.
           if (i == len) {
             pCounts[ele] = longest;
-            pTimes[ele + '-end'] = end.innerText.split(' ').pop();
-            pTimes[ele + '-start'] = start;
+            longest_yet = Math.max(longest, longest_yet);
+            pTimes[ele + '-start'] = [start.innerText, selStart];
+            pTimes[ele + '-end'] = [end.innerText, $(time)];
             first = true;
           }
         }
@@ -152,10 +160,14 @@ analyze = () => {
         }
         // check if curr matches pattern
         if (ap == pattern[0]) {
+
           one = true;
           // if first app of pattern, record time
           if (!first) {
+            // start time
             start = time;
+            // starting element on page
+            selStart = $(time);
             first = true;
           }
         }
@@ -165,10 +177,25 @@ analyze = () => {
   }
   // get largest value from path dict, and start & end times
   const key = Object.keys(pCounts).reduce((a, b) => (pCounts[a] > pCounts[b]) ? a : b);
-  const ss = pTimes[key + '-start'].slice(0, -1);
-  const ee = pTimes[key + '-end'].slice(0, -1);
+
+  selStart = $(pTimes[key + '-start'][1][0]);
+  selEnd = $(pTimes[key + '-end'][1][0]);
+
+  $('#longline').css({'height': $(document).height(), 'width': '50%'});
+
+  // draw line
+  d3.select('#longline')
+    .append('line')
+    .style('stroke', '#FFFFFF59')
+    .style('stroke-width', 150)
+    .attr('x1', 20)
+    .attr('y1', selStart.position().top - 5)
+    .attr('x2', 20)
+    .attr('y2', selEnd.position().top);
 
   // split pattern & times, calculate span
+  const ss = pTimes[key + '-start'][0];
+  const ee = pTimes[key + '-end'][0];
   pattern = key.split('-');
   start = ss.split(':');
   end = ee.split(':');
@@ -212,6 +239,7 @@ showcolor = (x) => {
     // remove svg, append fresh onoe
     $('#path').remove();
     $('#box').append('<svg id="path"></svg>');
+    $('#longline').html('');
   }
   // only switch on click, not on resize
   if (x) { allcolor = !allcolor; }
@@ -226,7 +254,7 @@ showcolor = (x) => {
   // update height
   attrs['height'] = height;
   // scalable width
-  const newW = $(window).width() / 2.5;
+  const newW = $(window).width() / 4;
   // attrs['width'] = newW;
   $('#path').attr('width', newW);
   // reset last
@@ -240,8 +268,9 @@ showcolor = (x) => {
         // set attributes from dict
         for (const attr in attrs) { rect.setAttribute(attr, attrs[attr]) }
         const cleaned = curr.replace(/\W/g, '');
-        // manually set Y, Fill, class
+        // manually set Y, width, fill, class
         rect.setAttribute('y', y);
+        rect.setAttribute('width', newW);
         rect.setAttribute('fill', colors[cleaned]);
         rect.setAttribute('class', cleaned);
         // append to SVG
@@ -265,14 +294,13 @@ showcolor = (x) => {
           // border on hover
           $(this).css({'stroke': 'white', 'stroke-width': 2.5});
 
+          $('#longline').css('visibility', 'hidden');
+
           // show text for that app
           const cl = $(this)[0].attributes['class'].value;
 
-          // get positions
-          const att = $(this)[0].attributes;
-          const xPos = +att.x.value + +att.width.value + 2.5;
-          const yPos = +att.y.value + (+att.height.value / 2.0);
-          const eles = $('text.' + cl);
+          const yPos = +$(this)[0].attributes.y.value + (height / 2.0);
+
           const rOff = $('#reader').offset().top;
           // make svg for lines
           const gL = d3.select('body')
@@ -281,28 +309,40 @@ showcolor = (x) => {
                        .attr('width', '100%')
                        .attr('height', $(document).height())
 
-          $('#reader').text('');
+          const cl_app = $('#apps > .' + cl);
+          const cl_time = $('#times > .' + cl);
+
+          $('#apps').text('');
+          $('#times').text('');
 
           // for each text element
-          for (ele of eles) {
+          for (let i = 0; i < cl_app.length; i++) {
+            $('#apps').append(cl_app[i]);
+            $('#apps').append('<br>');
+            $('#times').append(cl_time[i]);
+            $('#times').append('<br>');
 
-            $('#reader').append(ele);
-            $('#reader').append('<br>');
+            const ele = cl_time[i];
 
             // get position
             const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
-            const left = $(ele).offset().left - 7.5;
+            const left = $(ele).offset().left + $(ele)[0].offsetWidth;
 
             // draw line
             gL.append('line')
               .style('stroke', 'gray')
               .style('stroke-width', 1)
-              .attr('x1', xPos)
+              .attr('x1', $('#path').offset().left + 5)
               .attr('y1', yPos)
               .attr('x2', left)
               .attr('y2', top);
           }
         }
       })
-      .on('mouseout', function() { if (!linelock) { clean(this); } })
+      .on('mouseout', function() {
+        if (!linelock) {
+          $('#longline').css('visibility', 'visible');
+          clean(this);
+        }
+      })
 }

@@ -16,6 +16,10 @@
 <body>
 
   <form id="left">
+    <button type="button" id="showtext" style="background-color: black; color: white;">Show all text</button>
+  </form>
+
+  <form id="right">
     <label class="lab" for="size">Height: </label>
     <select onchange="resize(parseInt($(this)[0].value))" id="size">
       <option>2</option>
@@ -25,12 +29,6 @@
     </select>
     &nbsp; &nbsp;
     <button type="button" id="showcolor" style="background-color: black; color: white;">Show all color</button>
-    &nbsp; &nbsp;
-    <span id="app">&nbsp;</span>
-  </form>
-
-  <form id="right">
-    <button type="button" id="showtext" style="background-color: black; color: white;">Show all text</button>
   </form>
 
   <br><br>
@@ -44,7 +42,8 @@
   <br><br>
 
   <div id="box"><svg id="path"></svg></div>
-  <div id="reader"></div>
+  <div id="long"><svg id="longline"></svg></div>
+  <div id="reader"> <div id="apps"></div> <div id="times"></div> </div>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 body {
-  --medtext: calc(20px + 0.35vw + 0.35vh);
-  --mobmedtext: calc(16px + 0.25vw + 0.25vh);
+  --medtext: calc(18px + 0.35vw + 0.35vh);
+  --mobmedtext: calc(14px + 0.25vw + 0.25vh);
 }
 
 .about-overlay {
@@ -38,7 +38,7 @@ body {
 
 #abtclose {
   color: white;
-  font-size: calc(50px + 0.5vw + 0.5vh);
+  font-size: calc(35px + 0.5vw + 0.5vh);
 }
 
 @media only screen and (max-width: 415px) {

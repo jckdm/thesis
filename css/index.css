@@ -1,5 +1,5 @@
 body {
-  --bigtext: calc(26px + 0.5vw + 0.5vh);
+  --bigtext: calc(22px + 0.5vw + 0.5vh);
   --mobbigtext: 30px;
 }
 
@@ -14,7 +14,6 @@ a {
 a:hover { text-decoration: underline; }
 
 #title, #credit {
-  font-family: 'Barlow Light';
   font-size: var(--bigtext);
   position: fixed;
   padding-left: 5px;
