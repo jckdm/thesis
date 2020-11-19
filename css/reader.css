@@ -4,7 +4,6 @@ body {
 }
 
 #reader {
-  /* left: 30px; */
   font-size: calc(8px + 1vw);
   position: absolute;
   line-height: 1.5;

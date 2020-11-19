@@ -1,5 +1,3 @@
-// when READER column appears, get its position and then use that when showing only of one app
-
 const apps = [];
 const times = [];
 const colors = {};
@@ -10,6 +8,7 @@ let c = 0;
 let curr, last;
 let height = 15;
 let selected;
+let readWidth = 'x';
 
 const attrs = {x: 20, height: 15, stroke: '#262626', 'stroke-width': 0.125};
 
@@ -76,6 +75,7 @@ showtext = (x) => {
       last = (alltext) ? '' : curr;
     }
   }
+  if (readWidth == 'x') { readWidth = $('#apps')[0].clientWidth - 9.6; }
 }
 
 analyze = () => {
@@ -337,6 +337,7 @@ showcolor = (x) => {
               .attr('x2', left)
               .attr('y2', top);
           }
+          $('#apps')[0].style.width = readWidth + 'px';
         }
       })
       .on('mouseout', function() {
