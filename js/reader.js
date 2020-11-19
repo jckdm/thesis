@@ -6,6 +6,7 @@ Papa.parse(filename, {
       const r = row.data;
       if (r.app) {
         const app = r.app;
+        if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
         // if not in dictionary
         if (!colors[cleanApp]) {
@@ -22,10 +23,10 @@ Papa.parse(filename, {
       }
   	},
     complete: () => {
-      showcolor(false);
       showtext(false);
-      $('#showcolor').on('click', () => showcolor(true));
+      showcolor(false);
       $('#showtext').on('click', () => showtext(true));
+      $('#showcolor').on('click', () => showcolor(true));
       $('#analyze').on('click', () => analyze());
     }
 });

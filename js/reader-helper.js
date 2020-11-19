@@ -8,7 +8,7 @@ let c = 0;
 let curr, last;
 let height = 15;
 let selected;
-let readWidth = 'x';
+let longestApp = '';
 
 const attrs = {x: 20, height: 15, stroke: '#262626', 'stroke-width': 0.125};
 
@@ -75,7 +75,6 @@ showtext = (x) => {
       last = (alltext) ? '' : curr;
     }
   }
-  if (readWidth == 'x') { readWidth = $('#apps')[0].clientWidth - 9.6; }
 }
 
 analyze = () => {
@@ -282,6 +281,9 @@ showcolor = (x) => {
         last = (allcolor) ? '' : curr;
       }
     }
+
+    const readerWidth = $('#reader')[0].clientWidth;
+
     // select all rects
     d3.selectAll('rect')
       .on('click', function() {
@@ -326,7 +328,6 @@ showcolor = (x) => {
 
             // get position
             const top = $(ele).offset().top + (window.screenY / 2.0) - rOff;
-            const left = $(ele).offset().left + $(ele)[0].offsetWidth;
 
             // draw line
             gL.append('line')
@@ -334,10 +335,10 @@ showcolor = (x) => {
               .style('stroke-width', 1)
               .attr('x1', $('#path').offset().left + 5)
               .attr('y1', yPos)
-              .attr('x2', left)
+              .attr('x2', readerWidth + 5)
               .attr('y2', top);
           }
-          $('#apps')[0].style.width = readWidth + 'px';
+          $('#apps').append('<text style="visibility: hidden">' + longestApp + '</text>');
         }
       })
       .on('mouseout', function() {
