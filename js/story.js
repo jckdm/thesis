@@ -2,7 +2,7 @@ $(() => {
 	const options = { threshold: 0.5 }
 	const observer = new IntersectionObserver(callback, options);
 
-	const targets = ['isaias', 'atop', 'tweed', 'boundaries', 'visibility', 'hallway', 'monitor', 'footprints', 'ballot', 'wifi'];
+	const targets = ['isaias', 'atop', 'tweed', 'boundaries', 'visibility', 'hallway', 'monitor', 'footprints', 'ballot', 'wifi', 'tundra', 'desperation'];
 	for (t of targets) { observer.observe(document.querySelector('#' + t)); }
 })
 
@@ -17,7 +17,9 @@ callback = (entries) => {
 		monitor: '7.jpg',
 		footprints: '8.jpg',
 		ballot: '9.jpg',
-		wifi: '10.jpg'
+		wifi: '10.jpg',
+		tundra: '11.jpg',
+		desperation: '12.jpg'
 	};
 	const e = entries[0];
 	if (e.isIntersecting) { $('#pic').attr('src', 'img/' + pics[e.target.id]); }
