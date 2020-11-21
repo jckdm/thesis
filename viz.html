@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/meta.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
     <script type="text/javascript" src="js/about.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/viz.js"></script>
@@ -14,18 +15,25 @@
     <title>Digital Distancing</title>
 </head>
 <body>
-    <div id="content">
-      <text id="tracker">Tracker</text>
-        <p>jackadam-1440-900-</p>
-        <p>ruth-1440-900-</p>
-        <p>GiaG-1280-800-</p>
-        <p>feliciachang-1440-900-</p>
-      <div class="space"></div>
-      <text>Tracer</text>
-        <p>Parking Lot at Route 1 and Peck Lane</p>
-        <p>Friday Night Grocery Run in Two Acts</p>
-        <p>A Socially Distanced Hike Up and Down East Rock</p>
-      <div class="space"></div>
+  <div id="content">
+    <text>Tracker</text>
+    <table id="tracktab">
+      <tr> <td class="vis">jackadam-1440-900-</td> </tr>
+      <tr> <td class="vis">ruth-1440-900-</td> </tr>
+      <tr> <td class="vis">GiaG-1280-800-</td> </tr>
+      <tr> <td class="vis">feliciachang-1440-900-</td> </tr>
+    </table>
+    <div class="space"></div>
+    <text>Tracer</text>
+    <table id="tracetab">
+      <tr> <td class="vis">Parking Lot at Route 1 and Peck Lane</td> </tr>
+      <tr> <td class="vis">Friday Night Grocery Run in Two Acts</td> </tr>
+      <tr> <td class="vis">A Socially Distanced Hike Up and Down East Rock</td> </tr>
+    </table>
+    <div class="space"></div>
   </div>
+
+  <div id="tooltip"><span id="info"></span></div>
+
 </body>
 </html>

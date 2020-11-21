@@ -108,19 +108,21 @@ grid = (x) => {
         // highlight
         $(this)[0].style.stroke = '#FFFFFF';
         const aa = a.apps;
-        let content = '';
 
-        // tooltip text
-        for (app in aa) { content += '<span style="color:' + color[app.replace(/\W/g, '')] + ';">' + app + ' : ' + aa[app] + ' sec </span><br>'; }
+        // tooltip text in two columns
+        for (app in aa) {
+          $('#apps').append('<span style="color:' + color[app.replace(/\W/g, '')] + ';">' + app + '</span><br>');
+          $('#times').append('<span>' + aa[app] + ' sec</span><br>');
+        }
 
-        // add app counts
-        $('#tt').html(content);
+        const ow = $('#tooltip')[0].offsetWidth;
+        const asq = a.x + sq - 1;
 
         // show tooltip
         const tool = d3.select('#tooltip')
-          .transition()
-          .duration(100)
           .style('visibility', 'visible')
+          .style('left', () => (asq + ow < $(window).width() - 40) ? asq + 25 + 'px' : asq - ow - 100 + 'px')
+          .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px');
 
         // pie the values, save the keys
         const pie = d3.pie();
@@ -141,31 +143,25 @@ grid = (x) => {
 
         // draw paths
         svg.selectAll('x')
-          .data(vals)
-          .enter()
-          .append('path')
-          .attr('d', d3.arc().innerRadius(0).outerRadius(45) )
-          .attr('stroke', '#1a1a1a')
-          .style('stroke-width', 1.5)
-          .style('fill', (d) => color[d.key] )
+           .data(vals)
+           .enter()
+           .append('path')
+           .attr('d', d3.arc().innerRadius(0).outerRadius(45))
+           .attr('stroke', '#1a1a1a')
+           .style('stroke-width', 1.5)
+           .style('fill', (d) => color[d.key])
       }
     })
     .on('mouseout', function() {
       $(this)[0].style.stroke = '#262626';
-      // remove pie chart and clear text
-      d3.select('#piechart').remove();
-      $('#tt').html('');
 
       // hide tooltip
       d3.select('#tooltip')
-        .transition()
-        .duration(100)
         .style('visibility', 'hidden')
-    })
-    .on('mousemove', () => {
-      // if near bottom/right edge, move tooltip up/left
-      d3.select('#tooltip')
-        .style('left', () => ($(document).width() - event.pageX < 200) ? event.pageX - 150 + 'px' : event.pageX + 25 + 'px')
-        .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
+
+      // remove pie chart and clear text
+      $('#apps').html('');
+      $('#times').html('');
+      d3.select('#piechart').remove();
     });
 }

@@ -182,14 +182,16 @@ analyze = () => {
 
   $('#longline').css({'height': $(document).height(), 'width': '50%'});
 
+  const x = $('#reader')[0].clientWidth + $('#reader')[0].offsetLeft + 7.5;
+
   // draw line
   d3.select('#longline')
     .append('line')
-    .style('stroke', '#FFFFFF59')
-    .style('stroke-width', 150)
-    .attr('x1', 20)
+    .style('stroke', '#FFFFFF')
+    .style('stroke-width', 15)
+    .attr('x1', x)
     .attr('y1', selStart.position().top - 5)
-    .attr('x2', 20)
+    .attr('x2', x)
     .attr('y2', selEnd.position().top);
 
   // split pattern & times, calculate span
