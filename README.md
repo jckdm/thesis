@@ -34,17 +34,18 @@ Who defines digital behavior, and what differentiates it from our physical behav
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
-2. Clone Tracker
+2. Clone Repository
 ```bash
 git clone https://github.com/jckdm/tracker
+git clone https://github.com/jckdm/tracer
 ```
 3. Install requirements
 ```bash
-pip install --user -r requirements.txt
+pip3 install --user -r requirements.txt
 ```
 4. Run Tracker
 ```bash
-python main.py
+python3 main.py
 ```
 
 
