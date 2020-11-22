@@ -26,44 +26,33 @@ $(() => {
 
   const button = '<button type="button" style="background-color: black; color: white;">';
 
-  // reader: hover over rect
-  // mapper: hover over quad
-  // grapher: hover over point
-
   const tools = {
-    grapher: 'Grapher allows segmentation and animation of a user\'s movement in and between applications.<br><br>Click each application ' + button + 'Microsoft Word</button> &nbsp; to toggle its visibility.<br><br>Click &nbsp; ' + button + 'Time</button> &nbsp; to toggle animation.<br><br>Click &nbsp; ' + button + 'Lines</button> &nbsp; to toggle connectedness of animated points.',
-    mapper: 'Mapper generalizes a user\'s screen into quadrants in order to produce a textured map.<br><br>Click &nbsp; ' + button + 'Hide 0</button> &nbsp; to toggle visibility of quadrants with no recorded value.<br><br>Click &nbsp; ' + button + 'Color by most used app</button> &nbsp; to toggle between a logarithmic gray-scale and a winner-takes-all colored scale.',
-    reader: 'Reader highlights inflection points when a user changes between applications.<br><br>Click &nbsp; ' + button + 'Show all text</button> &nbsp; or &nbsp; ' + button + 'Show all color</button> &nbsp; to toggle visibility of intermediate datapoints.<br><br>Click &nbsp; ' + button + 'Analyze data</button> &nbsp; to toggle visibility of an analysis report and to reveal a vertical bar alongside the user\'s longest period of continuous switching between two applications.',
-    unsorted: 'Unsorted paths are drawn in the order which the rendering program read the image files—these paths are unpredictable in shape and difficult to trace.',
-    sorted: 'Sorted paths are rendered in the order which the images were taken, resulting in traceable, logical paths.',
-    overlaid: 'Overlaid paths combine both unsorted and sorted paths of the same image sets.'
+    grapher: '<span>Grapher allows segmentation and animation of a user\'s movement in and between applications.<br><br>Click each application ' + button + 'Microsoft Word</button> &nbsp; to toggle its visibility.<br><br>Click &nbsp; ' + button + 'Time</button> &nbsp; to toggle animation.<br><br>Click &nbsp; ' + button + 'Lines</button> &nbsp; to toggle the connectedness of animated points.<br><br>Hover on a point &nbsp; <svg width="10" height="10"><circle r="5" cx="5" cy="5" stroke="gray" fill="#D3D3D3"></rect></svg> &nbsp; to reveal its corresponding application.</span>',
+    mapper: '<span>Mapper generalizes a user\'s screen into quadrants in order to produce a textured map.<br><br>Click &nbsp; ' + button + 'Hide 0</button> &nbsp; to toggle visibility of quadrants with no recorded value.<br><br>Click &nbsp; ' + button + 'Color by most used app</button> &nbsp; to toggle between a logarithmic gray-scale and a winner-takes-all colored scale.<br><br>Hover on a quadrant &nbsp; <svg width="15" height="15"><rect height="15" width="15" stroke="#262626" fill="#D3D3D3"></rect></svg> &nbsp; to view its breakdown of applications and spans.</span>',
+    reader: '<span>Reader highlights inflection points when a user changes between applications.<br><br>Click &nbsp; ' + button + 'Show all text</button> &nbsp; or &nbsp; ' + button + 'Show all color</button> &nbsp; to toggle visibility of intermediate datapoints.<br><br>Click &nbsp; ' + button + 'Analyze data</button> &nbsp; to toggle visibility of an analysis report and to reveal a vertical bar alongside the user\'s longest period of continuous switching between two applications.<br><br> Hover on a rectangle &nbsp; <svg width="55" height="15"><rect height="15" width="55" stroke="#262626" fill="#D3D3D3"></rect></svg> &nbsp; to view connections to corresponding instances of the application. Click to lock and unlock connections.</span>',
+    unsorted: '<span>Unsorted paths &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#3CB371"></rect></svg> &nbsp; are drawn in the order which the rendering program read the image files—these paths are unpredictable in shape and difficult to trace.</span>',
+    sorted: '<span>Sorted paths &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#6666FF"></rect></svg> &nbsp; are rendered in the order which the images were taken, resulting in traceable, logical paths.</span>',
+    overlaid: '<span>Overlaid paths combine both unsorted &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#3CB371"></rect></svg> &nbsp; and sorted &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#6666FF"></rect></svg> &nbsp; paths of the same image sets.</span>'
   };
 
   $('.howto').on('mouseover', function() {
     // add text for given viz
     $('#info').append(tools[this.id]);
+    const left = $('#' + this.id)[0].offsetLeft;
+    const ow = $('#tooltip')[0].offsetWidth;
+
     // show tooltip
     const tool = d3.select('#tooltip')
-      .transition()
-      .duration(100)
       .style('visibility', 'visible')
-  })
+      .style('left', () => (left + ow < $(document).width()) ? left + 75 + 'px' : left - ow + 'px')
+      .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
+  });
 
   $('.howto').on('mouseout', () => {
     // remove text
     $('#info').html('');
     // hide tooltip
     d3.select('#tooltip')
-      .transition()
-      .duration(100)
       .style('visibility', 'hidden')
-  })
-
-  $('.howto').on('mousemove', () => {
-    // if near bottom/right edge, move tooltip up/left
-    d3.select('#tooltip')
-      .style('left', () => ($(document).width() - event.pageX < 200) ? event.pageX - 150 + 'px' : event.pageX + 25 + 'px')
-      .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
-  })
-
+  });
 });
