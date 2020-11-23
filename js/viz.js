@@ -1,5 +1,35 @@
-viz = (s) => window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv', '_blank');
+viz = (s) => {
+  // if regular link, go ahead
+  if (s[0].parentElement.cells[0].attributes.id.value == 'reg') {
+    window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv', '_blank');
+  }
+  // if custom, add objectURL to end
+  else {
+    window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv=' + objectURL, '_blank');
+  }
+}
 choice = (s) => window.open('data/tracer/' + s[0].parentElement.cells[0].innerText.split(' ').join('') + '-' + s[0].innerText + '.svg', '_blank');
+
+let objectURL;
+
+custom = () => {
+  // get file from html
+  const file = $('#customfile')[0];
+  // get filename from that object
+  const fileName = file.files[0].name;
+  // if not csv, alert users
+  if (fileName.slice(-4) != '.csv' && fileName.split('-').length != 4) { alert('Please upload a .csv file created by the Tracker.'); }
+  // otherwise, append new row to table
+  else {
+    $('#tracktab').append('<tr> <td id="custom" class="vis">' + fileName.slice(0,-4) + '</td> <td class="vizType">Grapher</td> <td class="vizType">Mapper</td> <td class="vizType">Reader</td></tr>');
+  }
+  // either way, clear the form lazily
+  $('#customform').html('<input type="file" id="customfile"><button onclick="custom()">Submit</button> &nbsp; &nbsp; &nbsp; <span class="howto" id="custom">?</span>');
+  // create object from URL
+  objectURL = window.URL.createObjectURL(file.files[0]);
+  // re-add click fns (for new one)
+  $('.vizType').on('click', function() { viz($(this)); });
+}
 
 $(() => {
   // prepend ? headings
@@ -26,7 +56,9 @@ $(() => {
 
   const button = '<button type="button" style="background-color: black; color: white;">';
 
+  // dict of info for tooltips
   const tools = {
+    custom: '<span>Navigate to GitHub @ jckdm/tracker to download the data tracking tool and upload your .csv file here to view your visualizations.</span>',
     grapher: '<span>Grapher allows segmentation and animation of a user\'s movement in and between applications.<br><br>Click each application ' + button + 'Microsoft Word</button> &nbsp; to toggle its visibility.<br><br>Click &nbsp; ' + button + 'Time</button> &nbsp; to toggle animation.<br><br>Click &nbsp; ' + button + 'Lines</button> &nbsp; to toggle the connectedness of animated points.<br><br>Hover on a point &nbsp; <svg width="10" height="10"><circle r="5" cx="5" cy="5" stroke="gray" fill="#D3D3D3"></rect></svg> &nbsp; to reveal its corresponding application.</span>',
     mapper: '<span>Mapper generalizes a user\'s screen into quadrants in order to produce a textured map.<br><br>Click &nbsp; ' + button + 'Hide 0</button> &nbsp; to toggle visibility of quadrants with no recorded value.<br><br>Click &nbsp; ' + button + 'Color by most used app</button> &nbsp; to toggle between a logarithmic gray-scale and a winner-takes-all colored scale.<br><br>Hover on a quadrant &nbsp; <svg width="15" height="15"><rect height="15" width="15" stroke="#262626" fill="#D3D3D3"></rect></svg> &nbsp; to view its breakdown of applications and spans.</span>',
     reader: '<span>Reader highlights inflection points when a user changes between applications.<br><br>Click &nbsp; ' + button + 'Show all text</button> &nbsp; or &nbsp; ' + button + 'Show all color</button> &nbsp; to toggle visibility of intermediate datapoints.<br><br>Click &nbsp; ' + button + 'Analyze data</button> &nbsp; to toggle visibility of an analysis report and to reveal a vertical bar alongside the user\'s longest period of continuous switching between two applications.<br><br> Hover on a rectangle &nbsp; <svg width="55" height="15"><rect height="15" width="55" stroke="#262626" fill="#D3D3D3"></rect></svg> &nbsp; to view connections to corresponding instances of the application. Click to lock and unlock connections.</span>',

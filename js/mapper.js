@@ -10,7 +10,7 @@ Papa.parse(filename, {
       const r = row.data;
       if (r.app) {
         // append user tracked and span START time
-        if (c == 0) { $('#title').text(fs[0].slice(5) + ' ' + r.date + ' ' + r.time + ' – '); }
+        if (c == 0) { $('#title').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if app not yet seen

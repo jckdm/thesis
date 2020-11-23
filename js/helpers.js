@@ -1,10 +1,14 @@
 // get filename from URL
-const filename = 'data/' + window.location.href.split('=')[1];
+const url = window.location.href.split('=');
 
-const fs = filename.split('-');
+// if extra item, custom file uploaded
+const filename = (url.length == 3) ? url[2] : 'data/' + url[1];
 
+const fs = url[1].split('-');
 const w = parseInt(fs[1]);
 const h = parseInt(fs[2]);
+
+const user = fs[0];
 
 const scheme = ['rgb(141,200,199)', 'rgb(255,255,179)', 'rgb(190,186,218)',
 'rgb(251,128,114)', 'rgb(128,177,211)', 'rgb(253,180,98)', 'rgb(179,222,105)',

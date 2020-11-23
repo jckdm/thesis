@@ -18,12 +18,20 @@
   <div id="content">
     <text>Tracker</text>
     <table id="tracktab">
-      <tr> <td class="vis">jackadam-1440-900-</td> </tr>
-      <tr> <td class="vis">ruth-1440-900-</td> </tr>
-      <tr> <td class="vis">GiaG-1280-800-</td> </tr>
-      <tr> <td class="vis">feliciachang-1440-900-</td> </tr>
+      <tr> <td id="reg" class="vis">jackadam-1440-900-</td> </tr>
+      <tr> <td id="reg" class="vis">ruth-1440-900-</td> </tr>
+      <tr> <td id="reg" class="vis">GiaG-1280-800-</td> </tr>
+      <tr> <td id="reg" class="vis">feliciachang-1440-900-</td> </tr>
     </table>
+    <br>
+    <div id="customform">
+      <input type="file" id="customfile">
+      <button onclick="custom()">Upload</button>
+      &nbsp; &nbsp; &nbsp;
+      <span class="howto" id="custom">?</span>
+    </div>
     <div class="space"></div>
+
     <text>Tracer</text>
     <table id="tracetab">
       <tr> <td class="vis">Parking Lot at Route 1 and Peck Lane</td> </tr>
@@ -35,20 +43,5 @@
 
   <div id="tooltip"><span id="info"></span></div>
 
-  <form>
-    <input type="file" id="myFile" name="filename">
-    <button onclick="custom()">Submit</button>
-  </form>
-
 </body>
-
-<script>
-  custom = () => {
-    const fileName = document.getElementById('myFile');
-    const objectURL = window.URL.createObjectURL(fileName.files[0]);
-    console.log(objectURL);
-  }
-
-</script>
-
 </html>

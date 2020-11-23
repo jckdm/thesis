@@ -207,9 +207,6 @@ analyze = () => {
   const endTime = times[times.length - 1].split(':');
   const span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
 
-  // get user from filename
-  const user = filename.split('-')[0].split('/')[1];
-
   // show modal
   $('.data-overlay').css('visibility', 'visible');
 
