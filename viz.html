@@ -35,5 +35,20 @@
 
   <div id="tooltip"><span id="info"></span></div>
 
+  <form>
+    <input type="file" id="myFile" name="filename">
+    <button onclick="custom()">Submit</button>
+  </form>
+
 </body>
+
+<script>
+  custom = () => {
+    const fileName = document.getElementById('myFile');
+    const objectURL = window.URL.createObjectURL(fileName.files[0]);
+    console.log(objectURL);
+  }
+
+</script>
+
 </html>
