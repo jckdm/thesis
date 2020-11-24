@@ -57,7 +57,8 @@ body {
   font-size: calc(35px + 0.5vw + 0.5vh);
 }
 
+#close:hover { cursor: pointer; }
+
 @media only screen and (max-width: 415px) {
   .overlay-content a, .overlay-content p { font-size: var(--mobmedtext); }
-  .overlay-content { width: 65%; }
 }
