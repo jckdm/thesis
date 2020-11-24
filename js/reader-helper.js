@@ -4,7 +4,6 @@ const colors = {};
 const patterns = {};
 
 let y = 0;
-let c = 0;
 let curr, last;
 let height = 15;
 let selected;
@@ -208,10 +207,10 @@ analyze = () => {
   const span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
 
   // show modal
-  $('.data-overlay').css('visibility', 'visible');
+  $('.overlay').css('visibility', 'visible');
 
   // add content
-  $('.data-overlay-content').html('<span id="close">&times;</span><br><p>'
+  $('.overlay-content').html('<span id="close">&times;</span><br><p>'
   + user + ' used <span class="data">' + c + '</span> apps over <span class="data">'
   + span.toFixed(2) + '</span> minutes from <span class="data">' + times[0]
   + '</span> – <span class="data">' + times[times.length - 1]
@@ -227,7 +226,7 @@ analyze = () => {
 
   // close on click
   $('#close').on('click', () => {
-    $('.data-overlay').css('visibility', 'hidden');
+    $('.overlay').css('visibility', 'hidden');
     $('#analyze').css({'color': 'white', 'background-color': 'black'});
   })
 }

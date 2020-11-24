@@ -12,16 +12,17 @@
     <script type="text/javascript" src="js/reader-helper.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/reader.css">
+    <link rel="stylesheet" type="text/css" href="css/visualization.css">
+    <title>DD: Reader</title>
 </head>
 <body>
-
+  <h3 id="title"></h3>
   <form id="left">
     <button type="button" id="showtext" style="background-color: black; color: white;">Show all text</button>
   </form>
-
   <form id="right">
-    <label class="lab" for="size">Height: </label>
-    <select onchange="resize(parseInt($(this)[0].value))" id="size">
+    <label>Height: &nbsp;</label>
+    <select onchange="resize(parseInt($(this)[0].value))">
       <option>2</option>
       <option>5</option>
       <option>10</option>
@@ -30,20 +31,14 @@
     &nbsp; &nbsp;
     <button type="button" id="showcolor" style="background-color: black; color: white;">Show all color</button>
   </form>
-
   <br><br>
-
   <form id="mid">
     <button type="button" id="analyze" style="background-color: black; color: white;">Analyze data</button>
   </form>
-
-  <div class="data-overlay"><div class="data-overlay-content"></div></div>
-
+  <div class="overlay"><div class="overlay-content"></div></div>
   <br><br>
-
   <div id="box"><svg id="path"></svg></div>
   <div id="long"><svg id="longline"></svg></div>
   <div id="reader"> <div id="apps"></div> <div id="times"></div> </div>
-
 </body>
 </html>

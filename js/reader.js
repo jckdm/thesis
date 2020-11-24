@@ -1,3 +1,6 @@
+let c = 0;
+let startDate, startTime, endDate, endTime;
+
 Papa.parse(filename, {
     download: true,
     header: true,
@@ -5,6 +8,7 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
+        if (c == 0) { $('#title').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
         const app = r.app;
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
@@ -20,9 +24,12 @@ Papa.parse(filename, {
         }
         apps.push(app);
         times.push(r.time);
+        endDate = r.date;
+        endTime = r.time;
       }
   	},
     complete: () => {
+      $('#title').append(endDate + ' ' + endTime);
       showtext(false);
       showcolor(false);
       $('#showtext').on('click', () => showtext(true));

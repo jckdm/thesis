@@ -31,19 +31,21 @@ filters = (id) => {
 
 // switches buttons on/off
 swap = (id, cId, b, flag) => {
-  let c = (flag) ? color[cId] : 'black';
+  if (id != 'invert') {
+    let c = (flag) ? color[cId] : 'black';
 
-  // turn on
-  if (b.style.color == 'white') {
-    if (b.className == 'filter') { c = 'white'; }
-    b.style.backgroundColor = c;
-    b.style.color = 'black';
-  }
-  // turn off
-  else {
-    if (b.className == 'filter') { c = 'black'; }
-    b.style.backgroundColor = c;
-    b.style.color = 'white';
+    // turn on
+    if (b.style.color == 'white') {
+      if (b.className == 'filter') { c = 'white'; }
+      b.style.backgroundColor = c;
+      b.style.color = 'black';
+    }
+    // turn off
+    else {
+      if (b.className == 'filter') { c = 'black'; }
+      b.style.backgroundColor = c;
+      b.style.color = 'white';
+    }  
   }
 }
 

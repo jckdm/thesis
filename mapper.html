@@ -12,12 +12,14 @@
     <script type="text/javascript" src="js/mapper-helper.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/mapper.css">
+    <link rel="stylesheet" type="text/css" href="css/visualization.css">
+    <title>DD: Mapper</title>
 </head>
 <body>
-    <h2 id="title"></h2>
+    <h3 id="title"></h3>
     <form>
-      <label class="lab" for="size">Grid: </label>
-      <select onchange="grid($(this)[0].value)" id="size">
+      <label>Grid: &nbsp;</label>
+      <select onchange="grid($(this)[0].value)">
         <option>5 x 5</option>
         <option selected>10 x 10</option>
         <option>20 x 20</option>

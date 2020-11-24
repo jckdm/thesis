@@ -13,6 +13,51 @@ body {
   color: #FFFFFF;
   font-family: 'Suisse Intl', sans-serif;
   --topspace: calc(5px + 2vh);
+  --hugetext: calc(25px + 0.5vw + 0.5vh);
   --bigtext: calc(15px + 0.5vw + 0.5vh);
   --mobbigtext: 20px;
+  --medtext: calc(14px + 0.75vw + 0.35vh);
+  --mobmedtext: calc(14px + 0.25vw + 0.25vh);
+}
+
+.overlay {
+  background-color: #333333D9;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}
+
+.overlay-content {
+  padding: 20px;
+  background-color: #3CB371;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid black;
+  width: 65%;
+}
+
+.overlay-content a { text-decoration: underline; color: #000000; }
+
+.overlay-content p {
+  color: #262626;
+  padding: 0;
+  display: inline;
+  font-size: var(--medtext);
+}
+
+#close {
+  color: white;
+  font-size: calc(35px + 0.5vw + 0.5vh);
+}
+
+@media only screen and (max-width: 415px) {
+  .overlay-content a, .overlay-content p { font-size: var(--mobmedtext); }
+  .overlay-content { width: 65%; }
 }

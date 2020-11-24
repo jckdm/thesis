@@ -12,21 +12,23 @@
     <script type="text/javascript" src="js/grapher-helper.js"></script>
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/grapher.css">
+    <link rel="stylesheet" type="text/css" href="css/visualization.css">
+    <title>DD: Grapher</title>
 </head>
 <body>
-    <h2 id="title"></h2>
-    <div id="options">
-      <form>
-        <label id="radius" for="radii">Radius: &nbsp;</label>
-        <select onchange="rad($(this)[0].value)" id="radii"></select>
-        &nbsp; &nbsp;
-        <button type="button" style="background-color: white" id="invert" class="filter" onclick="query($(this).attr('id'))">INVERT SELECTION</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
-        <button type="button" style="background-color: white" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
-        <span id="counter"></span>
-        <br><br>
-      </form>
-    </div>
+  <h3 id="title"></h3>
+  <div id="options">
+    <form>
+      <label>Radius: &nbsp;</label>
+      <select onchange="rad($(this)[0].value)" id="radii"></select>
+      &nbsp; &nbsp;
+      <button type="button" style="background-color: white" id="invert" class="filter" onclick="query($(this).attr('id'))">Invert selection</button> &nbsp; &nbsp;
+      <button type="button" style="background-color: black; color: white;" id="timesort" class="filter" onclick="filters($(this).attr('id'))">Time</button> &nbsp; &nbsp;
+      <button type="button" style="background-color: black; color: white;" id="linesort" class="filter" onclick="filters($(this).attr('id'))">Lines</button> &nbsp; &nbsp;
+      <button type="button" style="background-color: white" id="axes" class="filter" onclick="filters($(this).attr('id'))">Axes</button> &nbsp; &nbsp;
+      <span id="counter"></span>
+      <br><br>
+    </form>
+  </div>
 </body>
 </html>
