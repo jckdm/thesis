@@ -204,7 +204,11 @@ analyze = () => {
   // calculate overall span times
   const startTime = times[0].split(':');
   const endTime = times[times.length - 1].split(':');
-  const span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
+
+  let span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
+
+  // if tracker ends next day but before start time, take inverse
+  if (span < 0) { span = 1440 + span; }
 
   // show modal
   $('.overlay').css('visibility', 'visible');
