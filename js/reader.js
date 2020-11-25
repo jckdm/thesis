@@ -8,7 +8,7 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
-        if (c == 0) { $('#title').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
+        if (c == 0) { $('#tit').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
         const app = r.app;
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
@@ -29,7 +29,8 @@ Papa.parse(filename, {
       }
   	},
     complete: () => {
-      $('#title').append(endDate + ' ' + endTime);
+      document.title = 'DD: Reader';
+      $('#tit').append(endDate + ' ' + endTime);
       showtext(false);
       showcolor(false);
       $('#showtext').on('click', () => showtext(true));

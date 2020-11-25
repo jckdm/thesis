@@ -29,6 +29,7 @@ Papa.parse(filename, {
       }
   	},
   	complete: () => {
+      document.title = 'DD: Grapher';
       // append buttons for each app
       for (u of uniqueApps) {
         let cleaned = u.replace(/\W/g, '');
@@ -44,7 +45,7 @@ Papa.parse(filename, {
       }
 
       // append user tracked and span of time
-      $('#title').text(user + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
+      $('#tit').text(user + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
 
       const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 

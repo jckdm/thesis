@@ -1,11 +1,10 @@
 #title, #credit {
   font-size: var(--hugetext);
-  position: fixed;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 #title { top: 0; }
-#credit { bottom: 0; }
+#credit { bottom: 0; position: absolute; }
 
 .menu {
   background-color: #3CB371;
@@ -15,6 +14,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 4px solid black;
+  text-align: center;
 }
 
 .menu a {
@@ -26,3 +26,5 @@
 }
 
 .menu a:hover { text-decoration: underline; }
+
+.overlay { visibility: visible; }

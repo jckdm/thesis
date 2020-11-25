@@ -1,0 +1,32 @@
+#content { width: 100%; }
+.vis { padding-right: calc(5px + 1vw + 1vh); }
+
+.img, .vizType {
+  text-align: center;
+  padding: calc(0.3vw + 0.3vh);
+  color: #3CB371;
+}
+
+.img:hover, .vizType:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.howto:hover { cursor: pointer; }
+
+.img, .vizType, .vis {
+  border-bottom: 1px dotted white;
+  font-size: calc(9px + 0.25vw + 0.25vh);
+  line-height: 1.5;
+}
+
+#tooltip {
+  position: absolute;
+  visibility: hidden;
+  background-color: #333333;
+  padding: 5px 10px 5px 10px;
+  border: 1px dotted white;
+  width: calc(200px + 2vw + 2vh);
+}
+
+#info { font-size: calc(9px + 0.25vw + 0.25vh); }

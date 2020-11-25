@@ -10,7 +10,7 @@ Papa.parse(filename, {
       const r = row.data;
       if (r.app) {
         // append user tracked and span START time
-        if (c == 0) { $('#title').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
+        if (c == 0) { $('#tit').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if app not yet seen
@@ -31,8 +31,9 @@ Papa.parse(filename, {
       }
   	},
   	complete: () => {
+      document.title = 'DD: Mapper';
       // append end time
-      $('#title').append(endDate + ' ' + endTime);
+      $('#tit').append(endDate + ' ' + endTime);
       grid();
   	}
 });

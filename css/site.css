@@ -16,8 +16,8 @@ body {
   --hugetext: calc(25px + 0.5vw + 0.5vh);
   --bigtext: calc(15px + 0.5vw + 0.5vh);
   --mobbigtext: 20px;
-  --medtext: calc(14px + 0.75vw + 0.35vh);
-  --mobmedtext: calc(14px + 0.25vw + 0.25vh);
+  --medtext: calc(12px + 0.75vw + 0.25vh);
+  --mobmedtext: calc(10px + 0.5vw + 0.5vh);
 }
 
 .overlay {
