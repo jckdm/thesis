@@ -158,7 +158,6 @@ analyze = () => {
         }
         // check if curr matches pattern
         if (ap == pattern[0]) {
-
           one = true;
           // if first app of pattern, record time
           if (!first) {
@@ -179,7 +178,8 @@ analyze = () => {
   selStart = $(pTimes[key + '-start'][1][0]);
   selEnd = $(pTimes[key + '-end'][1][0]);
 
-  $('#longline').css({'height': $(document).height(), 'width': '50%'});
+  // height is document minus offset of reader
+  $('#longline').css({'height': $(document).height() - $('#reader')[0].offsetTop, 'width': '50%'});
 
   const x = $('#reader')[0].clientWidth + $('#reader')[0].offsetLeft + 7.5;
 
@@ -220,7 +220,7 @@ analyze = () => {
   + '</span> – <span class="data">' + times[times.length - 1]
   + '</span>.</p> <br> <br> <p>During that interval, ' + user
   + ' switched between apps <span class="data">' + (len + 1)
-  + '</span> times, spending an average of <span class="data">' + (span / (len + 1)).toFixed(2)
+  + '</span> times, spending an average of <span class="data">' + ((apps.length / 60) / (len + 1)).toFixed(2)
   + '</span> minutes in each app.</p> <br> <br> <p>'
   + user + '\'s longest period of continuous switching was between <span class="data">' + pattern[0]
   + '</span> and <span class="data">' + pattern[1] + '</span>, comprising <span class="data">'
