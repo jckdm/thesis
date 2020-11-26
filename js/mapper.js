@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-let startDate, startTime, endDate, endTime;
+let endDate, endTime;
 
 Papa.parse(filename, {
     download: true,

@@ -33,7 +33,7 @@ body {
 }
 
 .overlay-content {
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   background-color: #3CB371;
   margin: 0;
   position: absolute;

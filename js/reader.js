@@ -8,7 +8,10 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
-        if (c == 0) { $('#tit').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
+        if (c == 0) {
+          startDate = r.date;
+          $('#tit').text(user + ' ' + startDate + ' ' + r.time + ' – ');
+        }
         const app = r.app;
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');

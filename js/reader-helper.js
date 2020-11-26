@@ -178,6 +178,8 @@ analyze = () => {
   selStart = $(pTimes[key + '-start'][1][0]);
   selEnd = $(pTimes[key + '-end'][1][0]);
 
+  // clean out div, start fresh
+  $('#longline').html('');
   // height is document minus offset of reader
   $('#longline').css({'height': $(document).height() - $('#reader')[0].offsetTop, 'width': '50%'});
 
@@ -205,10 +207,23 @@ analyze = () => {
   const startTime = times[0].split(':');
   const endTime = times[times.length - 1].split(':');
 
-  let span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
+  // ruth's data has newlines, idk why
+  startDate = startDate.replace('\n', '');
+  endDate = endDate.replace('\n', '');
 
-  // if tracker ends next day but before start time, take inverse
-  if (span < 0) { span = 1440 + span; }
+  let span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
+  let days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + times[times.length - 1] + '</span>';
+
+  // if tracker ends next day AFTER start time, add 1440 per day
+  if (startDate != endDate) {
+    days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + endDate + '</span> <span class="data">' + times[times.length - 1] + '</span>';
+    span += 1440 * (+endDate.split('/')[1] - +startDate.split('/')[1]);
+  }
+  // if tracker ends next day BEFORE start time, take inverse
+  else if (span < 0) { span = 1440 + span; }
+
+  // actual number of active minutes
+  const activeSpan = apps.length / 60;
 
   // show modal
   $('.overlay').css('visibility', 'visible');
@@ -216,16 +231,18 @@ analyze = () => {
   // add content
   $('.overlay-content').html('<span id="close">&times;</span><br><p>'
   + user + ' used <span class="data">' + c + '</span> apps over <span class="data">'
-  + span.toFixed(2) + '</span> minutes from <span class="data">' + times[0]
-  + '</span> – <span class="data">' + times[times.length - 1]
-  + '</span>.</p> <br> <br> <p>During that interval, ' + user
+  + span.toFixed(2) + '</span> minutes from ' + days + '. During that interval, '
+  + user + ' was active for <span class="data">' + activeSpan.toFixed(2)
+  + '</span> minutes, or <span class="data">' + ((activeSpan / span) * 100).toFixed(2)
+  + '%</span>.</p> <br> <br> <p>In that time, ' + user
   + ' switched between apps <span class="data">' + (len + 1)
-  + '</span> times, spending an average of <span class="data">' + ((apps.length / 60) / (len + 1)).toFixed(2)
-  + '</span> minutes in each app.</p> <br> <br> <p>'
-  + user + '\'s longest period of continuous switching was between <span class="data">' + pattern[0]
-  + '</span> and <span class="data">' + pattern[1] + '</span>, comprising <span class="data">'
-  + pCounts[key] + '</span> switches over <span class="data">'
-  + patSpan.toFixed(2) + '</span> minutes from <span class="data">' + ss
+  + '</span> times, spending an average of <span class="data">'
+  + (activeSpan / (len + 1)).toFixed(2) + '</span> minutes in each app.</p> <br> <br> <p>'
+  + user + '\'s longest period of continuous switching was between <span class="data">'
+  + pattern[0] + '</span> and <span class="data">' + pattern[1]
+  + '</span>, comprising <span class="data">' + pCounts[key]
+  + '</span> switches over <span class="data">' + patSpan.toFixed(2)
+  + '</span> minutes from <span class="data">' + ss
   + '</span> – <span class="data">' + ee + '</span>.</p>');
 
   // close on click
