@@ -1,3 +1,4 @@
+// color counter
 let c = 0;
 let startDate, startTime, endDate, endTime;
 
@@ -8,10 +9,8 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
-        if (c == 0) {
-          startDate = r.date;
-          $('#tit').text(user + ' ' + startDate + ' ' + r.time + ' – ');
-        }
+        // log start date & time
+        if (c == 0) { startDate = r.date; startTime = r.time; }
         const app = r.app;
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
@@ -33,9 +32,15 @@ Papa.parse(filename, {
   	},
     complete: () => {
       document.title = 'DD: Reader';
-      $('#tit').append(endDate + ' ' + endTime);
+
+      // if same start and end date, only show once, otherwise show start and end dates
+      const titText = (startDate == endDate) ? user + ' ' + startDate + ' ' + startTime + ' – ' + endTime : user + ' ' + startDate + ' ' + startTime + ' – ' + endDate + ' ' + endTime;
+      $('#tit').text(titText);
+
+      // draw text and color
       showtext(false);
       showcolor(false);
+      
       $('#showtext').on('click', () => showtext(true));
       $('#showcolor').on('click', () => showcolor(true));
       $('#analyze').on('click', () => analyze());

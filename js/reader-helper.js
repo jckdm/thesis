@@ -214,10 +214,24 @@ analyze = () => {
   let span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
   let days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + times[times.length - 1] + '</span>';
 
+  const splitStart = startDate.split('/');
+  const splitEnd = endDate.split('/');
+
+  // number of days in each month
+  const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  // if leap year lmao
+  if (splitStart[2] % 4 == 0) { months[1] = 29; }
+
   // if tracker ends next day AFTER start time, add 1440 per day
   if (startDate != endDate) {
     days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + endDate + '</span> <span class="data">' + times[times.length - 1] + '</span>';
-    span += 1440 * (+endDate.split('/')[1] - +startDate.split('/')[1]);
+
+    // if tracker ends next MONTH
+    if (splitStart[0] != endDate[0]) {
+      span += 1440 * (+endDate[1] + (months[+splitStart[0] - 1] - +splitStart[1]));
+    }
+    // if same month
+    else { span += 1440 * (+endDate[1] - +splitStart[1]); }
   }
   // if tracker ends next day BEFORE start time, take inverse
   else if (span < 0) { span = 1440 + span; }

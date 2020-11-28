@@ -32,7 +32,7 @@ Papa.parse(filename, {
       document.title = 'DD: Grapher';
       // append buttons for each app
       for (u of uniqueApps) {
-        let cleaned = u.replace(/\W/g, '');
+        const cleaned = u.replace(/\W/g, '');
         $('#options').append('<button type="button" style="color: black; background-color: ' + color[cleaned] + ';" onclick="query($(this)[0].id)" class="app" id="' + cleaned + '">' + u + '</button>');
       }
 
@@ -44,8 +44,11 @@ Papa.parse(filename, {
         s = '';
       }
 
+      // if same start and end date, only show once, otherwise show start and end dates
+      const titText = (dates[0] == dates[dates.length - 1]) ? user + ' ' + dates[0] + ' ' + times[0] + ' – ' + times[times.length - 1] : user + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1];
+
       // append user tracked and span of time
-      $('#tit').text(user + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1]);
+      $('#tit').text(titText);
 
       const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 

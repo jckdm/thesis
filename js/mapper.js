@@ -1,6 +1,6 @@
 // color counter
 let c = 0;
-let endDate, endTime;
+let startDate, startTime, endDate, endTime;
 
 Papa.parse(filename, {
     download: true,
@@ -9,8 +9,8 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
-        // append user tracked and span START time
-        if (c == 0) { $('#tit').text(user + ' ' + r.date + ' ' + r.time + ' – '); }
+        // log start date & time
+        if (c == 0) { startDate = r.date; startTime = r.time; }
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if app not yet seen
@@ -32,8 +32,9 @@ Papa.parse(filename, {
   	},
   	complete: () => {
       document.title = 'DD: Mapper';
-      // append end time
-      $('#tit').append(endDate + ' ' + endTime);
+      // if same start and end date, only show once, otherwise show start and end dates
+      const titText = (startDate == endDate) ? user + ' ' + startDate + ' ' + startTime + ' – ' + endTime : user + ' ' + startDate + ' ' + startTime + ' – ' + endDate + ' ' + endTime;
+      $('#tit').text(titText);
       grid();
   	}
 });

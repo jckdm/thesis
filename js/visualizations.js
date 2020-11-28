@@ -24,7 +24,7 @@ custom = () => {
     $('#tracktab').append('<tr> <td id="custom" class="vis">' + fileName.slice(0,-4) + '</td> <td class="vizType">Grapher</td> <td class="vizType">Mapper</td> <td class="vizType">Reader</td></tr>');
   }
   // either way, clear the form lazily
-  $('#customform').html('<input type="file" id="customfile"><button onclick="custom()">Submit</button> &nbsp; &nbsp; &nbsp; <span class="howto" id="custom">?</span>');
+  $('#customform').html('<input type="file" id="customfile"><button onclick="custom()">Upload</button> &nbsp; &nbsp; &nbsp; <span class="howto" id="custom">?</span>');
   // create object from URL
   objectURL = window.URL.createObjectURL(file.files[0]);
   // re-add click fns (for new one)
