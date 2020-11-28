@@ -37,13 +37,14 @@ Who defines digital behavior, and what differentiates it from our physical behav
 2. Clone Repository
 ```bash
 git clone https://github.com/jckdm/tracker
+
 git clone https://github.com/jckdm/tracer
 ```
 3. Install requirements
 ```bash
 pip3 install --user -r requirements.txt
 ```
-4. Run Tracker
+4. Run Program
 ```bash
 python3 main.py
 ```
