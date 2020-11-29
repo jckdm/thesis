@@ -102,5 +102,5 @@ a:hover { text-decoration: underline; }
     width: calc(50% + 5px);
     border-left: 2px solid white;
   }
-  #closebtn { bottom: 30px; }
+  #closebtn { bottom: 25px; }
 }
