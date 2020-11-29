@@ -2,7 +2,7 @@ $(() => {
 	const page = window.location.href.split('/');
 	const curr = page[page.length - 1].slice(0, -5);
 
-	$('body').prepend('<span id=\"title\">DD: ' + curr.charAt(0).toUpperCase() + curr.slice(1) + '</span><div class=\"space\"></div><span id=\"navbtn\" onclick=\"$(\'#nav\').css(\'display\', \'block\')\">&#9776;</span><div id=\"nav\"><div id=\"navlinks\"></div><div class=\"space\"></div><div id=\"sublinks\"><text>—o—<text> <br> <br><a href=\"proposal.html\" target=\"_self\">Proposal</a> <br><a href=\"journal.html\" target=\"_self\">Journal</a> <br><a href=\"visualizations.html\" target=\"_self\">Visualizations</a> <br><a onclick=\"$(\'.overlay\').css(\'visibility\', \'visible\')\">About</a> <br></div><span id=\"closebtn\" onclick=\"$(\'#nav\').css(\'display\', \'none\')\">&times;</span></div>');
+	$('body').prepend('<span id=\"title\">DD: ' + curr.charAt(0).toUpperCase() + curr.slice(1) + '</span><div class=\"space\"></div><span id=\"navbtn\" onclick=\"$(\'#nav\').css(\'display\', \'block\')\">&#9776;</span><div id=\"nav\"><div id=\"navlinks\"></div><div class=\"space\"></div><div id=\"sublinks\"><text>—o—</text> <br> <br><a href=\"proposal.html\" target=\"_self\">Proposal</a> <br><a href=\"journal.html\" target=\"_self\">Journal</a> <br><a href=\"visualizations.html\" target=\"_self\">Visualizations</a> <br><a onclick=\"$(\'.overlay\').css(\'visibility\', \'visible\')\">About</a> <br></div><span id=\"closebtn\" onclick=\"$(\'#nav\').css(\'display\', \'none\')\">&times;</span></div>');
 
 	const links = document.getElementById('nav').getElementsByTagName('a');
 

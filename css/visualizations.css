@@ -4,7 +4,7 @@
 .img, .vizType {
   text-align: center;
   padding: calc(0.3vw + 0.3vh);
-  color: #3CB371;
+  color: #6666FF;
 }
 
 .img:hover, .vizType:hover {

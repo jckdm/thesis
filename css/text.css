@@ -1,9 +1,6 @@
-p {
-  font-size: calc(9px + 0.25vw + 0.25vh);
-  line-height: 1.5;
-}
+p { font-size: calc(9px + 0.25vw + 0.25vh); }
 
-.q { color: #3CB371; }
+.q { color: #6666FF; }
 
 text {
   font-size: var(--bigtext);
@@ -11,7 +8,7 @@ text {
 }
 
 a, a:visited, #navbtn, #navbtn:hover, #closebtn, #closebtn:hover {
-  color: #3CB371;
+  color: #6666FF;
   text-decoration: none;
   cursor: pointer;
 }
@@ -30,6 +27,7 @@ a:hover { text-decoration: underline; }
   width: 35%;
   padding-top: var(--topspace);
   padding-left: 5px;
+  line-height: 1.5;
 }
 
 #pic {
@@ -54,14 +52,14 @@ a:hover { text-decoration: underline; }
   background-color: #333333;
   border-left: 4px solid white;
   padding-top: calc(var(--topspace) + 1vh);
+  text-align: center;
 }
 
 #navlinks, #sublinks {
-  font-size: var(--bigtext);
-  line-height: 1.35;
+  font-size: calc(var(--bigtext) - 2px);
+  line-height: 1.6;
   margin: auto;
   width: 100%;
-  text-align: center;
 }
 
 #curr, #curr:hover {
@@ -101,9 +99,8 @@ a:hover { text-decoration: underline; }
     right: 5px;
   }
   #nav {
-    font-size: var(--mobbigtext);
     width: calc(50% + 5px);
     border-left: 2px solid white;
   }
-  #closebtn { bottom: 20px; }
+  #closebtn { bottom: 30px; }
 }
