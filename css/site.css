@@ -51,6 +51,7 @@ body {
   padding: 0;
   display: inline;
   font-size: var(--medtext);
+  line-height: 1.25;
 }
 
 #close {
