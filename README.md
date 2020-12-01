@@ -34,7 +34,7 @@ Who defines digital behavior, and what differentiates it from our physical behav
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
-2. Clone Repository
+2. Clone repository
 ```bash
 git clone https://github.com/jckdm/tracker
 
@@ -44,12 +44,13 @@ git clone https://github.com/jckdm/tracer
 ```bash
 pip3 install --user -r requirements.txt
 ```
-4. Run Program
+4. Run program
 ```bash
 python3 main.py
 ```
+5. Visualize your Tracker files [on my site](https://jackadam.cc/thesis/visualizations.html). Uploaded files are stored locally; your data will not be transferred or saved.
 
 
 ## Credits
 
-Thanks to advisors Dr. Benedict Brown, Justin Berry, and Dr. Julie Dorsey, housemates Felicia Chang and Rianna Turner, and friends Shayna Sragovicz, Helen Kauder, Gia Grier, Harry Jain, & Michaela Shelton.
+Thanks to advisors Dr. Benedict Brown, Justin Berry, and Dr. Julie Dorsey, housemates Felicia Chang and Rianna Turner, friends Shayna Sragovicz, Helen Kauder, Gia Grier, Harry Jain, Michaela Shelton, to my parents, and to the Yale Office of Emergency Management.
