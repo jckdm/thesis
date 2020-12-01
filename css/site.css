@@ -64,5 +64,8 @@ body {
 #close:hover { cursor: pointer; }
 
 @media only screen and (max-width: 415px) {
-  .overlay-content a, .overlay-content p { font-size: var(--mobmedtext); }
+  .overlay-content a, .overlay-content p {
+    font-size: var(--mobmedtext);
+    line-height: 1;
+  }
 }
