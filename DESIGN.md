@@ -3,7 +3,7 @@
 Each type of visualization is created through functions in two files: one with the name of the visualization type, and the other with -helper. The first file parses the data files into various data structures. The -helper file contains functions which visualize and analyze the data.
 
 All three visualizations rely on a dictionary of colors:
-```bash
+```
 const color = {};
 - each app\'s name and its associated color, formatted as [appName] = color (in hex code)
 ```
@@ -11,20 +11,20 @@ const color = {};
 ## Grapher
 
 Files
-```bash
+```
 grapher.html
 grapher.js
 grapher-helper.js
 ```
 Data structures
-```bash
+```
 const apps = [];
 - each entry is a coordinate pair and its respective app, formatted as [x, y, app]
 const cleanedApps = {};
 - each app\'s name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
 ```
 Functions
-```bash
+```
 rad(r)
 - args = r: new radius selected by user
 - changes radius of all circle datapoints in graph
@@ -49,20 +49,20 @@ query(id)
 ## Mapper
 
 Files
-```bash
+```
 mapper.html
 mapper.js
 mapper-helper.js
 ```
 Data structures
-```bash
+```
 const apps = [];
 - each entry is a coordinate pair and its respective app, formatted as [x, y, app]
 const cleanedApps = {};
 - each app\'s name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
 ```
 Functions
-```bash
+```
 scaleColor(c)
 - args = c: total number of seconds spent in a given quadrant
 - logarithmically scales number of seconds into a shade of gray as a proportion of the largest number of seconds spent in a quadrant. returns 'zero' if no seconds spent in a quadrant
@@ -75,13 +75,13 @@ grid(x)
 ## Reader
 
 Files
-```bash
+```
 reader.html
 reader.js
 reader-helper.js
 ```
 Data structures
-```bash
+```
 const apps = [];
 - name of the app being used at every second
 const times = [];
@@ -90,7 +90,7 @@ const patterns = {};
 - names of the two apps which form a pattern and the total number of instances of this pattern, formatted as [app1-app2] = number of instances
 ```
 Functions
-```bash
+```
 clean(t)
 - args = t: selected element of which to reset styles
 - resets rectangle styles, removes lines, calls showtext() to reset visualization
