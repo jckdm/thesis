@@ -1,6 +1,6 @@
 const padding = 20;
-const coords = [];
 const apps = [];
+const cleanedApps = {};
 const color = {};
 
 let zero = 'black';
@@ -57,13 +57,13 @@ grid = (x) => {
   }
 
   // map coords to grid, calculate maximum
-  for (let i = 0; i < coords.length; i++) {
+  for (app of apps) {
     // calculate grid location
-    const bucket = data[Math.floor(coords[i][1] / sq)][Math.floor(coords[i][0] / sq)];
+    const bucket = data[Math.floor(app[1] / sq)][Math.floor(app[0] / sq)];
     bucket.c += 1;
     max = (bucket.c > max) ? bucket.c : max;
     // add to apps dict
-    const curr = apps[i];
+    const curr = app[2];
     bucket.apps[curr] = (curr in bucket.apps) ? bucket.apps[curr] += 1 : 1;
   }
 
@@ -91,9 +91,7 @@ grid = (x) => {
       // if coloring by most used app
       if (colflag) {
         // if not empty, return color of max app
-        if (ad) {
-          return color[(Object.keys(ad).reduce((a, b) => ad[a] > ad[b] ? a : b)).replace(/\W/g, '')];
-        }
+        if (ad) { return color[cleanedApps[Object.keys(ad).reduce((a, b) => ad[a] > ad[b] ? a : b)]]; }
         // or return none/black
         else { return zero; }
       }
@@ -111,7 +109,7 @@ grid = (x) => {
 
         // tooltip text in two columns
         for (app in aa) {
-          $('#apps').append('<span style="color:' + color[app.replace(/\W/g, '')] + ';">' + app + '</span><br>');
+          $('#apps').append('<span style="color:' + color[cleanedApps[app]] + ';">' + app + '</span><br>');
           $('#times').append('<span>' + aa[app] + ' sec</span><br>');
         }
 
@@ -130,7 +128,7 @@ grid = (x) => {
         const keys = Object.keys(aa);
 
         // add key to each dict, for coloring
-        for (i in vals) { vals[i]['key'] = keys[i].replace(/\W/g, ''); }
+        for (i in vals) { vals[i]['key'] = cleanedApps[keys[i]]; }
 
         // append piechart to pie div
         const svg = d3.select('#pie')

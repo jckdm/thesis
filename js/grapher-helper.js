@@ -1,9 +1,6 @@
 const padding = 30;
 const apps = [];
-const uniqueApps = [];
-const coords = [];
-const dates = [];
-const times = [];
+const cleanedApps = {};
 const color = {};
 let timeFlag = false;
 let lineFlag = false;
@@ -12,7 +9,7 @@ let axisFlag = true;
 // change radius of all circles
 rad = (r) => { d3.selectAll('circle').attr('r', +r); }
 
-// manage Time and Lines buttons
+// manage Time and Lines buttons, and axes
 filters = (id) => {
   swap(id, id, $('#' + id)[0], false);
   // always flip value of Time
@@ -45,7 +42,7 @@ swap = (id, cId, b, flag) => {
       if (b.className == 'filter') { c = 'black'; }
       b.style.backgroundColor = c;
       b.style.color = 'white';
-    }  
+    }
   }
 }
 
@@ -87,8 +84,9 @@ query = async (id) => {
 
     // recurse on all apps
     if (id == 'invert') {
-      const children = e.parentElement.parentElement.children;
-      for (c of children) { query(c.id); }
+      for (c of e.parentElement.parentElement.children) {
+        query(c.id);
+      }
       swap(id, cId, e, false);
     }
 

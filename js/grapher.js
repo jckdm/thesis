@@ -1,5 +1,6 @@
 // color counter
 let c = 0;
+let startDate, startTime, endDate, endTime;
 
 Papa.parse(filename, {
     download: true,
@@ -8,11 +9,13 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
+        // log start and end times
+        if (c == 0) { startDate = r.date; startTime = r.time; }
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
         // if app not yet seen
-        if (!apps.includes(cleanApp)) {
-          uniqueApps.push(app);
+        if (!cleanedApps[app]) {
+          cleanedApps[app] = cleanApp;
           // get next color in scheme
           if (c < 17) {
             color[cleanApp] = scheme[c];
@@ -22,16 +25,15 @@ Papa.parse(filename, {
           else { color[cleanApp] = colorize(); }
         }
         // push data to respective arrays
-        apps.push(cleanApp);
-        coords.push([parseFloat(r.x), parseFloat(r.y)]);
-        dates.push(r.date);
-        times.push(r.time);
+        apps.push([parseFloat(r.x), parseFloat(r.y), app]);
+        endDate = r.date;
+        endTime = r.time;
       }
   	},
   	complete: () => {
       document.title = 'DD: Grapher';
       // append buttons for each app
-      for (u of uniqueApps) {
+      for (u in cleanedApps) {
         const cleaned = u.replace(/\W/g, '');
         $('#options').append('<button type="button" style="color: black; background-color: ' + color[cleaned] + ';" onclick="query($(this)[0].id)" class="app" id="' + cleaned + '">' + u + '</button>');
       }
@@ -45,7 +47,7 @@ Papa.parse(filename, {
       }
 
       // if same start and end date, only show once, otherwise show start and end dates
-      const titText = (dates[0] == dates[dates.length - 1]) ? user + ' ' + dates[0] + ' ' + times[0] + ' – ' + times[times.length - 1] : user + ' ' + dates[0] + ' ' + times[0] + ' – ' + dates[dates.length - 1] + ' ' + times[times.length - 1];
+      const titText = (startDate == endDate) ? user + ' ' + startDate + ' ' + startTime + ' – ' + endTime : user + ' ' + startDate + ' ' + startTime + ' – ' + endDate + ' ' + endTime;
 
       // append user tracked and span of time
       $('#tit').text(titText);
@@ -73,15 +75,15 @@ Papa.parse(filename, {
 
       // append data!
       svg.selectAll('circle')
-          .data(coords)
+          .data(apps)
           .enter()
           .append('circle')
           .attr('cx', (d) => xScale(d[0]))
           .attr('cy', (d) => yScale(h - d[1]))
-          .attr('class', (d, i) => apps[i].replace(/\W/g, ''))
+          .attr('class', (d) => cleanedApps[d[2]])
           .attr('stroke', 'gray')
           .attr('stroke-width', '1')
-          .attr('fill', (d, i) => color[apps[i]])
+          .attr('fill', (d) => color[cleanedApps[d[2]]])
           .attr('r', 4.5)
           // highlight button of selected app on hover
           .on('mouseover', function () {

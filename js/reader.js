@@ -15,14 +15,14 @@ Papa.parse(filename, {
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
         // if not in dictionary
-        if (!colors[cleanApp]) {
+        if (!color[cleanApp]) {
           // get next color in scheme
           if (c < 17) {
-            colors[cleanApp] = scheme[c];
+            color[cleanApp] = scheme[c];
             c++;
           }
           // or generate a new one
-          else { colors[cleanApp] = colorize(); }
+          else { color[cleanApp] = colorize(); }
         }
         apps.push(app);
         times.push(r.time);
@@ -40,7 +40,7 @@ Papa.parse(filename, {
       // draw text and color
       showtext(false);
       showcolor(false);
-      
+
       $('#showtext').on('click', () => showtext(true));
       $('#showcolor').on('click', () => showcolor(true));
       $('#analyze').on('click', () => analyze());

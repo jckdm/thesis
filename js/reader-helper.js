@@ -1,6 +1,6 @@
 const apps = [];
 const times = [];
-const colors = {};
+const color = {};
 const patterns = {};
 
 let y = 0;
@@ -69,7 +69,7 @@ showtext = (x) => {
       }
       const clean = curr.replace(/\W/g, '');
       // append next app
-      $('#apps').append('<text class="' + clean + '" style="color:' + colors[clean] + ';">' + curr + ' </text><br>');
+      $('#apps').append('<text class="' + clean + '" style="color:' + color[clean] + ';">' + curr + ' </text><br>');
       $('#times').append('<text class="' + clean + '"> ' + times[i] + '</text><br>')
       last = (alltext) ? '' : curr;
     }
@@ -227,11 +227,11 @@ analyze = () => {
     days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + endDate + '</span> <span class="data">' + times[times.length - 1] + '</span>';
 
     // if tracker ends next MONTH
-    if (splitStart[0] != endDate[0]) {
-      span += 1440 * (+endDate[1] + (months[+splitStart[0] - 1] - +splitStart[1]));
+    if (splitStart[0] != splitEnd[0]) {
+      span += 1440 * (+splitEnd[1] + (months[+splitStart[0] - 1] - +splitStart[1]));
     }
     // if same month
-    else { span += 1440 * (+endDate[1] - +splitStart[1]); }
+    else { span += 1440 * (+splitEnd[1] - +splitStart[1]); }
   }
   // if tracker ends next day BEFORE start time, take inverse
   else if (span < 0) { span = 1440 + span; }
@@ -303,7 +303,7 @@ showcolor = (x) => {
         // manually set Y, width, fill, class
         rect.setAttribute('y', y);
         rect.setAttribute('width', newW);
-        rect.setAttribute('fill', colors[cleaned]);
+        rect.setAttribute('fill', color[cleaned]);
         rect.setAttribute('class', cleaned);
         // append to SVG
         $('#path').append(rect);
