@@ -80,6 +80,15 @@ $(() => {
       .style('top', () => ($(document).height() - event.pageY < 200) ? event.pageY - 150 + 'px' : event.pageY + 'px' )
   });
 
+  // stupid mobile fix: tooltip appears even without hover, so on "hover" it'll close, too, without a close btn
+  $('#tooltip').on('mouseover', () => {
+    // remove text
+    $('#info').html('');
+    // hide tooltip
+    d3.select('#tooltip')
+      .style('visibility', 'hidden')
+  });
+
   $('.howto').on('mouseout', () => {
     // remove text
     $('#info').html('');
