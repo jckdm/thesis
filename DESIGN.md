@@ -1,11 +1,11 @@
 # Digital Distancing
 
-Each type of visualization is created through functions in two files: one with the name of the visualization type, and the other with -helper. The first file parses the data files into various data structures. The -helper file contains functions which visualize and analyze the data.
+Each type of visualization is created through functions in two files: one with the name of the visualization type, and the other with <code>-helper</code>. The first file parses the data files into various data structures. The <code>-helper</code> file contains functions which visualize and analyze the data.
 
 All three visualizations rely on a dictionary of colors:
 ```
 const color = {};
-- each app\'s name and its associated color, formatted as [appName] = color (in hex code)
+- each app's name and its associated color, formatted as [appName] = color (in hex code)
 ```
 
 ## Grapher
@@ -21,7 +21,7 @@ Data structures
 const apps = [];
 - each entry is a coordinate pair and its respective app, formatted as [x, y, app]
 const cleanedApps = {};
-- each app\'s name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
+- each app's name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
 ```
 Functions
 ```
@@ -43,7 +43,7 @@ circleSwap(cId, on)
 
 query(id)
 - args = id: id of button clicked
-- recursive function which calls swap() and circleSwap() to style buttons and circle datapoints. toggles visibility of circle datapoints, animates data and draws lines between points to show path of user\'s mouse over time.
+- recursive function which calls swap() and circleSwap() to style buttons and circle datapoints. toggles visibility of circle datapoints, animates data and draws lines between points to show path of user's mouse over time.
 ```
 
 ## Mapper
@@ -59,7 +59,7 @@ Data structures
 const apps = [];
 - each entry is a coordinate pair and its respective app, formatted as [x, y, app]
 const cleanedApps = {};
-- each app\'s name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
+- each app's name without non-alphanumeric characters, formatted as [appName] = cleanedAppName
 ```
 Functions
 ```
@@ -85,7 +85,7 @@ Data structures
 const apps = [];
 - name of the app being used at every second
 const times = [];
-- time (to the second) at which the user\'s data was collected, formatted as HH:MM:SS
+- time (to the second) at which the user's data was collected, formatted as HH:MM:SS
 const patterns = {};
 - names of the two apps which form a pattern and the total number of instances of this pattern, formatted as [app1-app2] = number of instances
 ```
