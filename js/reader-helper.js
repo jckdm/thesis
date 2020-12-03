@@ -20,11 +20,11 @@ clean = (t) => {
   $(t).css({'stroke': '#262626', 'stroke-width': 0.125});
   $('#lines').remove();
   linelock = false;
-  showtext(false);
+  showText(false);
 }
 
 // on resize, redraw rectangles but don't flip flag
-$(window).resize(() => showcolor(0) );
+$(window).resize(() => showColor(0) );
 
 resize = (h) => {
   // get all rectangles
@@ -45,7 +45,7 @@ resize = (h) => {
   height = h;
 }
 
-showtext = (x) => {
+showText = (x) => {
   $('#apps').html('');
   $('#times').html('');
   // clear text
@@ -54,7 +54,7 @@ showtext = (x) => {
   if (d3.selectAll('line')['_groups'][0].length > 1) { clean(selected); }
 
   // style button
-  $('#showtext').css({'color': (alltext) ? 'black' : 'white', 'background-color': (alltext) ? 'white' : 'black'});
+  $('#showText').css({'color': (alltext) ? 'black' : 'white', 'background-color': (alltext) ? 'white' : 'black'});
 
   last = '';
 
@@ -266,7 +266,7 @@ analyze = () => {
   })
 }
 
-showcolor = (x) => {
+showColor = (x) => {
   if (x || x == 0) {
     // remove svg, append fresh onoe
     $('#path').remove();
@@ -279,7 +279,7 @@ showcolor = (x) => {
   if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
 
   // style button
-  $('#showcolor').css({'color': (allcolor) ? 'black' : 'white', 'background-color': (allcolor) ? 'white' : 'black'});
+  $('#showColor').css({'color': (allcolor) ? 'black' : 'white', 'background-color': (allcolor) ? 'white' : 'black'});
 
   // reset y coord
   y = 0;

@@ -87,17 +87,17 @@ const patterns = {}; // names of the two apps which form a pattern and the total
 Functions
 ```javascript
 clean(t) // args = t: selected element of which to reset styles
-// resets rectangle styles, removes lines, calls showtext() to reset visualization
+// resets rectangle styles, removes lines, calls showText() to reset visualization
 
 resize(h) // args = h: rectangle height chosen by user, defaults to 15.
 // loops over all existing rectangles and changes height and y position of each to create new visualization.
 
-showtext(x) // args = x: boolean to determine if all text being shown
+showText(x) // args = x: boolean to determine if all text being shown
 // removes previous text and lines from visualization. depending on value of boolean alltext, appends every app or only when user has just switched to another app.
 
 analyze()
 // runs data analysis on visualization and reports summary in popup modal window. calculates number of apps used, time span of data, amount of active time in that interval, number of switches between apps and average amount of time spent in each app. identifies longest period of continuous switching between two applications, number of switches, and span of switches.
 
-showcolor(x) // args = x: boolean to determine if all colored rectangles being shown
+showColor(x) // args = x: boolean to determine if all colored rectangles being shown
 // removes previous colored rectangles and lines from visualization. depending on value of boolean allcolor, appends every colored rectangle or only when user has just switched to another app. uses svgs to create rectangles, with attributes stored in dictionary attrs. on mouseover of colored rectangle, draws lines to all instances of the associated app in the text column.
 ```

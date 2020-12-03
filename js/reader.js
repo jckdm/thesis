@@ -38,11 +38,11 @@ Papa.parse(filename, {
       $('#tit').text(titText);
 
       // draw text and color
-      showtext(false);
-      showcolor(false);
+      showText(false);
+      showColor(false);
 
-      $('#showtext').on('click', () => showtext(true));
-      $('#showcolor').on('click', () => showcolor(true));
+      $('#showtext').on('click', () => showText(true));
+      $('#showcolor').on('click', () => showColor(true));
       $('#analyze').on('click', () => analyze());
     }
 });
