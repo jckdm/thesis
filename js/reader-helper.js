@@ -341,8 +341,7 @@ showcolor = (x) => {
           const gL = d3.select('body')
                        .append('svg')
                        .attr('id', 'lines')
-                       .attr('width', '100%')
-                       .attr('height', $(document).height())
+                       .attr('width', '100%');
 
           const cl_app = $('#apps > .' + cl);
           const cl_time = $('#times > .' + cl);
@@ -371,6 +370,10 @@ showcolor = (x) => {
               .attr('x2', readerWidth + 5)
               .attr('y2', top);
           }
+          // wait until text removed to extend svg to be height of document minus height of Analyze button div
+          gL.attr('height', $(document).height() - $('#long')[0].clientHeight);
+
+          // append invisible longest app to ensure consistent width of app column
           $('#apps').append('<text style="visibility: hidden">' + longestApp + '</text>');
         }
       })
