@@ -12,9 +12,10 @@ Papa.parse(filename, {
         // log start date & time
         if (c == 0) { startDate = r.date; startTime = r.time; }
         const app = r.app;
+        // find app with longest name (for spacing issues)
         if (app.length > longestApp.length) { longestApp = app; }
         const cleanApp = app.replace(/\W/g, '');
-        // if not in dictionary
+        // if app not yet seen
         if (!color[cleanApp]) {
           // get next color in scheme
           if (c < 17) {
@@ -24,6 +25,7 @@ Papa.parse(filename, {
           // or generate a new one
           else { color[cleanApp] = colorize(); }
         }
+        // record data
         apps.push(app);
         times.push(r.time);
         endDate = r.date;
@@ -32,7 +34,6 @@ Papa.parse(filename, {
   	},
     complete: () => {
       document.title = 'DD: Reader';
-
       // if same start and end date, only show once, otherwise show start and end dates
       const titText = (startDate == endDate) ? user + ' ' + startDate + ' ' + startTime + ' – ' + endTime : user + ' ' + startDate + ' ' + startTime + ' – ' + endDate + ' ' + endTime;
       $('#tit').text(titText);
@@ -41,6 +42,7 @@ Papa.parse(filename, {
       showText(false);
       showColor(false);
 
+      // add onclick functions to buttons
       $('#showtext').on('click', () => showText(true));
       $('#showcolor').on('click', () => showColor(true));
       $('#analyze').on('click', () => analyze());

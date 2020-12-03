@@ -9,7 +9,7 @@ Papa.parse(filename, {
   	step(row) {
       const r = row.data;
       if (r.app) {
-        // log start and end times
+        // log start date & time
         if (c == 0) { startDate = r.date; startTime = r.time; }
         const app = r.app;
         const cleanApp = app.replace(/\W/g, '');
@@ -24,7 +24,7 @@ Papa.parse(filename, {
           // or generate a new one
           else { color[cleanApp] = colorize(); }
         }
-        // push data to respective arrays
+        // record data
         apps.push([parseFloat(r.x), parseFloat(r.y), app]);
         endDate = r.date;
         endTime = r.time;
@@ -52,6 +52,7 @@ Papa.parse(filename, {
       // append user tracked and span of time
       $('#tit').text(titText);
 
+      // create SVG
       const svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
 
       // define scales and axes
@@ -60,6 +61,7 @@ Papa.parse(filename, {
       const xAxis = d3.axisBottom().scale(xScale).ticks(25);
       const yAxis = d3.axisLeft().scale(yScale).ticks(20);
 
+      // append axes
       svg.append('g')
          .attr('class', 'xaxis')
          .attr('transform', 'translate(0,' + (h - padding) + ')')

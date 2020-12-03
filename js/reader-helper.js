@@ -9,12 +9,14 @@ let height = 15;
 let selected;
 let longestApp = '';
 
+// attributes for each svg rectangle in viz
 const attrs = {x: 20, height: 15, stroke: '#262626', 'stroke-width': 0.125};
 
 let allcolor = false;
 let alltext = false;
 let linelock = false;
 
+// remove highlighted border and lines, reappend text
 clean = (t) => {
   // reset styles for selected / this rect
   $(t).css({'stroke': '#262626', 'stroke-width': 0.125});
@@ -26,6 +28,7 @@ clean = (t) => {
 // on resize, redraw rectangles but don't flip flag
 $(window).resize(() => showColor(0) );
 
+// user toggles dropdown height menu
 resize = (h) => {
   // get all rectangles
   const rects = $('#path')[0].children;
@@ -51,6 +54,7 @@ showText = (x) => {
   // clear text
   if (x) { alltext = !alltext; }
 
+  // if lines, remove them
   if (d3.selectAll('line')['_groups'][0].length > 1) { clean(selected); }
 
   // style button
@@ -211,9 +215,11 @@ analyze = () => {
   startDate = startDate.replace('\n', '');
   endDate = endDate.replace('\n', '');
 
+  // calculate span of time
   let span = (endTime[0] * 60 - startTime[0] * 60) + (endTime[1] - startTime[1]) + ((endTime[2] - startTime[2]) / 60);
   let days = '<span class="data">' + startDate + '</span> <span class="data">' + times[0] + '</span> – <span class="data">' + times[times.length - 1] + '</span>';
 
+  // split into month, day, year
   const splitStart = startDate.split('/');
   const splitEnd = endDate.split('/');
 
@@ -276,6 +282,7 @@ showColor = (x) => {
   // only switch on click, not on resize
   if (x) { allcolor = !allcolor; }
 
+  // if lines, remove them
   if (d3.selectAll('line')['_groups'][0].length != 0) { clean(selected); }
 
   // style button
@@ -346,6 +353,7 @@ showColor = (x) => {
           const cl_app = $('#apps > .' + cl);
           const cl_time = $('#times > .' + cl);
 
+          // remove text from two columns
           $('#apps').text('');
           $('#times').text('');
 

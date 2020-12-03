@@ -24,7 +24,7 @@ Papa.parse(filename, {
           // or generate a new one
           else { color[cleanApp] = colorize(); }
         }
-        // push data to array
+        // record data
         apps.push([parseFloat(r.x), parseFloat(r.y), app]);
         endDate = r.date;
         endTime = r.time;
@@ -35,6 +35,7 @@ Papa.parse(filename, {
       // if same start and end date, only show once, otherwise show start and end dates
       const titText = (startDate == endDate) ? user + ' ' + startDate + ' ' + startTime + ' – ' + endTime : user + ' ' + startDate + ' ' + startTime + ' – ' + endDate + ' ' + endTime;
       $('#tit').text(titText);
+      // create visualization
       grid();
   	}
 });

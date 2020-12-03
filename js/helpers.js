@@ -5,11 +5,14 @@ const url = window.location.href.split('=');
 const filename = (url.length == 3) ? url[2] : 'data/' + url[1];
 
 const fs = url[1].split('-');
+// screen dimensions
 const w = parseInt(fs[1]);
 const h = parseInt(fs[2]);
 
+// username
 const user = fs[0];
 
+// 17 element scheme
 const scheme = ['rgb(141,200,199)', 'rgb(255,255,179)', 'rgb(190,186,218)',
 'rgb(251,128,114)', 'rgb(128,177,211)', 'rgb(253,180,98)', 'rgb(179,222,105)',
 'rgb(252,205,229)', 'rgb(217,217,217)', 'rgb(188,128,189)', 'rgb(204,235,197)',

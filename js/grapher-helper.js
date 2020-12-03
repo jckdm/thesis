@@ -19,6 +19,7 @@ filters = (id) => {
     if (!lineFlag && !timeFlag) { filters('timesort'); }
     lineFlag = !lineFlag;
   }
+  // toggle visiblity of axes
   else {
     $('.xaxis').css('color', (axisFlag) ? '#262626' : 'white');
     $('.yaxis').css('color', (axisFlag) ? '#262626' : 'white');
@@ -28,6 +29,7 @@ filters = (id) => {
 
 // switches buttons on/off
 swap = (id, cId, b, flag) => {
+  // don't change invert button
   if (id != 'invert') {
     let c = (flag) ? color[cId] : 'black';
 

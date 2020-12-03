@@ -4,9 +4,7 @@ viz = (s) => {
     window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv', '_blank');
   }
   // if custom, add objectURL to end
-  else {
-    window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv=' + objectURL, '_blank');
-  }
+  else { window.open(s[0].innerText.toLowerCase() + '.html?file=' + s[0].parentElement.cells[0].innerText + '.csv=' + objectURL, '_blank'); }
 }
 choice = (s) => window.open('data/tracer/' + s[0].parentElement.cells[0].innerText.split(' ').join('') + '-' + s[0].innerText + '.svg', '_blank');
 
@@ -39,6 +37,7 @@ $(() => {
   // get all tracker viz rows
   const trt = $('#tracktab').children()[0].children;
 
+  // append viz types for each tracker viz
   for (let i = 1; i < trt.length; i++) {
     $(trt[i]).append('<td class="vizType">Grapher</td> <td class="vizType">Mapper</td> <td class="vizType">Reader</td>');
   }
@@ -46,14 +45,16 @@ $(() => {
   // get all tracer viz rows
   const tat = $('#tracetab').children()[0].children;
 
+  // append viz types for each tracer viz
   for (let i = 1; i < tat.length; i++) {
     $(tat[i]).append('<td class="img">Unsorted</td> <td class="img">Sorted</td> <td class="img">Overlaid</td>');
   }
 
-  // add onclick functions to each
+  // add onclick functions to each button
   $('.vizType').on('click', function() { viz($(this)); });
   $('.img').on('click', function() { choice($(this)); });
 
+  // default white on black button (on)
   const button = '<button type="button" style="background-color: black; color: white;">';
 
   // dict of info for tooltips
@@ -67,6 +68,7 @@ $(() => {
     overlaid: '<span>Overlaid paths combine both unsorted &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#3CB371"></rect></svg> &nbsp; and sorted &nbsp; <svg width="40" height="2.5"><rect height="2.5" width="40" fill="#6666FF"></rect></svg> &nbsp; paths of the same image sets.</span>'
   };
 
+  // on tooltip hover
   $('.howto').on('mouseover', function() {
     // add text for given viz
     $('#info').append(tools[this.id]);
@@ -89,6 +91,7 @@ $(() => {
       .style('visibility', 'hidden')
   });
 
+  // hide tooltip on mouseout
   $('.howto').on('mouseout', () => {
     // remove text
     $('#info').html('');

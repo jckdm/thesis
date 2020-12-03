@@ -26,7 +26,7 @@ grid = (x) => {
   // default size = 10, otherwise use selected
   if (x != 'z' && x != 'c' && x !== undefined) { sq = parseInt(x.split(' ')[0]); }
 
-  // switch btw filled and unfilled 0 value squares
+  // Hide 0
   else if (x == 'z') {
     // change sq color
     zero = ($('#hide')[0].style.color == 'black') ? 'black' : 'none';
@@ -35,6 +35,7 @@ grid = (x) => {
 
     zeroflag = !zeroflag;
   }
+  // color by most used app
   else if (x == 'c') {
     // style button
     $('#col').css({'color': (colflag) ? 'white' : 'black', 'background-color': (colflag) ? 'black' : 'white'})
@@ -47,8 +48,11 @@ grid = (x) => {
 
   // construct empty matrix
   for (let row = 0; row < h / sq; row++) {
+    // array per row
     data.push([]);
+    // dictionary per element
     for (let column = 0; column < w / sq; column++) {
+      // x, y, count, dict of apps and total num seconds in that quadrant
       data[row].push({ x: xPos, y: yPos, c: 0, apps: {} })
       xPos += sq;
     }
