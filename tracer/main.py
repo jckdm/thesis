@@ -16,6 +16,7 @@ def main():
 
     data, lats, lons, flag, good, bad = [], [None, None], [None, None], False, 0, 0
 
+    # ask if user wants too show images' metadata (added for my zine)
     meta = input('\nShow metadata? (y/n): ')
 
     if meta.lower() in ('yes', 'y'):
@@ -32,7 +33,7 @@ def main():
         if not file.endswith('.jpg') and not file.endswith('.jpeg') and not file.endswith('.png'):
             continue
 
-        # extract EXIF data from image
+        # extract Exif data from image
         exif = {
             TAGS[key]: val
             for key, val in Image.open(file).getexif().items()
@@ -53,6 +54,7 @@ def main():
         lat = { 'dir': loc[1], 'deg': loc[2][0], 'min': loc[2][1], 'sec': loc[2][2] }
         lon = { 'dir': loc[3], 'deg': loc[4][0], 'min': loc[4][1], 'sec': loc[4][2] }
 
+        # clean and print metadata
         if metaflag:
             cleanLat = str(lat['deg']) + '° ' + str(lat['min']) + '\' ' + str(lat['sec']) + '\" ' + str(lat['dir'])
             cleanLon = str(lon['deg']) + '° ' + str(lon['min']) + '\' ' + str(lon['sec']) + '\" ' + str(lon['dir'])
