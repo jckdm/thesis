@@ -1,18 +1,14 @@
 # Digital Distancing
 
+### Abstract
+
 In the post-[GDPR](https://www.wired.co.uk/article/what-is-gdpr-uk-eu-legislation-compliance-summary-fines-2018) world, it seems that every online interaction comes packaged with constant reminders of data tracking. For the first time in the digital age, our data can be experienced with the most rudimentary digital verbs: VIEW your data, DOWNLOAD your data, DELETE your data. Previously taken in secret, data now comes hand in hand with consent; but have we become any more in control of our digital footprint? Is it our awareness, our potential for intervention, or is it our passive consent which gives us this shaky semblance of control?
 
-I propose a pair of tools which seek to define a framework for understanding ourselves through our data.
+"Digital Distancing" considers the relationship between distance and technology in the era of social distancing in order to define a framework for understanding ourselves through our data. The project is comprised of a journal which documents my thoughts on the subject matter and a pair of data collection and extraction tools which create visualizations in order to directly explore these themes.
 
+Tracker, the first of these tools, records a user’s mouse and in-use application. In doing so, it tracks gesture, space, and time and creates three opposing visual representations of a user's computer usage. First, it produces graphs which illuminate paths and hotspots, allowing a user to query, segment, and animate their data. Second, it produces maps which distribute data across quadrants and can be scaled to re-layer the encoded information. Third, it produces a readable pair of lists which highlight the texture and patterns created by inflection points where a user switches between applications.
 
-### The Tracker
-
-records a user’s mouse and in-use application. In doing so, the Tracker tracks gesture, space, and time and creates three opposing visual representations of a user's computer usage. First, it produces graphs which illuminate paths and hotspots; these visualizations allow a user to query, segment, and animate their data. Second, it produces maps which distribute data across quadrants and can be scaled relatively or to show the maximum at each point. Third, it produces a readable pair of lists (in text and in color) which highlight the texture created by inflection points where a user switches between applications.
-
-
-### The Tracer
-
-extracts Exif metadata from images, specifically their coordinates and timestamps and creates two three opposing visual representations of a user's movement through physical space. In doing so, the Tracer draws paths which illustrate alternative geometries. Rather than mapping this data to specific locations for the purpose of surveillance and tracking, the Tracer considers coordinates abstractly. First, it produces unsorted paths drawn in the order which the Tracer read the image files—these paths are unpredictable in shape and difficult to trace. Second, it produces sorted paths rendered in the order which the images were taken, resulting in traceable, logical paths. Third, it produces overlaid paths which combine both sorted and unsorted paths of the same image sets.
+Tracer extracts Exif metadata from images, specifically their coordinates and timestamps and creates two three opposing visual representations of a user's movement through physical space. In doing so, the Tracer draws paths which illustrate alternative geometries. Rather than mapping this data to specific locations for the purpose of surveillance and tracking, the Tracer considers coordinates abstractly. First, it produces unsorted paths drawn in the order which the Tracer read the image files—these paths are unpredictable in shape and difficult to trace. Second, it produces sorted paths rendered in the order which the images were taken, resulting in traceable, logical paths. Third, it produces overlaid paths which combine both sorted and unsorted paths of the same image sets.
 
 
 ### That is all to say,
@@ -23,9 +19,7 @@ This data, similar to mouse coordinates, exists like radio static in the backgro
 
 Rather than tracking tasks and analyzing trends for the purpose of creating a sellable product, these tools only make us more aware of ourselves. They reduce all interactions to data, but in the end, it must be asked if through this process of data collection, if we've actually gained anything at all. And how can we claim that this data is personal when we've never before seen it, and certainly don't recognize it?
 
-Why do we need a computer to perform these tasks for us, anyway? Could humans not pay attention to these pieces of data, ourselves? Maybe most crucially, have we ever thought to ask if any of this is fun or arousing? That is, do we like our data and what it allows us to see, feel, and believe?
-
-Who defines digital behavior, and what differentiates it from our physical behavior? How are we learning to develop technological biases? And as we socially distance and learn to be hyper-aware of how we move through public, physical spaces, how are we (re-)learning to move through our private, digital spaces?
+Why do we need a computer to perform these tasks for us, anyway? Could humans not pay attention to these pieces of data, ourselves? Maybe most crucially, have we ever thought to ask if any of this is fun or arousing? That is, do we like our data and what it allows us to see, feel, and believe? Who defines digital behavior, and what differentiates it from our physical behavior? How are we learning to develop technological biases? And as we socially distance and learn to be hyper-aware of how we move through public, physical spaces, how are we (re-)learning to move through our private, digital spaces?
 
 
 ## Installation & Usage
@@ -53,4 +47,4 @@ python3 main.py
 
 ## Credits
 
-Thanks to advisors Dr. Benedict Brown, Justin Berry, and Dr. Julie Dorsey, housemates Felicia Chang and Rianna Turner, friends Shayna Sragovicz, Helen Kauder, Gia Grier, Harry Jain, Michaela Shelton, to my parents, and to the Yale Office of Emergency Management.
+Thanks to advisors Dr. Benedict Brown, Justin Berry, and Dr. Julie Dorsey, housemates Felicia Chang and Rianna Turner, friends Shayna Sragovicz, Helen Kauder, Gia Grier, Harry Jain, Trey Lewis, Michaela Shelton, to my parents, and to the Yale Office of Emergency Management.
