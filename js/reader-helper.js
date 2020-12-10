@@ -15,6 +15,7 @@ const attrs = {x: 20, height: 15, stroke: '#262626', 'stroke-width': 0.125};
 let allcolor = false;
 let alltext = false;
 let linelock = false;
+let analyzed = false;
 
 // remove highlighted border and lines, reappend text
 clean = (t) => {
@@ -83,6 +84,12 @@ showText = (x) => {
 analyze = () => {
   // style button
   $('#analyze').css({'color': 'black', 'background-color': 'white'});
+
+  // has analysis already been done? just show the modal and go home.
+  if (analyzed) {
+    $('.overlay').css('visibility', 'visible');
+    return;
+  }
 
   // get all apps and times in respective divs
   const aps = $('#apps')[0].childNodes;
@@ -270,6 +277,9 @@ analyze = () => {
     $('.overlay').css('visibility', 'hidden');
     $('#analyze').css({'color': 'white', 'background-color': 'black'});
   })
+
+  // remember that this analysis has been performed--don't do it again!
+  analyzed = true;
 }
 
 showColor = (x) => {
