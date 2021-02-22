@@ -1,0 +1,20 @@
+.vidcont {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+.vid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#content { width: 65%; }
+
+@media only screen and (max-width: 415px) {
+  #content { width: 100%; }
+}
