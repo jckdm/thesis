@@ -15,6 +15,8 @@
 
 #content { width: 65%; }
 
+#sub-content { width: 57.5%; }
+
 @media only screen and (max-width: 415px) {
   #content { width: 100%; }
 }
